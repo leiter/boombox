@@ -1,0 +1,32 @@
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.DS_Store
+
+# Kotlin
+*.kotlin_module
+
+# Android
+local.properties
+*.apk
+*.aab
+*.dex
+*.class
+
+# iOS
+iosApp/iosApp.xcodeproj/project.xcworkspace/
+iosApp/iosApp.xcodeproj/xcuserdata/
+iosApp/Pods/
+*.xcuserstate
+
+# Misc
+*.log
+*.tmp
+*.swp

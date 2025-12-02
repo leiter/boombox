@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Adaptive icon safe zone: 66dp centered (21dp inset) -->
+
+    <!-- Background gradient effect -->
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M0,0 L108,0 L108,108 L0,108 Z"/>
+
+    <!-- Speaker body - main -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M28,46 L28,62 L36,62 L48,72 L48,36 L36,46 Z"/>
+
+    <!-- Speaker detail -->
+    <path
+        android:fillColor="#FFE5D0"
+        android:pathData="M28,46 L28,62 L33,62 L33,46 Z"/>
+
+    <!-- Sound wave 1 (inner) -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,48 Q60,54 54,60"
+        android:strokeWidth="3.5"
+        android:strokeColor="#FFFFFF"
+        android:strokeLineCap="round"/>
+
+    <!-- Sound wave 2 (middle) -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M60,42 Q70,54 60,66"
+        android:strokeWidth="3.5"
+        android:strokeColor="#FFFFFF"
+        android:strokeLineCap="round"/>
+
+    <!-- Sound wave 3 (outer) -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M66,36 Q80,54 66,72"
+        android:strokeWidth="3.5"
+        android:strokeColor="#FFFFFF"
+        android:strokeLineCap="round"/>
+
+    <!-- Music note with "1" style stem -->
+    <group>
+        <!-- Note head 1 -->
+        <path
+            android:fillColor="#FFD93D"
+            android:pathData="M76,28 A5,4 -30 1,1 76,36 A5,4 -30 1,1 76,28"/>
+        <!-- Note stem 1 -->
+        <path
+            android:fillColor="#00000000"
+            android:pathData="M80,30 L80,16"
+            android:strokeWidth="2.5"
+            android:strokeColor="#FFD93D"
+            android:strokeLineCap="round"/>
+    </group>
+
+    <!-- Music note with "9" style -->
+    <group>
+        <!-- Note head 2 -->
+        <path
+            android:fillColor="#FFD93D"
+            android:pathData="M86,24 A5,4 -30 1,1 86,32 A5,4 -30 1,1 86,24"/>
+        <!-- Note stem 2 -->
+        <path
+            android:fillColor="#00000000"
+            android:pathData="M90,26 L90,12"
+            android:strokeWidth="2.5"
+            android:strokeColor="#FFD93D"
+            android:strokeLineCap="round"/>
+    </group>
+
+    <!-- Beam connecting the notes (like year numbers) -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M80,16 L90,12"
+        android:strokeWidth="3"
+        android:strokeColor="#FFD93D"
+        android:strokeLineCap="round"/>
+
+    <!-- Flag/beam decoration -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M80,20 L88,17"
+        android:strokeWidth="2.5"
+        android:strokeColor="#FFD93D"
+        android:strokeLineCap="round"/>
+
+    <!-- Year numbers styled as music elements "19" "85" hint -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M72,78 L72,88 M72,83 L76,83"
+        android:strokeWidth="2"
+        android:strokeColor="#FFFFFF"
+        android:strokeLineCap="round"/>
+
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M80,78 Q80,82 84,78 Q88,78 88,82 Q88,86 84,86 Q80,86 80,88 L88,88"
+        android:strokeWidth="2"
+        android:strokeColor="#FFFFFF"
+        android:strokeLineCap="round"/>
+
+</vector>

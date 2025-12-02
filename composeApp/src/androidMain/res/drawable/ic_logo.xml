@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Background circle -->
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M54,54m-42,0a42,42 0,1 1,84 0a42,42 0,1 1,-84 0"/>
+
+    <!-- Inner gradient circle -->
+    <path
+        android:fillColor="#FF8F5E"
+        android:pathData="M54,54m-36,0a36,36 0,1 1,72 0a36,36 0,1 1,-72 0"/>
+
+    <!-- Speaker body -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M30,44 L30,64 L40,64 L55,76 L55,32 L40,44 Z"/>
+
+    <!-- Speaker cone outline -->
+    <path
+        android:fillColor="#FFD93D"
+        android:pathData="M55,38 L55,70"
+        android:strokeWidth="2"
+        android:strokeColor="#FFD93D"/>
+
+    <!-- Sound wave 1 -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M62,44 Q68,54 62,64"
+        android:strokeWidth="3"
+        android:strokeColor="#FFFFFF"
+        android:strokeLineCap="round"/>
+
+    <!-- Sound wave 2 -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M68,38 Q78,54 68,70"
+        android:strokeWidth="3"
+        android:strokeColor="#FFFFFF"
+        android:strokeLineCap="round"/>
+
+    <!-- Music note 1 (styled as "1") -->
+    <path
+        android:fillColor="#FFD93D"
+        android:pathData="M72,26 L72,38 M72,38 A4,4 0 1,1 72,46 A4,4 0 1,1 72,38"
+        android:strokeWidth="2.5"
+        android:strokeColor="#FFD93D"
+        android:strokeLineCap="round"/>
+
+    <!-- Music note 2 (styled as "9") -->
+    <path
+        android:fillColor="#FFD93D"
+        android:pathData="M82,22 L82,34 M82,34 A4,4 0 1,1 82,42 A4,4 0 1,1 82,34"
+        android:strokeWidth="2.5"
+        android:strokeColor="#FFD93D"
+        android:strokeLineCap="round"/>
+
+    <!-- Year hint - small "85" styled -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M74,72 Q74,68 78,68 Q82,68 82,72 Q82,76 78,76 Q74,76 74,80 Q74,84 78,84 Q82,84 82,80"
+        android:strokeWidth="2"
+        android:strokeColor="#FFFFFF"
+        android:strokeLineCap="round"/>
+
+    <!-- Decorative music beam connecting notes -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M72,26 L82,22"
+        android:strokeWidth="2.5"
+        android:strokeColor="#FFD93D"
+        android:strokeLineCap="round"/>
+
+</vector>
