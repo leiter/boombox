@@ -12,6 +12,7 @@ build/
 
 # Kotlin
 *.kotlin_module
+.kotlin/
 
 # Android
 local.properties
@@ -30,3 +31,6 @@ iosApp/Pods/
 *.log
 *.tmp
 *.swp
+
+# Project temp/dev directories
+tmp/

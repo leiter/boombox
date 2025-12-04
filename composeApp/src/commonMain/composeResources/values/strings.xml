@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- App name -->
+    <string name="app_name">HitIt</string>
+    <string name="app_subtitle">Music Quiz Game</string>
+
+    <!-- Home Screen -->
+    <string name="service_ready">%1$s Ready</string>
+    <string name="service_not_found">%1$s Not Found</string>
+    <string name="service_checking">Checking %1$s…</string>
+    <string name="service_install_prompt">Please install the %1$s app to play music</string>
+
+    <string name="how_to_play">How to Play</string>
+    <string name="instruction_step_1">1. Scan a Hitster card QR code</string>
+    <string name="instruction_step_2">2. Listen to the song in %1$s</string>
+    <string name="instruction_step_3">3. Guess the year, artist &amp; title</string>
+    <string name="instruction_step_4">4. Check your answer on the card!</string>
+
+    <string name="scan_card">Scan Card</string>
+    <string name="opening">Opening…</string>
+    <string name="test_service">Test %1$s (Get Lucky)</string>
+
+    <!-- Scanner Screen -->
+    <string name="close">Close</string>
+    <string name="flash_on">Flash On</string>
+    <string name="flash_off">Flash Off</string>
+    <string name="scan_again">Scan Again</string>
+
+    <!-- Scanner Status Messages -->
+    <string name="status_point_camera">Point camera at a Hitster card</string>
+    <string name="status_processing">Processing QR code…</string>
+    <string name="status_scan_error">Scan error: %1$s</string>
+    <string name="status_hitster_card">Hitster card #%1$s</string>
+    <string name="status_hitster_card_with_info">%1$s\n%2$s</string>
+    <string name="status_fetching_track">Looking up card #%1$s…</string>
+    <string name="status_opening_track">Opening track in %1$s…</string>
+    <string name="status_opening_track_with_info">Opening %1$s - %2$s…</string>
+    <string name="status_playing">Playing in %1$s</string>
+    <string name="status_playing_with_info">Playing: %1$s - %2$s</string>
+    <string name="status_could_not_open">Could not open %1$s</string>
+    <string name="status_card_not_found">Card #%1$s not found in database</string>
+    <string name="status_spotify_detected">Spotify track detected: %1$s\n(Use Deezer links for this app)</string>
+    <string name="status_youtube_detected">YouTube video detected: %1$s\n(Use Deezer links for this app)</string>
+    <string name="status_url_detected">URL detected:\n%1$s</string>
+    <string name="status_unknown_qr">Unknown QR code:\n%1$s</string>
+</resources>

@@ -9,6 +9,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.hitit.app.ui.viewmodel.HomeViewModel
+import hitit.composeapp.generated.resources.*
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 
 @Composable
@@ -30,7 +32,7 @@ fun HomeScreen(
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "HitIt",
+                text = stringResource(Res.string.app_name),
                 style = MaterialTheme.typography.displayLarge,
                 color = MaterialTheme.colorScheme.primary
             )
@@ -38,7 +40,7 @@ fun HomeScreen(
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = "Music Quiz Game",
+                text = stringResource(Res.string.app_subtitle),
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -63,9 +65,9 @@ fun HomeScreen(
                 ) {
                     Text(
                         text = when (uiState.isDeezerAvailable) {
-                            true -> "${viewModel.serviceName} Ready"
-                            false -> "${viewModel.serviceName} Not Found"
-                            null -> "Checking ${viewModel.serviceName}..."
+                            true -> stringResource(Res.string.service_ready, viewModel.serviceName)
+                            false -> stringResource(Res.string.service_not_found, viewModel.serviceName)
+                            null -> stringResource(Res.string.service_checking, viewModel.serviceName)
                         },
                         style = MaterialTheme.typography.titleMedium
                     )
@@ -73,7 +75,7 @@ fun HomeScreen(
                     if (uiState.isDeezerAvailable == false) {
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "Please install the ${viewModel.serviceName} app to play music",
+                            text = stringResource(Res.string.service_install_prompt, viewModel.serviceName),
                             style = MaterialTheme.typography.bodySmall,
                             textAlign = TextAlign.Center
                         )
@@ -93,15 +95,15 @@ fun HomeScreen(
                         .padding(16.dp)
                 ) {
                     Text(
-                        text = "How to Play",
+                        text = stringResource(Res.string.how_to_play),
                         style = MaterialTheme.typography.titleMedium
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = "1. Scan a Hitster card QR code\n" +
-                                "2. Listen to the song in ${viewModel.serviceName}\n" +
-                                "3. Guess the year, artist & title\n" +
-                                "4. Check your answer on the card!",
+                        text = stringResource(Res.string.instruction_step_1) + "\n" +
+                                stringResource(Res.string.instruction_step_2, viewModel.serviceName) + "\n" +
+                                stringResource(Res.string.instruction_step_3) + "\n" +
+                                stringResource(Res.string.instruction_step_4),
                         style = MaterialTheme.typography.bodyMedium
                     )
                 }
@@ -117,7 +119,7 @@ fun HomeScreen(
                 enabled = uiState.isDeezerAvailable != null
             ) {
                 Text(
-                    text = "Scan Card",
+                    text = stringResource(Res.string.scan_card),
                     style = MaterialTheme.typography.titleMedium
                 )
             }
@@ -131,8 +133,8 @@ fun HomeScreen(
                 enabled = !uiState.isTestingPlayback
             ) {
                 Text(
-                    if (uiState.isTestingPlayback) "Opening..."
-                    else "Test ${viewModel.serviceName} (Get Lucky)"
+                    if (uiState.isTestingPlayback) stringResource(Res.string.opening)
+                    else stringResource(Res.string.test_service, viewModel.serviceName)
                 )
             }
         }

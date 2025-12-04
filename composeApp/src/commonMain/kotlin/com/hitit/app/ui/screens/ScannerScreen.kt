@@ -13,8 +13,48 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.hitit.app.ui.viewmodel.ScannerViewModel
+import com.hitit.app.ui.viewmodel.StatusMessage
+import hitit.composeapp.generated.resources.*
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 import qrscanner.QrScanner
+
+@Composable
+fun StatusMessage.toLocalizedString(): String {
+    return when (this) {
+        is StatusMessage.PointCamera -> stringResource(Res.string.status_point_camera)
+        is StatusMessage.Processing -> stringResource(Res.string.status_processing)
+        is StatusMessage.ScanError -> stringResource(Res.string.status_scan_error, error)
+        is StatusMessage.HitsterCard -> {
+            if (title != null && artist != null) {
+                stringResource(Res.string.status_hitster_card_with_info, artist, title)
+            } else {
+                stringResource(Res.string.status_hitster_card, cardId)
+            }
+        }
+        is StatusMessage.FetchingTrack -> stringResource(Res.string.status_fetching_track, cardId)
+        is StatusMessage.OpeningTrack -> {
+            if (title != null && artist != null) {
+                stringResource(Res.string.status_opening_track_with_info, artist, title)
+            } else {
+                stringResource(Res.string.status_opening_track, serviceName)
+            }
+        }
+        is StatusMessage.Playing -> {
+            if (title != null && artist != null) {
+                stringResource(Res.string.status_playing_with_info, artist, title)
+            } else {
+                stringResource(Res.string.status_playing, serviceName)
+            }
+        }
+        is StatusMessage.CouldNotOpen -> stringResource(Res.string.status_could_not_open, serviceName)
+        is StatusMessage.CardNotFound -> stringResource(Res.string.status_card_not_found, cardId)
+        is StatusMessage.SpotifyDetected -> stringResource(Res.string.status_spotify_detected, trackId)
+        is StatusMessage.YouTubeDetected -> stringResource(Res.string.status_youtube_detected, videoId)
+        is StatusMessage.UrlDetected -> stringResource(Res.string.status_url_detected, url)
+        is StatusMessage.UnknownQr -> stringResource(Res.string.status_unknown_qr, content)
+    }
+}
 
 @Composable
 fun ScannerScreen(
@@ -41,12 +81,12 @@ fun ScannerScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Scan Card",
+                    text = stringResource(Res.string.scan_card),
                     style = MaterialTheme.typography.titleLarge,
                     color = MaterialTheme.colorScheme.onPrimary
                 )
                 TextButton(onClick = onBackToHome) {
-                    Text("Close", color = MaterialTheme.colorScheme.onPrimary)
+                    Text(stringResource(Res.string.close), color = MaterialTheme.colorScheme.onPrimary)
                 }
             }
         }
@@ -98,7 +138,7 @@ fun ScannerScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = uiState.statusMessage,
+                    text = uiState.status.toLocalizedString(),
                     style = MaterialTheme.typography.bodyLarge,
                     textAlign = TextAlign.Center
                 )
@@ -111,13 +151,13 @@ fun ScannerScreen(
                     OutlinedButton(
                         onClick = { viewModel.toggleFlashlight() }
                     ) {
-                        Text(if (uiState.flashlightOn) "Flash Off" else "Flash On")
+                        Text(if (uiState.flashlightOn) stringResource(Res.string.flash_off) else stringResource(Res.string.flash_on))
                     }
 
                     Button(
                         onClick = { viewModel.resetScanner() }
                     ) {
-                        Text("Scan Again")
+                        Text(stringResource(Res.string.scan_again))
                     }
                 }
             }
