@@ -33,6 +33,13 @@ fun StatusMessage.toLocalizedString(): String {
             }
         }
         is StatusMessage.FetchingTrack -> stringResource(Res.string.status_fetching_track, cardId)
+        is StatusMessage.FlipToPlay -> {
+            if (title != null && artist != null) {
+                stringResource(Res.string.status_flip_to_play_with_info, artist, title)
+            } else {
+                stringResource(Res.string.status_flip_to_play)
+            }
+        }
         is StatusMessage.OpeningTrack -> {
             if (title != null && artist != null) {
                 stringResource(Res.string.status_opening_track_with_info, artist, title)

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Background fill -->
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M0,0 L108,0 L108,108 L0,108 Z"/>
+
+    <!-- === 3D GHETTO BLASTER / BOOMBOX (scaled down 20%) === -->
+    <group
+        android:pivotX="54"
+        android:pivotY="54"
+        android:scaleX="0.8"
+        android:scaleY="0.8">
+
+        <!-- Main body - top face (3D depth) -->
+        <path
+            android:fillColor="#E0E0E0"
+            android:pathData="M24,42 L30,38 L84,38 L78,42 Z"/>
+
+        <!-- Main body - front face -->
+        <path
+            android:fillColor="#F5F5F5"
+            android:pathData="M24,42 L24,68 L78,68 L78,42 Z"/>
+
+        <!-- Main body - right side (3D depth) -->
+        <path
+            android:fillColor="#CCCCCC"
+            android:pathData="M78,42 L84,38 L84,64 L78,68 Z"/>
+
+        <!-- Handle -->
+        <path
+            android:fillColor="#888888"
+            android:pathData="M42,38 L42,34 Q51,30 60,34 L60,38"
+            android:strokeWidth="2.5"
+            android:strokeColor="#666666"
+            android:strokeLineCap="round"/>
+
+        <!-- Left speaker - outer ring -->
+        <path
+            android:fillColor="#333333"
+            android:pathData="M38,55 m-10,0 a10,10 0 1,1 20,0 a10,10 0 1,1 -20,0"/>
+
+        <!-- Left speaker - cone -->
+        <path
+            android:fillColor="#555555"
+            android:pathData="M38,55 m-7,0 a7,7 0 1,1 14,0 a7,7 0 1,1 -14,0"/>
+
+        <!-- Left speaker - dome -->
+        <path
+            android:fillColor="#222222"
+            android:pathData="M38,55 m-3,0 a3,3 0 1,1 6,0 a3,3 0 1,1 -6,0"/>
+
+        <!-- Right speaker - outer ring -->
+        <path
+            android:fillColor="#333333"
+            android:pathData="M64,55 m-10,0 a10,10 0 1,1 20,0 a10,10 0 1,1 -20,0"/>
+
+        <!-- Right speaker - cone -->
+        <path
+            android:fillColor="#555555"
+            android:pathData="M64,55 m-7,0 a7,7 0 1,1 14,0 a7,7 0 1,1 -14,0"/>
+
+        <!-- Right speaker - dome -->
+        <path
+            android:fillColor="#222222"
+            android:pathData="M64,55 m-3,0 a3,3 0 1,1 6,0 a3,3 0 1,1 -6,0"/>
+
+        <!-- Cassette deck area -->
+        <path
+            android:fillColor="#444444"
+            android:pathData="M46,46 L56,46 L56,58 L46,58 Z"/>
+
+        <!-- Cassette window -->
+        <path
+            android:fillColor="#87CEEB"
+            android:pathData="M48,48 L54,48 L54,54 L48,54 Z"/>
+
+        <!-- Cassette reels -->
+        <path
+            android:fillColor="#333333"
+            android:pathData="M49.5,51 m-1.5,0 a1.5,1.5 0 1,1 3,0 a1.5,1.5 0 1,1 -3,0"/>
+        <path
+            android:fillColor="#333333"
+            android:pathData="M52.5,51 m-1.5,0 a1.5,1.5 0 1,1 3,0 a1.5,1.5 0 1,1 -3,0"/>
+
+        <!-- Control buttons -->
+        <path
+            android:fillColor="#FF4444"
+            android:pathData="M47,61 m-1.5,0 a1.5,1 0 1,1 3,0 a1.5,1 0 1,1 -3,0"/>
+        <path
+            android:fillColor="#44AA44"
+            android:pathData="M51,61 m-1.5,0 a1.5,1 0 1,1 3,0 a1.5,1 0 1,1 -3,0"/>
+        <path
+            android:fillColor="#4444FF"
+            android:pathData="M55,61 m-1.5,0 a1.5,1 0 1,1 3,0 a1.5,1 0 1,1 -3,0"/>
+
+    </group>
+
+    <!-- === Musical notes - moved down 8dp to touch boombox === -->
+    <group
+        android:pivotX="80"
+        android:pivotY="24"
+        android:translateY="8"
+        android:rotation="10">
+
+        <!-- Note stems -->
+        <path
+            android:fillColor="#00000000"
+            android:pathData="M66,16 L66,26"
+            android:strokeWidth="1.8"
+            android:strokeColor="#FFD93D"
+            android:strokeLineCap="round"/>
+
+        <path
+            android:fillColor="#00000000"
+            android:pathData="M73,14 L73,24"
+            android:strokeWidth="1.8"
+            android:strokeColor="#FFD93D"
+            android:strokeLineCap="round"/>
+
+        <path
+            android:fillColor="#00000000"
+            android:pathData="M80,16 L80,26"
+            android:strokeWidth="1.8"
+            android:strokeColor="#FFD93D"
+            android:strokeLineCap="round"/>
+
+        <path
+            android:fillColor="#00000000"
+            android:pathData="M87,14 L87,24"
+            android:strokeWidth="1.8"
+            android:strokeColor="#FFD93D"
+            android:strokeLineCap="round"/>
+
+        <!-- Note heads -->
+        <path
+            android:fillColor="#FFD93D"
+            android:pathData="M66,26 m-2.5,-1.2 a2.5,1.8 -30 1,0 5,0 a2.5,1.8 -30 1,0 -5,0"/>
+
+        <path
+            android:fillColor="#FFD93D"
+            android:pathData="M73,24 m-2.5,-1.2 a2.5,1.8 -30 1,0 5,0 a2.5,1.8 -30 1,0 -5,0"/>
+
+        <path
+            android:fillColor="#FFD93D"
+            android:pathData="M80,26 m-2.5,-1.2 a2.5,1.8 -30 1,0 5,0 a2.5,1.8 -30 1,0 -5,0"/>
+
+        <path
+            android:fillColor="#FFD93D"
+            android:pathData="M87,24 m-2.5,-1.2 a2.5,1.8 -30 1,0 5,0 a2.5,1.8 -30 1,0 -5,0"/>
+
+        <!-- Double beam -->
+        <path
+            android:fillColor="#00000000"
+            android:pathData="M66,16 L87,14"
+            android:strokeWidth="2.2"
+            android:strokeColor="#FFD93D"
+            android:strokeLineCap="round"/>
+
+        <path
+            android:fillColor="#00000000"
+            android:pathData="M66,19 L87,17"
+            android:strokeWidth="1.8"
+            android:strokeColor="#FFD93D"
+            android:strokeLineCap="round"/>
+    </group>
+
+</vector>

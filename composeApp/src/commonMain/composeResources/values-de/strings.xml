@@ -33,6 +33,8 @@
     <string name="status_hitster_card">Hitster-Karte #%1$s</string>
     <string name="status_hitster_card_with_info">%1$s\n%2$s</string>
     <string name="status_fetching_track">Karte #%1$s wird gesucht…</string>
+    <string name="status_flip_to_play">Handy umdrehen zum Abspielen</string>
+    <string name="status_flip_to_play_with_info">%1$s - %2$s\nHandy umdrehen zum Abspielen</string>
     <string name="status_opening_track">Titel wird in %1$s geöffnet…</string>
     <string name="status_opening_track_with_info">%1$s - %2$s wird geöffnet…</string>
     <string name="status_playing">Wird in %1$s abgespielt</string>

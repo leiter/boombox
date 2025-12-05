@@ -20,7 +20,7 @@ val appModule = module {
 
     // ViewModels
     factory { HomeViewModel(get()) }
-    factory { ScannerViewModel(get(), get()) }
+    factory { ScannerViewModel(get(), get(), get()) }
 }
 
 val allModules = listOf(appModule) + platformModule()

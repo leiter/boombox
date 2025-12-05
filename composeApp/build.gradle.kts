@@ -70,6 +70,7 @@ kotlin {
             implementation(libs.koin.android)
             implementation(libs.androidx.activity.compose)
             implementation(libs.androidx.lifecycle.runtime)
+            implementation(compose.uiTooling)
         }
 
         iosMain.dependencies {
