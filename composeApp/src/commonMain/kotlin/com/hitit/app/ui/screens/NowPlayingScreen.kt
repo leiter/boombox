@@ -16,10 +16,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil3.compose.AsyncImage
 import hitit.composeapp.generated.resources.*
 import org.jetbrains.compose.resources.stringResource
 
@@ -31,6 +33,7 @@ fun NowPlayingScreen(
     title: String?,
     artist: String?,
     year: Int?,
+    albumCoverUrl: String? = null,
     isPlaying: Boolean = true,
     onPlayPauseClick: () -> Unit = {},
     onNextCard: () -> Unit,
@@ -74,7 +77,7 @@ fun NowPlayingScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            // Album art placeholder
+            // Album art
             Box(
                 modifier = Modifier
                     .size(200.dp)
@@ -86,12 +89,21 @@ fun NowPlayingScreen(
                     ),
                 contentAlignment = Alignment.Center
             ) {
-                // Music note text as placeholder for album art
-                Text(
-                    text = "♪",
-                    fontSize = 64.sp,
-                    color = Color.White
-                )
+                if (albumCoverUrl != null) {
+                    AsyncImage(
+                        model = albumCoverUrl,
+                        contentDescription = "Album cover",
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.Crop
+                    )
+                } else {
+                    // Music note as placeholder when no album art
+                    Text(
+                        text = "♪",
+                        fontSize = 64.sp,
+                        color = Color.White
+                    )
+                }
             }
 
             Spacer(modifier = Modifier.height(32.dp))

@@ -31,8 +31,6 @@ import org.jetbrains.compose.resources.stringResource
  */
 @Composable
 fun FlipPhoneScreen(
-    title: String? = null,
-    artist: String? = null,
     onClose: () -> Unit
 ) {
     val cyanColor = Color(0xFF00D4FF)
@@ -98,17 +96,6 @@ fun FlipPhoneScreen(
                 color = Color.White.copy(alpha = 0.7f),
                 textAlign = TextAlign.Center
             )
-
-            // Show track info if available
-            if (title != null && artist != null) {
-                Spacer(modifier = Modifier.height(32.dp))
-                Text(
-                    text = "$artist - $title",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = cyanColor,
-                    textAlign = TextAlign.Center
-                )
-            }
         }
     }
 }

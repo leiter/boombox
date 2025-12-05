@@ -8,6 +8,7 @@ data class Track(
     val title: String? = null,
     val artist: String? = null,
     val year: Int? = null,
+    val albumCoverUrl: String? = null,
     val serviceType: MusicServiceType = MusicServiceType.DEEZER
 )
 

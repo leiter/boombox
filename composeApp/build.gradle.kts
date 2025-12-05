@@ -63,6 +63,9 @@ kotlin {
             // Kotlinx
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlinx.serialization.json)
+
+            // Coil - Image Loading
+            implementation(libs.coil.compose)
         }
 
         androidMain.dependencies {
@@ -71,6 +74,7 @@ kotlin {
             implementation(libs.androidx.activity.compose)
             implementation(libs.androidx.lifecycle.runtime)
             implementation(compose.uiTooling)
+            implementation(libs.coil.network.okhttp)
         }
 
         iosMain.dependencies {

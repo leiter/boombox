@@ -2,6 +2,9 @@ package com.hitit.app.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -80,14 +83,15 @@ fun ScannerScreen(
 
     // Show NowPlayingScreen when playing
     if (uiState.isNowPlaying) {
-        val (title, artist, year) = when (val status = uiState.status) {
-            is StatusMessage.NowPlaying -> Triple(status.title, status.artist, status.year)
-            else -> Triple(null, null, null)
+        val (title, artist, year, albumCoverUrl) = when (val status = uiState.status) {
+            is StatusMessage.NowPlaying -> listOf(status.title, status.artist, status.year, status.albumCoverUrl)
+            else -> listOf(null, null, null, null)
         }
         NowPlayingScreen(
-            title = title,
-            artist = artist,
-            year = year,
+            title = title as String?,
+            artist = artist as String?,
+            year = year as Int?,
+            albumCoverUrl = albumCoverUrl as String?,
             isPlaying = true,
             onPlayPauseClick = { /* TODO: Toggle playback */ },
             onNextCard = { viewModel.resetScanner() },
@@ -98,13 +102,7 @@ fun ScannerScreen(
 
     // Show FlipPhoneScreen when waiting for flip
     if (uiState.isWaitingForFlip) {
-        val (title, artist) = when (val status = uiState.status) {
-            is StatusMessage.FlipToPlay -> status.title to status.artist
-            else -> null to null
-        }
         FlipPhoneScreen(
-            title = title,
-            artist = artist,
             onClose = { viewModel.resetScanner() }
         )
         return
@@ -117,7 +115,9 @@ fun ScannerScreen(
     ) {
         // Top bar
         Surface(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .windowInsetsPadding(WindowInsets.statusBars),
             color = MaterialTheme.colorScheme.primary
         ) {
             Row(
@@ -138,42 +138,50 @@ fun ScannerScreen(
             }
         }
 
-        // Camera preview
+        // Camera preview - restricted to center scan area
         Box(
             modifier = Modifier
                 .weight(1f)
                 .fillMaxWidth()
-                .padding(16.dp)
+                .background(Color.Black),
+            contentAlignment = Alignment.Center
         ) {
-            QrScanner(
+            // Scanner limited to center square area
+            Box(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .clip(RoundedCornerShape(16.dp)),
-                flashlightOn = uiState.flashlightOn,
-                openImagePicker = false,
-                imagePickerHandler = { /* Not used */ },
-                onFailure = { error ->
-                    viewModel.onScanError(error.toString())
-                },
-                onCompletion = { result ->
-                    viewModel.onQrCodeScanned(result)
-                }
-            )
-
-            // Cyan scanning frame overlay
-            ScannerFrame(
-                modifier = Modifier.fillMaxSize()
-            )
-
-            // Scanning overlay indicator
-            if (uiState.isProcessing) {
-                Box(
+                    .fillMaxWidth(0.75f)
+                    .aspectRatio(1f)
+            ) {
+                QrScanner(
                     modifier = Modifier
                         .fillMaxSize()
-                        .background(Color.Black.copy(alpha = 0.5f)),
-                    contentAlignment = Alignment.Center
-                ) {
-                    CircularProgressIndicator(color = Color.White)
+                        .clip(RoundedCornerShape(16.dp)),
+                    flashlightOn = uiState.flashlightOn,
+                    openImagePicker = false,
+                    imagePickerHandler = { /* Not used */ },
+                    onFailure = { error ->
+                        viewModel.onScanError(error.toString())
+                    },
+                    onCompletion = { result ->
+                        viewModel.onQrCodeScanned(result)
+                    }
+                )
+
+                // Cyan scanning frame overlay
+                ScannerFrame(
+                    modifier = Modifier.fillMaxSize()
+                )
+
+                // Scanning overlay indicator
+                if (uiState.isProcessing) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(Color.Black.copy(alpha = 0.5f)),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        CircularProgressIndicator(color = Color.White)
+                    }
                 }
             }
         }

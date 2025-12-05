@@ -1,6 +1,8 @@
 package com.hitit.app.ui.screens
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -8,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.hitit.app.AppBuildConfig
 import com.hitit.app.ui.viewmodel.HomeViewModel
 import hitit.composeapp.generated.resources.*
 import org.jetbrains.compose.resources.stringResource
@@ -16,6 +19,7 @@ import org.koin.compose.koinInject
 @Composable
 fun HomeScreen(
     onStartScanning: () -> Unit,
+    onOpenDebugSettings: () -> Unit = {},
     viewModel: HomeViewModel = koinInject()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -136,6 +140,22 @@ fun HomeScreen(
                     if (uiState.isTestingPlayback) stringResource(Res.string.opening)
                     else stringResource(Res.string.test_service, viewModel.serviceName)
                 )
+            }
+
+            // Debug settings button - only visible in debug builds
+            if (AppBuildConfig.isDebug) {
+                Spacer(modifier = Modifier.height(32.dp))
+                TextButton(
+                    onClick = onOpenDebugSettings
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Settings,
+                        contentDescription = null,
+                        modifier = Modifier.size(18.dp)
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text("Debug Settings")
+                }
             }
         }
     }

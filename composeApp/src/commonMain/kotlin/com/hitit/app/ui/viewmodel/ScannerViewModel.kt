@@ -11,6 +11,7 @@ import com.hitit.app.service.AudioPlayer
 import com.hitit.app.service.DeviceOrientation
 import com.hitit.app.service.DeviceOrientationService
 import com.hitit.app.service.MusicService
+import com.hitit.app.settings.DebugSettings
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -25,7 +26,7 @@ sealed class StatusMessage {
     data class HitsterCard(val cardId: String, val title: String? = null, val artist: String? = null) : StatusMessage()
     data class FetchingTrack(val cardId: String) : StatusMessage()
     data class FlipToPlay(val title: String? = null, val artist: String? = null) : StatusMessage()
-    data class NowPlaying(val title: String? = null, val artist: String? = null, val year: Int? = null) : StatusMessage()
+    data class NowPlaying(val title: String? = null, val artist: String? = null, val year: Int? = null, val albumCoverUrl: String? = null) : StatusMessage()
     data class OpeningTrack(val serviceName: String, val title: String? = null, val artist: String? = null) : StatusMessage()
     data class Playing(val serviceName: String, val title: String? = null, val artist: String? = null) : StatusMessage()
     data class CouldNotOpen(val serviceName: String) : StatusMessage()
@@ -61,11 +62,6 @@ class ScannerViewModel(
     private var orientationJob: Job? = null
     private var autoFlipJob: Job? = null
 
-    companion object {
-        // Enable this for testing without actually flipping the phone
-        const val TEST_MODE_AUTO_FLIP = true
-        const val AUTO_FLIP_DELAY_MS = 3000L
-    }
 
     fun toggleFlashlight() {
         _uiState.value = _uiState.value.copy(
@@ -103,10 +99,10 @@ class ScannerViewModel(
     }
 
     private fun startAutoFlipTimer() {
-        if (!TEST_MODE_AUTO_FLIP) return
+        if (!DebugSettings.autoFlipEnabled) return
 
         autoFlipJob = viewModelScope.launch {
-            delay(AUTO_FLIP_DELAY_MS)
+            delay(DebugSettings.autoFlipDelayMs)
             if (_uiState.value.isWaitingForFlip) {
                 onDeviceFlippedFaceDown()
             }
@@ -126,12 +122,20 @@ class ScannerViewModel(
         viewModelScope.launch {
             // Show NowPlaying screen with track info and play preview audio in-app
             pendingTrack?.let { track ->
-                updateStatus(StatusMessage.NowPlaying(track.title, track.artist, track.year))
+                // Fetch full track info from Deezer API to get album cover and preview
+                val trackInfo = deezerApi.getTrackInfo(track.id)
+                val albumCoverUrl = trackInfo?.album?.coverMedium
+
+                updateStatus(StatusMessage.NowPlaying(
+                    track.title,
+                    track.artist,
+                    track.year,
+                    albumCoverUrl
+                ))
                 _uiState.value = _uiState.value.copy(isNowPlaying = true)
 
                 // Play 30-second preview in-app (user stays in HitIt)
-                val previewUrl = deezerApi.getPreviewUrl(track.id)
-                if (previewUrl != null) {
+                trackInfo?.preview?.let { previewUrl ->
                     audioPlayer.play(previewUrl)
                 }
                 return@launch
@@ -144,7 +148,8 @@ class ScannerViewModel(
                     updateStatus(StatusMessage.NowPlaying(
                         trackInfo.title,
                         trackInfo.artist?.name,
-                        null // Year not available from Deezer API directly
+                        null, // Year not available from Deezer API directly
+                        trackInfo.album?.coverMedium
                     ))
                     _uiState.value = _uiState.value.copy(isNowPlaying = true)
 
@@ -153,7 +158,7 @@ class ScannerViewModel(
                         audioPlayer.play(previewUrl)
                     }
                 } else {
-                    updateStatus(StatusMessage.NowPlaying(null, null, null))
+                    updateStatus(StatusMessage.NowPlaying(null, null, null, null))
                     _uiState.value = _uiState.value.copy(isNowPlaying = true)
                 }
             }
