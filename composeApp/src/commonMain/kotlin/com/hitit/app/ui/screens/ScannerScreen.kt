@@ -1,5 +1,6 @@
 package com.hitit.app.ui.screens
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.WindowInsets
@@ -81,6 +82,18 @@ fun ScannerScreen(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
+    // Handle back press - go to scanner if playing/waiting, otherwise go home
+    BackHandler {
+        if (uiState.isNowPlaying || uiState.isWaitingForFlip) {
+            // Return to scanner screen
+            viewModel.resetScanner()
+        } else {
+            // Exit scanner, go to home
+            viewModel.resetScanner()
+            onBackToHome()
+        }
+    }
+
     // Show NowPlayingScreen when playing
     if (uiState.isNowPlaying) {
         val (title, artist, year, albumCoverUrl) = when (val status = uiState.status) {
@@ -132,7 +145,10 @@ fun ScannerScreen(
                     style = MaterialTheme.typography.titleLarge,
                     color = MaterialTheme.colorScheme.onPrimary
                 )
-                TextButton(onClick = onBackToHome) {
+                TextButton(onClick = {
+                    viewModel.resetScanner()
+                    onBackToHome()
+                }) {
                     Text(stringResource(Res.string.close), color = MaterialTheme.colorScheme.onPrimary)
                 }
             }

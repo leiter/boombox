@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Background fill -->
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M0,0 L108,0 L108,108 L0,108 Z"/>
+
+    <!-- === STEREO SPEAKERS - BROWN WOOD STYLE === -->
+
+    <!-- Yellow/Orange sound burst behind speakers -->
+    <path
+        android:fillColor="#FFD93D"
+        android:pathData="M54,54 L48,20 L54,28 L60,20 Z"/>
+    <path
+        android:fillColor="#FFD93D"
+        android:pathData="M54,54 L88,48 L80,54 L88,60 Z"/>
+    <path
+        android:fillColor="#FFD93D"
+        android:pathData="M54,54 L60,88 L54,80 L48,88 Z"/>
+    <path
+        android:fillColor="#FFD93D"
+        android:pathData="M54,54 L20,60 L28,54 L20,48 Z"/>
+    <path
+        android:fillColor="#FFA500"
+        android:pathData="M54,54 L38,24 L46,32 L42,18 Z"/>
+    <path
+        android:fillColor="#FFA500"
+        android:pathData="M54,54 L70,24 L62,32 L66,18 Z"/>
+    <path
+        android:fillColor="#FFA500"
+        android:pathData="M54,54 L84,70 L76,62 L90,66 Z"/>
+    <path
+        android:fillColor="#FFA500"
+        android:pathData="M54,54 L84,38 L76,46 L90,42 Z"/>
+    <path
+        android:fillColor="#FFA500"
+        android:pathData="M54,54 L24,70 L32,62 L18,66 Z"/>
+    <path
+        android:fillColor="#FFA500"
+        android:pathData="M54,54 L24,38 L32,46 L18,42 Z"/>
+    <path
+        android:fillColor="#FFA500"
+        android:pathData="M54,54 L38,84 L46,76 L42,90 Z"/>
+    <path
+        android:fillColor="#FFA500"
+        android:pathData="M54,54 L70,84 L62,76 L66,90 Z"/>
+
+    <!-- LEFT SPEAKER - Brown wood, tilted -->
+    <group
+        android:pivotX="32"
+        android:pivotY="54"
+        android:rotation="-12">
+
+        <!-- Speaker cabinet - 3D effect -->
+        <path
+            android:fillColor="#5D4037"
+            android:pathData="M18,28 L46,28 L46,80 L18,80 Z"/>
+        <path
+            android:fillColor="#4E342E"
+            android:pathData="M46,28 L52,34 L52,86 L46,80 Z"/>
+        <path
+            android:fillColor="#6D4C41"
+            android:pathData="M18,28 L24,22 L52,22 L46,28 Z"/>
+
+        <!-- Cabinet outline -->
+        <path
+            android:fillColor="#00000000"
+            android:pathData="M18,28 L46,28 L46,80 L18,80 Z"
+            android:strokeWidth="1.5"
+            android:strokeColor="#3E2723"/>
+
+        <!-- Upper speaker (tweeter) -->
+        <path
+            android:fillColor="#9E9E9E"
+            android:pathData="M32,42 m-10,0 a10,10 0 1,1 20,0 a10,10 0 1,1 -20,0"/>
+        <path
+            android:fillColor="#757575"
+            android:pathData="M32,42 m-7,0 a7,7 0 1,1 14,0 a7,7 0 1,1 -14,0"/>
+        <path
+            android:fillColor="#424242"
+            android:pathData="M32,42 m-4,0 a4,4 0 1,1 8,0 a4,4 0 1,1 -8,0"/>
+        <path
+            android:fillColor="#212121"
+            android:pathData="M32,42 m-2,0 a2,2 0 1,1 4,0 a2,2 0 1,1 -4,0"/>
+
+        <!-- Lower speaker (woofer) -->
+        <path
+            android:fillColor="#9E9E9E"
+            android:pathData="M32,64 m-12,0 a12,12 0 1,1 24,0 a12,12 0 1,1 -24,0"/>
+        <path
+            android:fillColor="#757575"
+            android:pathData="M32,64 m-9,0 a9,9 0 1,1 18,0 a9,9 0 1,1 -18,0"/>
+        <path
+            android:fillColor="#616161"
+            android:pathData="M32,64 m-6,0 a6,6 0 1,1 12,0 a6,6 0 1,1 -12,0"/>
+        <path
+            android:fillColor="#424242"
+            android:pathData="M32,64 m-3,0 a3,3 0 1,1 6,0 a3,3 0 1,1 -6,0"/>
+    </group>
+
+    <!-- RIGHT SPEAKER - Brown wood, tilted opposite -->
+    <group
+        android:pivotX="76"
+        android:pivotY="54"
+        android:rotation="12">
+
+        <!-- Speaker cabinet - 3D effect -->
+        <path
+            android:fillColor="#5D4037"
+            android:pathData="M62,28 L90,28 L90,80 L62,80 Z"/>
+        <path
+            android:fillColor="#4E342E"
+            android:pathData="M56,34 L62,28 L62,80 L56,86 Z"/>
+        <path
+            android:fillColor="#6D4C41"
+            android:pathData="M56,22 L84,22 L90,28 L62,28 Z"/>
+
+        <!-- Cabinet outline -->
+        <path
+            android:fillColor="#00000000"
+            android:pathData="M62,28 L90,28 L90,80 L62,80 Z"
+            android:strokeWidth="1.5"
+            android:strokeColor="#3E2723"/>
+
+        <!-- Upper speaker (tweeter) -->
+        <path
+            android:fillColor="#9E9E9E"
+            android:pathData="M76,42 m-10,0 a10,10 0 1,1 20,0 a10,10 0 1,1 -20,0"/>
+        <path
+            android:fillColor="#757575"
+            android:pathData="M76,42 m-7,0 a7,7 0 1,1 14,0 a7,7 0 1,1 -14,0"/>
+        <path
+            android:fillColor="#424242"
+            android:pathData="M76,42 m-4,0 a4,4 0 1,1 8,0 a4,4 0 1,1 -8,0"/>
+        <path
+            android:fillColor="#212121"
+            android:pathData="M76,42 m-2,0 a2,2 0 1,1 4,0 a2,2 0 1,1 -4,0"/>
+
+        <!-- Lower speaker (woofer) -->
+        <path
+            android:fillColor="#9E9E9E"
+            android:pathData="M76,64 m-12,0 a12,12 0 1,1 24,0 a12,12 0 1,1 -24,0"/>
+        <path
+            android:fillColor="#757575"
+            android:pathData="M76,64 m-9,0 a9,9 0 1,1 18,0 a9,9 0 1,1 -18,0"/>
+        <path
+            android:fillColor="#616161"
+            android:pathData="M76,64 m-6,0 a6,6 0 1,1 12,0 a6,6 0 1,1 -12,0"/>
+        <path
+            android:fillColor="#424242"
+            android:pathData="M76,64 m-3,0 a3,3 0 1,1 6,0 a3,3 0 1,1 -6,0"/>
+    </group>
+
+</vector>

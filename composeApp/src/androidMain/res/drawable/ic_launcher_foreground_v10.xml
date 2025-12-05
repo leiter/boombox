@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Background fill -->
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M0,0 L108,0 L108,108 L0,108 Z"/>
+
+    <!-- === BOTTOM-UP PERSPECTIVE (looking up at boombox) === -->
+    <group
+        android:pivotX="54"
+        android:pivotY="54"
+        android:scaleX="0.85"
+        android:scaleY="0.85">
+
+        <!-- Main body - larger at bottom (perspective) -->
+        <path
+            android:fillColor="#F5F5F5"
+            android:pathData="M18,38 L90,38 L82,72 L26,72 Z"/>
+
+        <!-- Bottom edge (3D depth) -->
+        <path
+            android:fillColor="#CCCCCC"
+            android:pathData="M26,72 L82,72 L88,78 L20,78 Z"/>
+
+        <!-- Left side depth -->
+        <path
+            android:fillColor="#D8D8D8"
+            android:pathData="M18,38 L26,72 L20,78 L12,44 Z"/>
+
+        <!-- Right side depth -->
+        <path
+            android:fillColor="#B8B8B8"
+            android:pathData="M90,38 L82,72 L88,78 L96,44 Z"/>
+
+        <!-- Handle at top (smaller due to perspective) -->
+        <path
+            android:fillColor="#888888"
+            android:pathData="M44,38 L44,32 Q54,26 64,32 L64,38"
+            android:strokeWidth="2"
+            android:strokeColor="#666666"
+            android:strokeLineCap="round"/>
+
+        <!-- Left speaker - larger at bottom -->
+        <path
+            android:fillColor="#333333"
+            android:pathData="M38,55 m-12,0 a12,14 0 1,1 24,0 a12,14 0 1,1 -24,0"/>
+        <path
+            android:fillColor="#555555"
+            android:pathData="M38,55 m-8,0 a8,10 0 1,1 16,0 a8,10 0 1,1 -16,0"/>
+        <path
+            android:fillColor="#222222"
+            android:pathData="M38,55 m-3,0 a3,4 0 1,1 6,0 a3,4 0 1,1 -6,0"/>
+
+        <!-- Right speaker - larger at bottom -->
+        <path
+            android:fillColor="#333333"
+            android:pathData="M70,55 m-12,0 a12,14 0 1,1 24,0 a12,14 0 1,1 -24,0"/>
+        <path
+            android:fillColor="#555555"
+            android:pathData="M70,55 m-8,0 a8,10 0 1,1 16,0 a8,10 0 1,1 -16,0"/>
+        <path
+            android:fillColor="#222222"
+            android:pathData="M70,55 m-3,0 a3,4 0 1,1 6,0 a3,4 0 1,1 -6,0"/>
+
+        <!-- Cassette deck (wider at bottom) -->
+        <path
+            android:fillColor="#444444"
+            android:pathData="M48,44 L60,44 L62,60 L46,60 Z"/>
+        <path
+            android:fillColor="#87CEEB"
+            android:pathData="M49,46 L59,46 L60,56 L48,56 Z"/>
+
+        <!-- Control buttons -->
+        <path
+            android:fillColor="#FF4444"
+            android:pathData="M48,65 m-2,0 a2,2.5 0 1,1 4,0 a2,2.5 0 1,1 -4,0"/>
+        <path
+            android:fillColor="#44AA44"
+            android:pathData="M54,65 m-2,0 a2,2.5 0 1,1 4,0 a2,2.5 0 1,1 -4,0"/>
+        <path
+            android:fillColor="#4444FF"
+            android:pathData="M60,65 m-2,0 a2,2.5 0 1,1 4,0 a2,2.5 0 1,1 -4,0"/>
+    </group>
+
+    <!-- Musical notes in corners -->
+    <path
+        android:fillColor="#FFD93D"
+        android:pathData="M18,18 L18,26 M18,26 m-2.5,-1 a2.5,1.8 0 1,0 5,0 a2.5,1.8 0 1,0 -5,0"/>
+    <path
+        android:fillColor="#FFD93D"
+        android:pathData="M90,18 L90,26 M90,26 m-2.5,-1 a2.5,1.8 0 1,0 5,0 a2.5,1.8 0 1,0 -5,0"/>
+
+</vector>

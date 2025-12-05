@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -42,6 +44,30 @@ val iconVariants = listOf(
     IconVariant("V3 (Notes lowered)", R.drawable.ic_launcher_foreground_v3),
     IconVariant("V4 (Full + notes low)", R.drawable.ic_launcher_foreground_v4),
     IconVariant("V5 (1979 digits)", R.drawable.ic_launcher_foreground_v5),
+    IconVariant("V6 (Tilted left)", R.drawable.ic_launcher_foreground_v6),
+    IconVariant("V7 (Tilted right)", R.drawable.ic_launcher_foreground_v7),
+    IconVariant("V8 (Sound waves)", R.drawable.ic_launcher_foreground_v8),
+    IconVariant("V9 (Isometric top)", R.drawable.ic_launcher_foreground_v9),
+    IconVariant("V10 (Bottom-up)", R.drawable.ic_launcher_foreground_v10),
+    IconVariant("V11 (Large notes)", R.drawable.ic_launcher_foreground_v11),
+    IconVariant("V12 (Side profile)", R.drawable.ic_launcher_foreground_v12),
+    IconVariant("V13 (Badge style)", R.drawable.ic_launcher_foreground_v13),
+    IconVariant("V14 (Dynamic motion)", R.drawable.ic_launcher_foreground_v14),
+    IconVariant("V15 (Speaker zoom)", R.drawable.ic_launcher_foreground_v15),
+    IconVariant("V16 (With vinyl)", R.drawable.ic_launcher_foreground_v16),
+    IconVariant("V17 (Neon 80s)", R.drawable.ic_launcher_foreground_v17),
+    IconVariant("V18 (Minimalist)", R.drawable.ic_launcher_foreground_v18),
+    IconVariant("V19 (Diagonal split)", R.drawable.ic_launcher_foreground_v19),
+    IconVariant("V20 (Headphones)", R.drawable.ic_launcher_foreground_v20),
+    IconVariant("V21 (80s Comic)", R.drawable.ic_launcher_foreground_v21),
+    IconVariant("V22 (Comic 85%)", R.drawable.ic_launcher_foreground_v22),
+    IconVariant("V23 (Comic rounded)", R.drawable.ic_launcher_foreground_v23),
+    IconVariant("V24 (Wood speakers)", R.drawable.ic_launcher_foreground_v24),
+    IconVariant("V25 (Black speakers)", R.drawable.ic_launcher_foreground_v25),
+    IconVariant("V26 (White speakers)", R.drawable.ic_launcher_foreground_v26),
+    IconVariant("V27 (Single speaker)", R.drawable.ic_launcher_foreground_v27),
+    IconVariant("V28 (Red retro)", R.drawable.ic_launcher_foreground_v28),
+    IconVariant("V29 (Neon speakers)", R.drawable.ic_launcher_foreground_v29),
 )
 
 @Composable
@@ -81,8 +107,8 @@ fun IconPreviewItem(
 
 @Composable
 fun AppIconGallery(
+    modifier: Modifier = Modifier,
     variants: List<IconVariant> = iconVariants,
-    modifier: Modifier = Modifier
 ) {
     Column(
         modifier = modifier
@@ -119,8 +145,8 @@ fun AppIconGallery(
 @Preview(
     name = "App Icon Gallery",
     showBackground = true,
-    widthDp = 400,
-    heightDp = 600
+    widthDp = 450,
+    heightDp = 900
 )
 @Composable
 fun AppIconGalleryPreview() {
@@ -168,15 +194,15 @@ fun SingleIconPreview() {
 @Preview(
     name = "Icon Comparison - Side by Side",
     showBackground = true,
-    widthDp = 500,
+    widthDp = 600,
     heightDp = 200
 )
 @Composable
 fun IconComparisonPreview() {
     MaterialTheme {
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = Color(0xFFF5F5F5)
+        Column(
+            modifier = Modifier.verticalScroll(rememberScrollState()).fillMaxSize().background(color = Color(0xFFF5F5F5)),
+
         ) {
             Row(
                 modifier = Modifier
@@ -185,7 +211,8 @@ fun IconComparisonPreview() {
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                iconVariants.forEach { variant ->
+                // Show first 5 variants for comparison
+                iconVariants.take(5).forEach { variant ->
                     IconPreviewItem(variant = variant)
                 }
             }

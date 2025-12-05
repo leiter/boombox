@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Background fill -->
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M0,0 L108,0 L108,108 L0,108 Z"/>
+
+    <!-- === BOOMBOX with SOUND WAVES === -->
+    <group
+        android:pivotX="54"
+        android:pivotY="54"
+        android:scaleX="0.75"
+        android:scaleY="0.75">
+
+        <!-- Main body - top face (3D depth) -->
+        <path
+            android:fillColor="#E0E0E0"
+            android:pathData="M24,42 L30,38 L84,38 L78,42 Z"/>
+
+        <!-- Main body - front face -->
+        <path
+            android:fillColor="#F5F5F5"
+            android:pathData="M24,42 L24,68 L78,68 L78,42 Z"/>
+
+        <!-- Main body - right side (3D depth) -->
+        <path
+            android:fillColor="#CCCCCC"
+            android:pathData="M78,42 L84,38 L84,64 L78,68 Z"/>
+
+        <!-- Handle -->
+        <path
+            android:fillColor="#888888"
+            android:pathData="M42,38 L42,34 Q51,30 60,34 L60,38"
+            android:strokeWidth="2.5"
+            android:strokeColor="#666666"
+            android:strokeLineCap="round"/>
+
+        <!-- Left speaker -->
+        <path
+            android:fillColor="#333333"
+            android:pathData="M38,55 m-10,0 a10,10 0 1,1 20,0 a10,10 0 1,1 -20,0"/>
+        <path
+            android:fillColor="#555555"
+            android:pathData="M38,55 m-7,0 a7,7 0 1,1 14,0 a7,7 0 1,1 -14,0"/>
+        <path
+            android:fillColor="#222222"
+            android:pathData="M38,55 m-3,0 a3,3 0 1,1 6,0 a3,3 0 1,1 -6,0"/>
+
+        <!-- Right speaker -->
+        <path
+            android:fillColor="#333333"
+            android:pathData="M64,55 m-10,0 a10,10 0 1,1 20,0 a10,10 0 1,1 -20,0"/>
+        <path
+            android:fillColor="#555555"
+            android:pathData="M64,55 m-7,0 a7,7 0 1,1 14,0 a7,7 0 1,1 -14,0"/>
+        <path
+            android:fillColor="#222222"
+            android:pathData="M64,55 m-3,0 a3,3 0 1,1 6,0 a3,3 0 1,1 -6,0"/>
+
+        <!-- Cassette deck -->
+        <path
+            android:fillColor="#444444"
+            android:pathData="M46,46 L56,46 L56,58 L46,58 Z"/>
+        <path
+            android:fillColor="#87CEEB"
+            android:pathData="M48,48 L54,48 L54,54 L48,54 Z"/>
+
+        <!-- Control buttons -->
+        <path
+            android:fillColor="#FF4444"
+            android:pathData="M47,61 m-1.5,0 a1.5,1 0 1,1 3,0 a1.5,1 0 1,1 -3,0"/>
+        <path
+            android:fillColor="#44AA44"
+            android:pathData="M51,61 m-1.5,0 a1.5,1 0 1,1 3,0 a1.5,1 0 1,1 -3,0"/>
+        <path
+            android:fillColor="#4444FF"
+            android:pathData="M55,61 m-1.5,0 a1.5,1 0 1,1 3,0 a1.5,1 0 1,1 -3,0"/>
+    </group>
+
+    <!-- Sound waves - left side -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M12,54 Q8,54 8,48 M8,48 Q8,42 12,42"
+        android:strokeWidth="2.5"
+        android:strokeColor="#FFD93D"
+        android:strokeLineCap="round"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M18,54 Q12,54 12,48 M12,48 Q12,42 18,42"
+        android:strokeWidth="2"
+        android:strokeColor="#FFD93D"
+        android:strokeLineCap="round"/>
+
+    <!-- Sound waves - right side -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M96,54 Q100,54 100,48 M100,48 Q100,42 96,42"
+        android:strokeWidth="2.5"
+        android:strokeColor="#FFD93D"
+        android:strokeLineCap="round"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M90,54 Q96,54 96,48 M96,48 Q96,42 90,42"
+        android:strokeWidth="2"
+        android:strokeColor="#FFD93D"
+        android:strokeLineCap="round"/>
+
+    <!-- Top sound waves -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M48,18 Q54,14 60,18"
+        android:strokeWidth="2.5"
+        android:strokeColor="#FFD93D"
+        android:strokeLineCap="round"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M44,12 Q54,6 64,12"
+        android:strokeWidth="2"
+        android:strokeColor="#FFD93D"
+        android:strokeLineCap="round"/>
+
+</vector>

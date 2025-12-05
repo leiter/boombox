@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Background fill -->
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M0,0 L108,0 L108,108 L0,108 Z"/>
+
+    <!-- === BOOMBOX WITH VINYL RECORD === -->
+
+    <!-- Vinyl record behind boombox -->
+    <group
+        android:pivotX="75"
+        android:pivotY="65"
+        android:rotation="15">
+        <!-- Record outer -->
+        <path
+            android:fillColor="#1A1A1A"
+            android:pathData="M75,65 m-25,0 a25,25 0 1,1 50,0 a25,25 0 1,1 -50,0"/>
+        <!-- Record grooves -->
+        <path
+            android:fillColor="#2A2A2A"
+            android:pathData="M75,65 m-20,0 a20,20 0 1,1 40,0 a20,20 0 1,1 -40,0"/>
+        <path
+            android:fillColor="#1A1A1A"
+            android:pathData="M75,65 m-15,0 a15,15 0 1,1 30,0 a15,15 0 1,1 -30,0"/>
+        <!-- Record label -->
+        <path
+            android:fillColor="#FFD93D"
+            android:pathData="M75,65 m-8,0 a8,8 0 1,1 16,0 a8,8 0 1,1 -16,0"/>
+        <!-- Center hole -->
+        <path
+            android:fillColor="#FF6B35"
+            android:pathData="M75,65 m-2,0 a2,2 0 1,1 4,0 a2,2 0 1,1 -4,0"/>
+    </group>
+
+    <!-- Boombox in front -->
+    <group
+        android:pivotX="45"
+        android:pivotY="50"
+        android:scaleX="0.65"
+        android:scaleY="0.65"
+        android:translateX="-10"
+        android:translateY="-5">
+
+        <!-- Main body -->
+        <path
+            android:fillColor="#E0E0E0"
+            android:pathData="M24,42 L30,38 L84,38 L78,42 Z"/>
+        <path
+            android:fillColor="#F5F5F5"
+            android:pathData="M24,42 L24,68 L78,68 L78,42 Z"/>
+        <path
+            android:fillColor="#CCCCCC"
+            android:pathData="M78,42 L84,38 L84,64 L78,68 Z"/>
+
+        <!-- Handle -->
+        <path
+            android:fillColor="#888888"
+            android:pathData="M42,38 L42,34 Q51,30 60,34 L60,38"
+            android:strokeWidth="2.5"
+            android:strokeColor="#666666"
+            android:strokeLineCap="round"/>
+
+        <!-- Speakers -->
+        <path
+            android:fillColor="#333333"
+            android:pathData="M38,55 m-10,0 a10,10 0 1,1 20,0 a10,10 0 1,1 -20,0"/>
+        <path
+            android:fillColor="#555555"
+            android:pathData="M38,55 m-7,0 a7,7 0 1,1 14,0 a7,7 0 1,1 -14,0"/>
+        <path
+            android:fillColor="#222222"
+            android:pathData="M38,55 m-3,0 a3,3 0 1,1 6,0 a3,3 0 1,1 -6,0"/>
+
+        <path
+            android:fillColor="#333333"
+            android:pathData="M64,55 m-10,0 a10,10 0 1,1 20,0 a10,10 0 1,1 -20,0"/>
+        <path
+            android:fillColor="#555555"
+            android:pathData="M64,55 m-7,0 a7,7 0 1,1 14,0 a7,7 0 1,1 -14,0"/>
+        <path
+            android:fillColor="#222222"
+            android:pathData="M64,55 m-3,0 a3,3 0 1,1 6,0 a3,3 0 1,1 -6,0"/>
+
+        <!-- Cassette -->
+        <path
+            android:fillColor="#444444"
+            android:pathData="M46,46 L56,46 L56,58 L46,58 Z"/>
+        <path
+            android:fillColor="#87CEEB"
+            android:pathData="M48,48 L54,48 L54,54 L48,54 Z"/>
+    </group>
+
+    <!-- Musical notes -->
+    <path
+        android:fillColor="#FFD93D"
+        android:pathData="M18,20 L18,30 M18,30 m-3,-1 a3,2 -20 1,0 6,0 a3,2 -20 1,0 -6,0"/>
+
+</vector>

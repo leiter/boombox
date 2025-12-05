@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Background fill -->
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M0,0 L108,0 L108,108 L0,108 Z"/>
+
+    <!-- === 1980s COMIC STYLE BOOMBOX - LARGE === -->
+
+    <!-- Main body shadow for depth -->
+    <path
+        android:fillColor="#00000044"
+        android:pathData="M8,32 L100,32 L100,82 L8,82 Z"/>
+
+    <!-- Main body - front face with comic outline -->
+    <path
+        android:fillColor="#E8E8E8"
+        android:pathData="M6,30 L102,30 L102,80 L6,80 Z"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M6,30 L102,30 L102,80 L6,80 Z"
+        android:strokeWidth="3"
+        android:strokeColor="#000000"
+        android:strokeLineJoin="round"/>
+
+    <!-- Top panel / 3D edge -->
+    <path
+        android:fillColor="#D0D0D0"
+        android:pathData="M6,30 L14,22 L94,22 L102,30 Z"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M6,30 L14,22 L94,22 L102,30 Z"
+        android:strokeWidth="2.5"
+        android:strokeColor="#000000"
+        android:strokeLineJoin="round"/>
+
+    <!-- Handle - chunky comic style -->
+    <path
+        android:fillColor="#444444"
+        android:pathData="M38,22 L38,14 Q54,6 70,14 L70,22"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M38,22 L38,14 Q54,6 70,14 L70,22"
+        android:strokeWidth="3"
+        android:strokeColor="#000000"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"/>
+    <!-- Handle inner -->
+    <path
+        android:fillColor="#666666"
+        android:pathData="M42,22 L42,16 Q54,10 66,16 L66,22"/>
+
+    <!-- LEFT SPEAKER - Large comic style -->
+    <!-- Outer ring -->
+    <path
+        android:fillColor="#222222"
+        android:pathData="M30,55 m-20,0 a20,20 0 1,1 40,0 a20,20 0 1,1 -40,0"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M30,55 m-20,0 a20,20 0 1,1 40,0 a20,20 0 1,1 -40,0"
+        android:strokeWidth="2.5"
+        android:strokeColor="#000000"/>
+    <!-- Speaker cone -->
+    <path
+        android:fillColor="#3D3D3D"
+        android:pathData="M30,55 m-15,0 a15,15 0 1,1 30,0 a15,15 0 1,1 -30,0"/>
+    <!-- Inner cone -->
+    <path
+        android:fillColor="#4A4A4A"
+        android:pathData="M30,55 m-10,0 a10,10 0 1,1 20,0 a10,10 0 1,1 -20,0"/>
+    <!-- Dust cap -->
+    <path
+        android:fillColor="#1A1A1A"
+        android:pathData="M30,55 m-5,0 a5,5 0 1,1 10,0 a5,5 0 1,1 -10,0"/>
+    <!-- Comic highlight -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M24,48 m-3,0 a3,2 -45 1,1 6,0 a3,2 -45 1,1 -6,0"/>
+
+    <!-- RIGHT SPEAKER - Large comic style -->
+    <!-- Outer ring -->
+    <path
+        android:fillColor="#222222"
+        android:pathData="M78,55 m-20,0 a20,20 0 1,1 40,0 a20,20 0 1,1 -40,0"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M78,55 m-20,0 a20,20 0 1,1 40,0 a20,20 0 1,1 -40,0"
+        android:strokeWidth="2.5"
+        android:strokeColor="#000000"/>
+    <!-- Speaker cone -->
+    <path
+        android:fillColor="#3D3D3D"
+        android:pathData="M78,55 m-15,0 a15,15 0 1,1 30,0 a15,15 0 1,1 -30,0"/>
+    <!-- Inner cone -->
+    <path
+        android:fillColor="#4A4A4A"
+        android:pathData="M78,55 m-10,0 a10,10 0 1,1 20,0 a10,10 0 1,1 -20,0"/>
+    <!-- Dust cap -->
+    <path
+        android:fillColor="#1A1A1A"
+        android:pathData="M78,55 m-5,0 a5,5 0 1,1 10,0 a5,5 0 1,1 -10,0"/>
+    <!-- Comic highlight -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M72,48 m-3,0 a3,2 -45 1,1 6,0 a3,2 -45 1,1 -6,0"/>
+
+    <!-- CENTER CASSETTE DECK - Comic style -->
+    <path
+        android:fillColor="#333333"
+        android:pathData="M44,38 L64,38 L64,62 L44,62 Z"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M44,38 L64,38 L64,62 L44,62 Z"
+        android:strokeWidth="2"
+        android:strokeColor="#000000"/>
+
+    <!-- Cassette window - bright cyan 80s style -->
+    <path
+        android:fillColor="#00D4FF"
+        android:pathData="M47,41 L61,41 L61,53 L47,53 Z"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M47,41 L61,41 L61,53 L47,53 Z"
+        android:strokeWidth="1.5"
+        android:strokeColor="#000000"/>
+
+    <!-- Cassette reels -->
+    <path
+        android:fillColor="#1A1A1A"
+        android:pathData="M51,47 m-3,0 a3,3 0 1,1 6,0 a3,3 0 1,1 -6,0"/>
+    <path
+        android:fillColor="#1A1A1A"
+        android:pathData="M57,47 m-3,0 a3,3 0 1,1 6,0 a3,3 0 1,1 -6,0"/>
+    <!-- Reel centers -->
+    <path
+        android:fillColor="#444444"
+        android:pathData="M51,47 m-1,0 a1,1 0 1,1 2,0 a1,1 0 1,1 -2,0"/>
+    <path
+        android:fillColor="#444444"
+        android:pathData="M57,47 m-1,0 a1,1 0 1,1 2,0 a1,1 0 1,1 -2,0"/>
+
+    <!-- CONTROL BUTTONS - Bold 80s colors -->
+    <!-- Red button -->
+    <path
+        android:fillColor="#FF2D2D"
+        android:pathData="M47,57 m-2.5,0 a2.5,2 0 1,1 5,0 a2.5,2 0 1,1 -5,0"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M47,57 m-2.5,0 a2.5,2 0 1,1 5,0 a2.5,2 0 1,1 -5,0"
+        android:strokeWidth="1"
+        android:strokeColor="#000000"/>
+    <!-- Green button -->
+    <path
+        android:fillColor="#00FF5E"
+        android:pathData="M54,57 m-2.5,0 a2.5,2 0 1,1 5,0 a2.5,2 0 1,1 -5,0"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,57 m-2.5,0 a2.5,2 0 1,1 5,0 a2.5,2 0 1,1 -5,0"
+        android:strokeWidth="1"
+        android:strokeColor="#000000"/>
+    <!-- Blue button -->
+    <path
+        android:fillColor="#2D7FFF"
+        android:pathData="M61,57 m-2.5,0 a2.5,2 0 1,1 5,0 a2.5,2 0 1,1 -5,0"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M61,57 m-2.5,0 a2.5,2 0 1,1 5,0 a2.5,2 0 1,1 -5,0"
+        android:strokeWidth="1"
+        android:strokeColor="#000000"/>
+
+    <!-- EQ SLIDERS - Left side -->
+    <path
+        android:fillColor="#FFD93D"
+        android:pathData="M12,38 L14,38 L14,50 L12,50 Z"/>
+    <path
+        android:fillColor="#FFD93D"
+        android:pathData="M17,42 L19,42 L19,50 L17,50 Z"/>
+    <path
+        android:fillColor="#FFD93D"
+        android:pathData="M22,40 L24,40 L24,50 L22,50 Z"/>
+
+    <!-- EQ SLIDERS - Right side -->
+    <path
+        android:fillColor="#FFD93D"
+        android:pathData="M84,40 L86,40 L86,50 L84,50 Z"/>
+    <path
+        android:fillColor="#FFD93D"
+        android:pathData="M89,38 L91,38 L91,50 L89,50 Z"/>
+    <path
+        android:fillColor="#FFD93D"
+        android:pathData="M94,44 L96,44 L96,50 L94,50 Z"/>
+
+    <!-- Volume knobs -->
+    <path
+        android:fillColor="#666666"
+        android:pathData="M17,70 m-4,0 a4,4 0 1,1 8,0 a4,4 0 1,1 -8,0"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M17,70 m-4,0 a4,4 0 1,1 8,0 a4,4 0 1,1 -8,0"
+        android:strokeWidth="1.5"
+        android:strokeColor="#000000"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M17,68 L17,66"
+        android:strokeWidth="1.5"
+        android:strokeColor="#FFFFFF"
+        android:strokeLineCap="round"/>
+
+    <path
+        android:fillColor="#666666"
+        android:pathData="M91,70 m-4,0 a4,4 0 1,1 8,0 a4,4 0 1,1 -8,0"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M91,70 m-4,0 a4,4 0 1,1 8,0 a4,4 0 1,1 -8,0"
+        android:strokeWidth="1.5"
+        android:strokeColor="#000000"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M91,68 L91,66"
+        android:strokeWidth="1.5"
+        android:strokeColor="#FFFFFF"
+        android:strokeLineCap="round"/>
+
+    <!-- Comic action lines / sound burst -->
+    <path
+        android:fillColor="#FFD93D"
+        android:pathData="M2,20 L8,24 L4,26 Z"/>
+    <path
+        android:fillColor="#FFD93D"
+        android:pathData="M100,18 L106,20 L102,26 Z"/>
+    <path
+        android:fillColor="#FFD93D"
+        android:pathData="M0,50 L6,52 L0,56 Z"/>
+    <path
+        android:fillColor="#FFD93D"
+        android:pathData="M102,48 L108,52 L102,56 Z"/>
+
+</vector>

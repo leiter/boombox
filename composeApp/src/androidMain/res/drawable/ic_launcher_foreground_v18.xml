@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Background fill -->
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M0,0 L108,0 L108,108 L0,108 Z"/>
+
+    <!-- === MINIMALIST FLAT DESIGN === -->
+
+    <!-- Simple boombox silhouette -->
+    <group
+        android:pivotX="54"
+        android:pivotY="54"
+        android:scaleX="0.85"
+        android:scaleY="0.85">
+
+        <!-- Main body - single flat rectangle -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M22,40 L86,40 L86,72 L22,72 Z"/>
+
+        <!-- Handle - simple arc -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M40,40 L40,32 Q54,24 68,32 L68,40"/>
+
+        <!-- Left speaker - simple circles -->
+        <path
+            android:fillColor="#333333"
+            android:pathData="M40,56 m-12,0 a12,12 0 1,1 24,0 a12,12 0 1,1 -24,0"/>
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M40,56 m-4,0 a4,4 0 1,1 8,0 a4,4 0 1,1 -8,0"/>
+
+        <!-- Right speaker - simple circles -->
+        <path
+            android:fillColor="#333333"
+            android:pathData="M68,56 m-12,0 a12,12 0 1,1 24,0 a12,12 0 1,1 -24,0"/>
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M68,56 m-4,0 a4,4 0 1,1 8,0 a4,4 0 1,1 -8,0"/>
+
+        <!-- Center display - flat rectangle -->
+        <path
+            android:fillColor="#FFD93D"
+            android:pathData="M48,46 L60,46 L60,58 L48,58 Z"/>
+
+        <!-- Simple control dots -->
+        <path
+            android:fillColor="#333333"
+            android:pathData="M50,64 m-2,0 a2,2 0 1,1 4,0 a2,2 0 1,1 -4,0"/>
+        <path
+            android:fillColor="#333333"
+            android:pathData="M58,64 m-2,0 a2,2 0 1,1 4,0 a2,2 0 1,1 -4,0"/>
+    </group>
+
+    <!-- Simple note icon -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M88,18 L88,28 M88,28 m-4,-1 a4,2.5 0 1,0 8,0 a4,2.5 0 1,0 -8,0"/>
+
+</vector>

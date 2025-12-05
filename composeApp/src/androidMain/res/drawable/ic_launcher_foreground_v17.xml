@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Background fill - darker for neon effect -->
+    <path
+        android:fillColor="#2D1810"
+        android:pathData="M0,0 L108,0 L108,108 L0,108 Z"/>
+
+    <!-- === RETRO 80s NEON OUTLINE STYLE === -->
+    <group
+        android:pivotX="54"
+        android:pivotY="54"
+        android:scaleX="0.8"
+        android:scaleY="0.8">
+
+        <!-- Main body outline -->
+        <path
+            android:fillColor="#00000000"
+            android:pathData="M24,42 L24,68 L78,68 L78,42 L84,38 L30,38 Z"
+            android:strokeWidth="2.5"
+            android:strokeColor="#FF6B35"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"/>
+
+        <!-- 3D edge glow -->
+        <path
+            android:fillColor="#00000000"
+            android:pathData="M78,42 L84,38 L84,64 L78,68"
+            android:strokeWidth="2"
+            android:strokeColor="#FF8855"
+            android:strokeLineCap="round"/>
+
+        <!-- Handle neon -->
+        <path
+            android:fillColor="#00000000"
+            android:pathData="M42,38 L42,32 Q51,26 60,32 L60,38"
+            android:strokeWidth="2.5"
+            android:strokeColor="#FFD93D"
+            android:strokeLineCap="round"/>
+
+        <!-- Left speaker - neon circles -->
+        <path
+            android:fillColor="#00000000"
+            android:pathData="M38,55 m-10,0 a10,10 0 1,1 20,0 a10,10 0 1,1 -20,0"
+            android:strokeWidth="2"
+            android:strokeColor="#FF6B35"/>
+        <path
+            android:fillColor="#00000000"
+            android:pathData="M38,55 m-6,0 a6,6 0 1,1 12,0 a6,6 0 1,1 -12,0"
+            android:strokeWidth="1.5"
+            android:strokeColor="#FF8855"/>
+        <path
+            android:fillColor="#FF6B35"
+            android:pathData="M38,55 m-2,0 a2,2 0 1,1 4,0 a2,2 0 1,1 -4,0"/>
+
+        <!-- Right speaker - neon circles -->
+        <path
+            android:fillColor="#00000000"
+            android:pathData="M64,55 m-10,0 a10,10 0 1,1 20,0 a10,10 0 1,1 -20,0"
+            android:strokeWidth="2"
+            android:strokeColor="#FF6B35"/>
+        <path
+            android:fillColor="#00000000"
+            android:pathData="M64,55 m-6,0 a6,6 0 1,1 12,0 a6,6 0 1,1 -12,0"
+            android:strokeWidth="1.5"
+            android:strokeColor="#FF8855"/>
+        <path
+            android:fillColor="#FF6B35"
+            android:pathData="M64,55 m-2,0 a2,2 0 1,1 4,0 a2,2 0 1,1 -4,0"/>
+
+        <!-- Cassette area neon -->
+        <path
+            android:fillColor="#00000000"
+            android:pathData="M46,46 L56,46 L56,58 L46,58 Z"
+            android:strokeWidth="1.5"
+            android:strokeColor="#00FFFF"/>
+        <path
+            android:fillColor="#00FFFF"
+            android:pathData="M49,50 m-1,0 a1,1 0 1,1 2,0 a1,1 0 1,1 -2,0"/>
+        <path
+            android:fillColor="#00FFFF"
+            android:pathData="M53,50 m-1,0 a1,1 0 1,1 2,0 a1,1 0 1,1 -2,0"/>
+
+        <!-- Control buttons - neon dots -->
+        <path
+            android:fillColor="#FF4466"
+            android:pathData="M47,62 m-1.5,0 a1.5,1.5 0 1,1 3,0 a1.5,1.5 0 1,1 -3,0"/>
+        <path
+            android:fillColor="#44FF88"
+            android:pathData="M51,62 m-1.5,0 a1.5,1.5 0 1,1 3,0 a1.5,1.5 0 1,1 -3,0"/>
+        <path
+            android:fillColor="#4488FF"
+            android:pathData="M55,62 m-1.5,0 a1.5,1.5 0 1,1 3,0 a1.5,1.5 0 1,1 -3,0"/>
+    </group>
+
+    <!-- Neon musical notes -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M82,18 L82,30"
+        android:strokeWidth="2"
+        android:strokeColor="#FFD93D"
+        android:strokeLineCap="round"/>
+    <path
+        android:fillColor="#FFD93D"
+        android:pathData="M82,30 m-4,-1 a4,2.5 -20 1,0 8,0 a4,2.5 -20 1,0 -8,0"/>
+
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M92,14 L92,26"
+        android:strokeWidth="2"
+        android:strokeColor="#FFD93D"
+        android:strokeLineCap="round"/>
+    <path
+        android:fillColor="#FFD93D"
+        android:pathData="M92,26 m-3.5,-1 a3.5,2.2 -20 1,0 7,0 a3.5,2.2 -20 1,0 -7,0"/>
+
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M82,18 L92,14"
+        android:strokeWidth="2"
+        android:strokeColor="#FFD93D"
+        android:strokeLineCap="round"/>
+
+</vector>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Background fill -->
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M0,0 L108,0 L108,108 L0,108 Z"/>
+
+    <!-- === SINGLE LARGE SPEAKER - CENTERED === -->
+
+    <!-- Yellow sound burst behind speaker -->
+    <path
+        android:fillColor="#FFD93D"
+        android:pathData="M54,54 L48,8 L54,20 L60,8 Z"/>
+    <path
+        android:fillColor="#FFD93D"
+        android:pathData="M54,54 L100,48 L88,54 L100,60 Z"/>
+    <path
+        android:fillColor="#FFD93D"
+        android:pathData="M54,54 L60,100 L54,88 L48,100 Z"/>
+    <path
+        android:fillColor="#FFD93D"
+        android:pathData="M54,54 L8,60 L20,54 L8,48 Z"/>
+    <path
+        android:fillColor="#FFA500"
+        android:pathData="M54,54 L32,14 L42,28 L28,6 Z"/>
+    <path
+        android:fillColor="#FFA500"
+        android:pathData="M54,54 L76,14 L66,28 L80,6 Z"/>
+    <path
+        android:fillColor="#FFA500"
+        android:pathData="M54,54 L94,76 L80,66 L102,80 Z"/>
+    <path
+        android:fillColor="#FFA500"
+        android:pathData="M54,54 L94,32 L80,42 L102,28 Z"/>
+    <path
+        android:fillColor="#FFA500"
+        android:pathData="M54,54 L14,76 L28,66 L6,80 Z"/>
+    <path
+        android:fillColor="#FFA500"
+        android:pathData="M54,54 L14,32 L28,42 L6,28 Z"/>
+    <path
+        android:fillColor="#FFA500"
+        android:pathData="M54,54 L32,94 L42,80 L28,102 Z"/>
+    <path
+        android:fillColor="#FFA500"
+        android:pathData="M54,54 L76,94 L66,80 L80,102 Z"/>
+
+    <!-- SINGLE LARGE SPEAKER CABINET -->
+    <!-- Cabinet body -->
+    <path
+        android:fillColor="#5D4037"
+        android:pathData="M24,20 L84,20 L84,88 L24,88 Z"/>
+    <path
+        android:fillColor="#4E342E"
+        android:pathData="M84,20 L92,28 L92,96 L84,88 Z"/>
+    <path
+        android:fillColor="#6D4C41"
+        android:pathData="M24,20 L32,12 L92,12 L84,20 Z"/>
+
+    <!-- Cabinet outline -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M24,20 L84,20 L84,88 L24,88 Z"
+        android:strokeWidth="2"
+        android:strokeColor="#3E2723"/>
+
+    <!-- Upper speaker (tweeter) -->
+    <path
+        android:fillColor="#9E9E9E"
+        android:pathData="M54,38 m-14,0 a14,14 0 1,1 28,0 a14,14 0 1,1 -28,0"/>
+    <path
+        android:fillColor="#757575"
+        android:pathData="M54,38 m-10,0 a10,10 0 1,1 20,0 a10,10 0 1,1 -20,0"/>
+    <path
+        android:fillColor="#424242"
+        android:pathData="M54,38 m-6,0 a6,6 0 1,1 12,0 a6,6 0 1,1 -12,0"/>
+    <path
+        android:fillColor="#212121"
+        android:pathData="M54,38 m-3,0 a3,3 0 1,1 6,0 a3,3 0 1,1 -6,0"/>
+    <!-- Highlight -->
+    <path
+        android:fillColor="#FFFFFF44"
+        android:pathData="M48,32 m-2,0 a2,1.5 -45 1,1 4,0 a2,1.5 -45 1,1 -4,0"/>
+
+    <!-- Lower speaker (woofer) -->
+    <path
+        android:fillColor="#9E9E9E"
+        android:pathData="M54,68 m-18,0 a18,18 0 1,1 36,0 a18,18 0 1,1 -36,0"/>
+    <path
+        android:fillColor="#757575"
+        android:pathData="M54,68 m-14,0 a14,14 0 1,1 28,0 a14,14 0 1,1 -28,0"/>
+    <path
+        android:fillColor="#616161"
+        android:pathData="M54,68 m-10,0 a10,10 0 1,1 20,0 a10,10 0 1,1 -20,0"/>
+    <path
+        android:fillColor="#424242"
+        android:pathData="M54,68 m-5,0 a5,5 0 1,1 10,0 a5,5 0 1,1 -10,0"/>
+    <!-- Highlight -->
+    <path
+        android:fillColor="#FFFFFF44"
+        android:pathData="M44,58 m-3,0 a3,2 -45 1,1 6,0 a3,2 -45 1,1 -6,0"/>
+
+</vector>

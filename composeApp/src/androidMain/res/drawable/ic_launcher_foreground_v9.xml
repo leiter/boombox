@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Background fill -->
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M0,0 L108,0 L108,108 L0,108 Z"/>
+
+    <!-- === ISOMETRIC TOP-DOWN VIEW === -->
+    <group
+        android:pivotX="54"
+        android:pivotY="54"
+        android:scaleX="0.9"
+        android:scaleY="0.9">
+
+        <!-- Top surface of boombox (main visible area) -->
+        <path
+            android:fillColor="#E8E8E8"
+            android:pathData="M54,30 L88,46 L54,62 L20,46 Z"/>
+
+        <!-- Front face (below) -->
+        <path
+            android:fillColor="#D0D0D0"
+            android:pathData="M20,46 L54,62 L54,76 L20,60 Z"/>
+
+        <!-- Right face -->
+        <path
+            android:fillColor="#B8B8B8"
+            android:pathData="M54,62 L88,46 L88,60 L54,76 Z"/>
+
+        <!-- Handle on top -->
+        <path
+            android:fillColor="#666666"
+            android:pathData="M40,36 Q54,30 68,36"
+            android:strokeWidth="3"
+            android:strokeColor="#555555"
+            android:strokeLineCap="round"/>
+
+        <!-- Left speaker (ellipse on top) -->
+        <path
+            android:fillColor="#444444"
+            android:pathData="M36,44 m-8,0 a8,5 0 1,1 16,0 a8,5 0 1,1 -16,0"/>
+        <path
+            android:fillColor="#666666"
+            android:pathData="M36,44 m-5,0 a5,3 0 1,1 10,0 a5,3 0 1,1 -10,0"/>
+        <path
+            android:fillColor="#333333"
+            android:pathData="M36,44 m-2,0 a2,1.2 0 1,1 4,0 a2,1.2 0 1,1 -4,0"/>
+
+        <!-- Right speaker (ellipse on top) -->
+        <path
+            android:fillColor="#444444"
+            android:pathData="M72,44 m-8,0 a8,5 0 1,1 16,0 a8,5 0 1,1 -16,0"/>
+        <path
+            android:fillColor="#666666"
+            android:pathData="M72,44 m-5,0 a5,3 0 1,1 10,0 a5,3 0 1,1 -10,0"/>
+        <path
+            android:fillColor="#333333"
+            android:pathData="M72,44 m-2,0 a2,1.2 0 1,1 4,0 a2,1.2 0 1,1 -4,0"/>
+
+        <!-- Center cassette area -->
+        <path
+            android:fillColor="#555555"
+            android:pathData="M48,46 L60,46 L60,52 L48,52 Z"/>
+        <path
+            android:fillColor="#87CEEB"
+            android:pathData="M50,47 L58,47 L58,51 L50,51 Z"/>
+    </group>
+
+    <!-- Musical note floating above -->
+    <path
+        android:fillColor="#FFD93D"
+        android:pathData="M78,20 L78,30 M78,30 m-3,-1 a3,2 -20 1,0 6,0 a3,2 -20 1,0 -6,0"/>
+    <path
+        android:fillColor="#FFD93D"
+        android:pathData="M86,16 L86,26 M86,26 m-3,-1 a3,2 -20 1,0 6,0 a3,2 -20 1,0 -6,0"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M78,20 L86,16"
+        android:strokeWidth="2"
+        android:strokeColor="#FFD93D"
+        android:strokeLineCap="round"/>
+
+</vector>
