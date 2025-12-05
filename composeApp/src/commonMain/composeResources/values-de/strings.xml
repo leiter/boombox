@@ -35,6 +35,11 @@
     <string name="status_fetching_track">Karte #%1$s wird gesucht…</string>
     <string name="status_flip_to_play">Handy umdrehen zum Abspielen</string>
     <string name="status_flip_to_play_with_info">%1$s - %2$s\nHandy umdrehen zum Abspielen</string>
+    <string name="flip_phone_title">TELEFON UMDREHEN</string>
+    <string name="flip_phone_subtitle">Dann beginnt die Musik</string>
+    <string name="next_card">NÄCHSTE KARTE</string>
+    <string name="unknown_track">Unbekannter Titel</string>
+    <string name="unknown_artist">Unbekannter Künstler</string>
     <string name="status_opening_track">Titel wird in %1$s geöffnet…</string>
     <string name="status_opening_track_with_info">%1$s - %2$s wird geöffnet…</string>
     <string name="status_playing">Wird in %1$s abgespielt</string>

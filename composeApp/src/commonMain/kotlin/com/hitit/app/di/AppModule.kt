@@ -1,5 +1,6 @@
 package com.hitit.app.di
 
+import com.hitit.app.network.DeezerApiService
 import com.hitit.app.repository.HitsterCardRepository
 import com.hitit.app.repository.MockHitsterCardRepository
 import com.hitit.app.service.DeezerMusicService
@@ -17,10 +18,11 @@ val appModule = module {
 
     // Services
     single<MusicService> { DeezerMusicService(get()) }
+    single { DeezerApiService() }
 
     // ViewModels
     factory { HomeViewModel(get()) }
-    factory { ScannerViewModel(get(), get(), get()) }
+    factory { ScannerViewModel(get(), get(), get(), get(), get()) }
 }
 
 val allModules = listOf(appModule) + platformModule()

@@ -35,6 +35,11 @@
     <string name="status_fetching_track">Looking up card #%1$s…</string>
     <string name="status_flip_to_play">Flip phone face-down to play</string>
     <string name="status_flip_to_play_with_info">%1$s - %2$s\nFlip phone face-down to play</string>
+    <string name="flip_phone_title">FLIP THE PHONE</string>
+    <string name="flip_phone_subtitle">Then the music begins</string>
+    <string name="next_card">NEXT CARD</string>
+    <string name="unknown_track">Unknown Track</string>
+    <string name="unknown_artist">Unknown Artist</string>
     <string name="status_opening_track">Opening track in %1$s…</string>
     <string name="status_opening_track_with_info">Opening %1$s - %2$s…</string>
     <string name="status_playing">Playing in %1$s</string>

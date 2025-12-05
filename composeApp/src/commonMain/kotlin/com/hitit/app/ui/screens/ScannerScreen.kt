@@ -12,6 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.hitit.app.ui.components.ScannerFrame
 import com.hitit.app.ui.viewmodel.ScannerViewModel
 import com.hitit.app.ui.viewmodel.StatusMessage
 import hitit.composeapp.generated.resources.*
@@ -38,6 +39,13 @@ fun StatusMessage.toLocalizedString(): String {
                 stringResource(Res.string.status_flip_to_play_with_info, artist, title)
             } else {
                 stringResource(Res.string.status_flip_to_play)
+            }
+        }
+        is StatusMessage.NowPlaying -> {
+            if (title != null && artist != null) {
+                stringResource(Res.string.status_playing_with_info, artist, title)
+            } else {
+                stringResource(Res.string.status_playing, "")
             }
         }
         is StatusMessage.OpeningTrack -> {
@@ -69,6 +77,38 @@ fun ScannerScreen(
     viewModel: ScannerViewModel = koinInject()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    // Show NowPlayingScreen when playing
+    if (uiState.isNowPlaying) {
+        val (title, artist, year) = when (val status = uiState.status) {
+            is StatusMessage.NowPlaying -> Triple(status.title, status.artist, status.year)
+            else -> Triple(null, null, null)
+        }
+        NowPlayingScreen(
+            title = title,
+            artist = artist,
+            year = year,
+            isPlaying = true,
+            onPlayPauseClick = { /* TODO: Toggle playback */ },
+            onNextCard = { viewModel.resetScanner() },
+            onClose = { viewModel.resetScanner() }
+        )
+        return
+    }
+
+    // Show FlipPhoneScreen when waiting for flip
+    if (uiState.isWaitingForFlip) {
+        val (title, artist) = when (val status = uiState.status) {
+            is StatusMessage.FlipToPlay -> status.title to status.artist
+            else -> null to null
+        }
+        FlipPhoneScreen(
+            title = title,
+            artist = artist,
+            onClose = { viewModel.resetScanner() }
+        )
+        return
+    }
 
     Column(
         modifier = Modifier
@@ -120,6 +160,11 @@ fun ScannerScreen(
                 }
             )
 
+            // Cyan scanning frame overlay
+            ScannerFrame(
+                modifier = Modifier.fillMaxSize()
+            )
+
             // Scanning overlay indicator
             if (uiState.isProcessing) {
                 Box(
@@ -166,6 +211,14 @@ fun ScannerScreen(
                     ) {
                         Text(stringResource(Res.string.scan_again))
                     }
+                }
+
+                // DEBUG: Test button to simulate scanning card #00001
+                Spacer(modifier = Modifier.height(8.dp))
+                TextButton(
+                    onClick = { viewModel.onQrCodeScanned("https://hitstergame.com/en/00001") }
+                ) {
+                    Text("DEBUG: Test Scan", color = Color.Gray)
                 }
             }
         }

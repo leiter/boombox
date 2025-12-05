@@ -5,11 +5,14 @@ import androidx.lifecycle.viewModelScope
 import com.hitit.app.model.QrCodeParser
 import com.hitit.app.model.QrCodeResult
 import com.hitit.app.model.Track
+import com.hitit.app.network.DeezerApiService
 import com.hitit.app.repository.HitsterCardRepository
+import com.hitit.app.service.AudioPlayer
 import com.hitit.app.service.DeviceOrientation
 import com.hitit.app.service.DeviceOrientationService
 import com.hitit.app.service.MusicService
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -22,6 +25,7 @@ sealed class StatusMessage {
     data class HitsterCard(val cardId: String, val title: String? = null, val artist: String? = null) : StatusMessage()
     data class FetchingTrack(val cardId: String) : StatusMessage()
     data class FlipToPlay(val title: String? = null, val artist: String? = null) : StatusMessage()
+    data class NowPlaying(val title: String? = null, val artist: String? = null, val year: Int? = null) : StatusMessage()
     data class OpeningTrack(val serviceName: String, val title: String? = null, val artist: String? = null) : StatusMessage()
     data class Playing(val serviceName: String, val title: String? = null, val artist: String? = null) : StatusMessage()
     data class CouldNotOpen(val serviceName: String) : StatusMessage()
@@ -37,13 +41,16 @@ data class ScannerUiState(
     val status: StatusMessage = StatusMessage.PointCamera,
     val lastScannedCode: String? = null,
     val flashlightOn: Boolean = false,
-    val isWaitingForFlip: Boolean = false
+    val isWaitingForFlip: Boolean = false,
+    val isNowPlaying: Boolean = false
 )
 
 class ScannerViewModel(
     private val musicService: MusicService,
     private val cardRepository: HitsterCardRepository,
-    private val orientationService: DeviceOrientationService
+    private val orientationService: DeviceOrientationService,
+    private val audioPlayer: AudioPlayer,
+    private val deezerApi: DeezerApiService
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(ScannerUiState())
@@ -52,6 +59,13 @@ class ScannerViewModel(
     private var pendingTrack: Track? = null
     private var pendingTrackId: String? = null
     private var orientationJob: Job? = null
+    private var autoFlipJob: Job? = null
+
+    companion object {
+        // Enable this for testing without actually flipping the phone
+        const val TEST_MODE_AUTO_FLIP = true
+        const val AUTO_FLIP_DELAY_MS = 3000L
+    }
 
     fun toggleFlashlight() {
         _uiState.value = _uiState.value.copy(
@@ -61,6 +75,7 @@ class ScannerViewModel(
 
     fun resetScanner() {
         stopOrientationMonitoring()
+        audioPlayer.stop()
         pendingTrack = null
         pendingTrackId = null
         _uiState.value = ScannerUiState(
@@ -83,39 +98,72 @@ class ScannerViewModel(
     fun stopOrientationMonitoring() {
         orientationJob?.cancel()
         orientationJob = null
+        autoFlipJob?.cancel()
+        autoFlipJob = null
     }
 
-    private suspend fun onDeviceFlippedFaceDown() {
-        _uiState.value = _uiState.value.copy(isWaitingForFlip = false)
-        stopOrientationMonitoring()
+    private fun startAutoFlipTimer() {
+        if (!TEST_MODE_AUTO_FLIP) return
 
-        // Play the pending track
-        pendingTrack?.let { track ->
-            updateStatus(StatusMessage.OpeningTrack(musicService.serviceName, track.title, track.artist))
-            val success = musicService.playTrack(track)
-            if (success) {
-                updateStatus(StatusMessage.Playing(musicService.serviceName, track.title, track.artist))
-            } else {
-                updateStatus(StatusMessage.CouldNotOpen(musicService.serviceName))
+        autoFlipJob = viewModelScope.launch {
+            delay(AUTO_FLIP_DELAY_MS)
+            if (_uiState.value.isWaitingForFlip) {
+                onDeviceFlippedFaceDown()
             }
-            pendingTrack = null
         }
+    }
 
-        pendingTrackId?.let { trackId ->
-            updateStatus(StatusMessage.OpeningTrack(musicService.serviceName))
-            val success = musicService.playTrackById(trackId)
-            if (success) {
-                updateStatus(StatusMessage.Playing(musicService.serviceName))
-            } else {
-                updateStatus(StatusMessage.CouldNotOpen(musicService.serviceName))
+    private fun onDeviceFlippedFaceDown() {
+        _uiState.value = _uiState.value.copy(isWaitingForFlip = false)
+
+        // Don't cancel jobs here - we might still be inside one
+        // Just stop the orientation monitoring flow
+        orientationJob?.cancel()
+        orientationJob = null
+        autoFlipJob = null // Don't cancel, just clear reference
+
+        // Launch a new coroutine for the async work
+        viewModelScope.launch {
+            // Show NowPlaying screen with track info and play preview audio in-app
+            pendingTrack?.let { track ->
+                updateStatus(StatusMessage.NowPlaying(track.title, track.artist, track.year))
+                _uiState.value = _uiState.value.copy(isNowPlaying = true)
+
+                // Play 30-second preview in-app (user stays in HitIt)
+                val previewUrl = deezerApi.getPreviewUrl(track.id)
+                if (previewUrl != null) {
+                    audioPlayer.play(previewUrl)
+                }
+                return@launch
             }
-            pendingTrackId = null
+
+            pendingTrackId?.let { trackId ->
+                // Fetch track info from Deezer API
+                val trackInfo = deezerApi.getTrackInfo(trackId)
+                if (trackInfo != null) {
+                    updateStatus(StatusMessage.NowPlaying(
+                        trackInfo.title,
+                        trackInfo.artist?.name,
+                        null // Year not available from Deezer API directly
+                    ))
+                    _uiState.value = _uiState.value.copy(isNowPlaying = true)
+
+                    // Play 30-second preview in-app (user stays in HitIt)
+                    trackInfo.preview?.let { previewUrl ->
+                        audioPlayer.play(previewUrl)
+                    }
+                } else {
+                    updateStatus(StatusMessage.NowPlaying(null, null, null))
+                    _uiState.value = _uiState.value.copy(isNowPlaying = true)
+                }
+            }
         }
     }
 
     override fun onCleared() {
         super.onCleared()
         stopOrientationMonitoring()
+        audioPlayer.stop()
     }
 
     fun onQrCodeScanned(code: String) {
@@ -153,6 +201,7 @@ class ScannerViewModel(
                 updateStatus(StatusMessage.FlipToPlay(null, null))
                 _uiState.value = _uiState.value.copy(isWaitingForFlip = true, isProcessing = false)
                 startOrientationMonitoring()
+                startAutoFlipTimer()
                 return
             }
 
@@ -196,6 +245,7 @@ class ScannerViewModel(
             updateStatus(StatusMessage.FlipToPlay(track.title, track.artist))
             _uiState.value = _uiState.value.copy(isWaitingForFlip = true, isProcessing = false)
             startOrientationMonitoring()
+            startAutoFlipTimer()
         } else {
             updateStatus(StatusMessage.CardNotFound(cardId))
         }
