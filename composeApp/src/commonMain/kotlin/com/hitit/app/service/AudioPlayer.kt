@@ -28,4 +28,9 @@ expect class AudioPlayer {
      * Check if currently playing
      */
     fun isPlaying(): Boolean
+
+    /**
+     * Request audio focus to stop external apps (like Deezer) from playing
+     */
+    fun stopExternalPlayback()
 }

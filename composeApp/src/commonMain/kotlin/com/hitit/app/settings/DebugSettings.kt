@@ -6,7 +6,8 @@ import kotlinx.coroutines.flow.asStateFlow
 
 data class DebugSettingsState(
     val autoFlipEnabled: Boolean = true,
-    val autoFlipDelayMs: Long = 3000L
+    val autoFlipDelayMs: Long = 3000L,
+    val useDeezerDeeplink: Boolean = true
 )
 
 expect class DebugSettingsStore {
@@ -14,6 +15,8 @@ expect class DebugSettingsStore {
     fun setAutoFlipEnabled(enabled: Boolean)
     fun getAutoFlipDelayMs(): Long
     fun setAutoFlipDelayMs(delayMs: Long)
+    fun getUseDeezerDeeplink(): Boolean
+    fun setUseDeezerDeeplink(enabled: Boolean)
 }
 
 object DebugSettings {
@@ -27,7 +30,8 @@ object DebugSettings {
         // Load persisted values
         _state.value = DebugSettingsState(
             autoFlipEnabled = store.getAutoFlipEnabled(),
-            autoFlipDelayMs = store.getAutoFlipDelayMs()
+            autoFlipDelayMs = store.getAutoFlipDelayMs(),
+            useDeezerDeeplink = store.getUseDeezerDeeplink()
         )
     }
 
@@ -45,5 +49,13 @@ object DebugSettings {
     fun setAutoFlipDelayMs(delayMs: Long) {
         store?.setAutoFlipDelayMs(delayMs)
         _state.value = _state.value.copy(autoFlipDelayMs = delayMs)
+    }
+
+    val useDeezerDeeplink: Boolean
+        get() = _state.value.useDeezerDeeplink
+
+    fun setUseDeezerDeeplink(enabled: Boolean) {
+        store?.setUseDeezerDeeplink(enabled)
+        _state.value = _state.value.copy(useDeezerDeeplink = enabled)
     }
 }

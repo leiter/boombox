@@ -134,9 +134,14 @@ class ScannerViewModel(
                 ))
                 _uiState.value = _uiState.value.copy(isNowPlaying = true)
 
-                // Play 30-second preview in-app (user stays in HitIt)
-                trackInfo?.preview?.let { previewUrl ->
-                    audioPlayer.play(previewUrl)
+                // Use Deezer deeplink or play preview based on setting
+                if (DebugSettings.useDeezerDeeplink) {
+                    // Open Deezer to play full song
+                    musicService.playTrackById(track.id)
+                } else {
+                    trackInfo?.preview?.let { previewUrl ->
+                        audioPlayer.play(previewUrl)
+                    }
                 }
                 return@launch
             }
@@ -153,9 +158,14 @@ class ScannerViewModel(
                     ))
                     _uiState.value = _uiState.value.copy(isNowPlaying = true)
 
-                    // Play 30-second preview in-app (user stays in HitIt)
-                    trackInfo.preview?.let { previewUrl ->
-                        audioPlayer.play(previewUrl)
+                    // Use Deezer deeplink or play preview based on setting
+                    if (DebugSettings.useDeezerDeeplink) {
+                        // Open Deezer to play full song
+                        musicService.playTrackById(trackId)
+                    } else {
+                        trackInfo.preview?.let { previewUrl ->
+                            audioPlayer.play(previewUrl)
+                        }
                     }
                 } else {
                     updateStatus(StatusMessage.NowPlaying(null, null, null, null))

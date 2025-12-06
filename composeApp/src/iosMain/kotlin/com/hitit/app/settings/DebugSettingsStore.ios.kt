@@ -29,8 +29,21 @@ actual class DebugSettingsStore {
         defaults.setInteger(delayMs, KEY_AUTO_FLIP_DELAY)
     }
 
+    actual fun getUseDeezerDeeplink(): Boolean {
+        return if (defaults.objectForKey(KEY_USE_DEEZER_DEEPLINK) != null) {
+            defaults.boolForKey(KEY_USE_DEEZER_DEEPLINK)
+        } else {
+            true // default value
+        }
+    }
+
+    actual fun setUseDeezerDeeplink(enabled: Boolean) {
+        defaults.setBool(enabled, KEY_USE_DEEZER_DEEPLINK)
+    }
+
     companion object {
         private const val KEY_AUTO_FLIP_ENABLED = "auto_flip_enabled"
         private const val KEY_AUTO_FLIP_DELAY = "auto_flip_delay_ms"
+        private const val KEY_USE_DEEZER_DEEPLINK = "use_deezer_deeplink"
     }
 }

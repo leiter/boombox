@@ -13,9 +13,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.hitit.app.service.AudioPlayer
 import com.hitit.app.ui.components.ScannerFrame
 import com.hitit.app.ui.viewmodel.ScannerViewModel
 import com.hitit.app.ui.viewmodel.StatusMessage
@@ -78,9 +82,25 @@ fun StatusMessage.toLocalizedString(): String {
 @Composable
 fun ScannerScreen(
     onBackToHome: () -> Unit,
-    viewModel: ScannerViewModel = koinInject()
+    viewModel: ScannerViewModel = koinInject(),
+    audioPlayer: AudioPlayer = koinInject()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val lifecycleOwner = LocalLifecycleOwner.current
+
+    // Stop external playback (Deezer) when returning to BoomBox
+    DisposableEffect(lifecycleOwner) {
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_RESUME && uiState.isNowPlaying) {
+                // User returned from Deezer - stop external playback
+                audioPlayer.stopExternalPlayback()
+            }
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(observer)
+        }
+    }
 
     // Handle back press - go to scanner if playing/waiting, otherwise go home
     BackHandler {

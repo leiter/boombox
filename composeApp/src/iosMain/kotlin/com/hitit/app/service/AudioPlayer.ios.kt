@@ -49,4 +49,17 @@ actual class AudioPlayer {
     actual fun isPlaying(): Boolean {
         return audioPlayer?.isPlaying() == true
     }
+
+    actual fun stopExternalPlayback() {
+        // Request audio session to interrupt other apps (like Deezer)
+        try {
+            val session = AVAudioSession.sharedInstance()
+            session.setCategory(AVAudioSessionCategoryPlayback, error = null)
+            session.setActive(true, error = null)
+            // Immediately deactivate - we just wanted to interrupt other apps
+            session.setActive(false, error = null)
+        } catch (e: Exception) {
+            // Handle error silently
+        }
+    }
 }

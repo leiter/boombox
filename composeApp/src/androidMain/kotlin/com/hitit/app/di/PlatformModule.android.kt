@@ -9,5 +9,5 @@ import org.koin.dsl.module
 actual fun platformModule() = module {
     single { AppLauncher(androidContext()) }
     single { DeviceOrientationService(androidContext()) }
-    single { AudioPlayer() }
+    single { AudioPlayer(androidContext()) }
 }

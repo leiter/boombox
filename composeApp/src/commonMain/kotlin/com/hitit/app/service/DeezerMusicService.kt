@@ -21,14 +21,8 @@ class DeezerMusicService(
     }
 
     override suspend fun playTrackById(trackId: String): Boolean {
-        val deepLink = getDeepLinkUrl(trackId)
-
-        // Try deep link first
-        if (appLauncher.openUrl(deepLink)) {
-            return true
-        }
-
-        // Fall back to web URL
+        // Use web URL directly - Deezer app intercepts deezer.com links
+        // The deezer:// scheme is no longer reliable on modern Android
         val webUrl = getWebUrl(trackId)
         return appLauncher.openUrl(webUrl)
     }

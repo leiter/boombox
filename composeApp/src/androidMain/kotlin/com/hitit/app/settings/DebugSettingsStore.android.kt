@@ -25,8 +25,17 @@ actual class DebugSettingsStore(context: Context) {
         prefs.edit().putLong(KEY_AUTO_FLIP_DELAY, delayMs).apply()
     }
 
+    actual fun getUseDeezerDeeplink(): Boolean {
+        return prefs.getBoolean(KEY_USE_DEEZER_DEEPLINK, true)
+    }
+
+    actual fun setUseDeezerDeeplink(enabled: Boolean) {
+        prefs.edit().putBoolean(KEY_USE_DEEZER_DEEPLINK, enabled).apply()
+    }
+
     companion object {
         private const val KEY_AUTO_FLIP_ENABLED = "auto_flip_enabled"
         private const val KEY_AUTO_FLIP_DELAY = "auto_flip_delay_ms"
+        private const val KEY_USE_DEEZER_DEEPLINK = "use_deezer_deeplink"
     }
 }
