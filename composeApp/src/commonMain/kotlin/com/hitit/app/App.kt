@@ -11,6 +11,7 @@ import androidx.navigation.compose.rememberNavController
 import com.hitit.app.ui.screens.DebugSettingsScreen
 import com.hitit.app.ui.screens.HomeScreen
 import com.hitit.app.ui.screens.ScannerScreen
+import com.hitit.app.ui.screens.SplashScreen
 import com.hitit.app.ui.theme.HitItTheme
 
 @Composable
@@ -24,8 +25,19 @@ fun App() {
 
             NavHost(
                 navController = navController,
-                startDestination = Screen.Home.route
+                startDestination = Screen.Splash.route
             ) {
+                composable(Screen.Splash.route) {
+                    SplashScreen(
+                        onSplashComplete = {
+                            navController.navigate(Screen.Home.route) {
+                                // Remove splash from back stack so it's not an exit destination
+                                popUpTo(Screen.Splash.route) { inclusive = true }
+                            }
+                        }
+                    )
+                }
+
                 composable(Screen.Home.route) {
                     HomeScreen(
                         onStartScanning = {
@@ -58,6 +70,7 @@ fun App() {
 }
 
 sealed class Screen(val route: String) {
+    data object Splash : Screen("splash")
     data object Home : Screen("home")
     data object Scanner : Screen("scanner")
     data object DebugSettings : Screen("debug_settings")
