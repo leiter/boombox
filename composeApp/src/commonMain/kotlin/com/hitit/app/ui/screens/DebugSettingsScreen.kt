@@ -78,6 +78,34 @@ fun DebugSettingsScreen(
             HorizontalDivider()
 
             Text(
+                text = "Music Playback",
+                style = MaterialTheme.typography.titleMedium
+            )
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Column(modifier = Modifier.weight(1f)) {
+                    Text("Use Deezer app")
+                    Text(
+                        text = if (settingsState.useDeezerDeeplink)
+                            "Opens full song in Deezer"
+                        else
+                            "Plays 30-second preview in-app",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+                Switch(
+                    checked = settingsState.useDeezerDeeplink,
+                    onCheckedChange = { DebugSettings.setUseDeezerDeeplink(it) }
+                )
+            }
+
+            HorizontalDivider()
+
+            Text(
                 text = "Info",
                 style = MaterialTheme.typography.titleMedium
             )

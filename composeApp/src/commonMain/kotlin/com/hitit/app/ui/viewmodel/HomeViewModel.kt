@@ -2,6 +2,8 @@ package com.hitit.app.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.hitit.app.network.DeezerApiService
+import com.hitit.app.service.AudioPlayer
 import com.hitit.app.service.MusicService
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -10,11 +12,14 @@ import kotlinx.coroutines.launch
 
 data class HomeUiState(
     val isDeezerAvailable: Boolean? = null,
-    val isTestingPlayback: Boolean = false
+    val isTestingPlayback: Boolean = false,
+    val previewTestStatus: String? = null
 )
 
 class HomeViewModel(
-    private val musicService: MusicService
+    private val musicService: MusicService,
+    private val audioPlayer: AudioPlayer,
+    private val deezerApi: DeezerApiService
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(HomeUiState())
@@ -40,5 +45,25 @@ class HomeViewModel(
             musicService.playTrackById("67238735")
             _uiState.value = _uiState.value.copy(isTestingPlayback = false)
         }
+    }
+
+    fun testPreviewPlayback() {
+        viewModelScope.launch {
+            _uiState.value = _uiState.value.copy(previewTestStatus = "Fetching track info...")
+
+            val trackInfo = deezerApi.getTrackInfo("67238735")
+
+            if (trackInfo?.preview != null) {
+                _uiState.value = _uiState.value.copy(previewTestStatus = "Playing: ${trackInfo.title}")
+                audioPlayer.play(trackInfo.preview)
+            } else {
+                _uiState.value = _uiState.value.copy(previewTestStatus = "No preview URL found")
+            }
+        }
+    }
+
+    fun stopPreviewPlayback() {
+        audioPlayer.stop()
+        _uiState.value = _uiState.value.copy(previewTestStatus = null)
     }
 }

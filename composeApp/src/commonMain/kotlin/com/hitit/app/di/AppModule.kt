@@ -21,7 +21,7 @@ val appModule = module {
     single { DeezerApiService() }
 
     // ViewModels
-    factory { HomeViewModel(get()) }
+    factory { HomeViewModel(get(), get(), get()) }
     factory { ScannerViewModel(get(), get(), get(), get(), get()) }
 }
 

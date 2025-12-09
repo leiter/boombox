@@ -1,6 +1,6 @@
 package com.hitit.app.ui.screens
 
-import androidx.activity.compose.BackHandler
+import com.hitit.app.ui.components.PlatformBackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.WindowInsets
@@ -103,7 +103,7 @@ fun ScannerScreen(
     }
 
     // Handle back press - go to scanner if playing/waiting, otherwise go home
-    BackHandler {
+    PlatformBackHandler {
         if (uiState.isNowPlaying || uiState.isWaitingForFlip) {
             // Return to scanner screen
             viewModel.resetScanner()

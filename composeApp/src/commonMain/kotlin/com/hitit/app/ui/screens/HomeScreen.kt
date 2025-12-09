@@ -142,6 +142,31 @@ fun HomeScreen(
                 )
             }
 
+            Spacer(modifier = Modifier.height(8.dp))
+
+            // TEST: Preview playback test button
+            if (uiState.previewTestStatus != null) {
+                Text(
+                    text = uiState.previewTestStatus ?: "",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.primary
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                OutlinedButton(
+                    onClick = { viewModel.stopPreviewPlayback() },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("Stop Preview")
+                }
+            } else {
+                OutlinedButton(
+                    onClick = { viewModel.testPreviewPlayback() },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("Test In-App Preview")
+                }
+            }
+
             // Debug settings button - only visible in debug builds
             if (AppBuildConfig.isDebug) {
                 Spacer(modifier = Modifier.height(32.dp))

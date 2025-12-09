@@ -1,5 +1,7 @@
 package com.hitit.app.service
 
+import kotlinx.cinterop.ExperimentalForeignApi
+import kotlinx.cinterop.useContents
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -7,6 +9,7 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import platform.CoreMotion.CMMotionManager
 import platform.Foundation.NSOperationQueue
 
+@OptIn(ExperimentalForeignApi::class)
 actual class DeviceOrientationService {
 
     private val motionManager = CMMotionManager()
@@ -18,8 +21,8 @@ actual class DeviceOrientationService {
             motionManager.startAccelerometerUpdatesToQueue(
                 NSOperationQueue.mainQueue
             ) { data, _ ->
-                data?.let {
-                    val z = it.acceleration.z
+                data?.let { accelerometerData ->
+                    val z = accelerometerData.acceleration.useContents { z }
 
                     // Z-axis: positive when face-up, negative when face-down
                     // Threshold of ~0.7 (gravity normalized to 1.0)
