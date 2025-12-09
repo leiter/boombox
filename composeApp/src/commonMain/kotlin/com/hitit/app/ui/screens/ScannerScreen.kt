@@ -4,9 +4,12 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -19,7 +22,9 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.hitit.app.AppBuildConfig
 import com.hitit.app.service.AudioPlayer
+import com.hitit.app.showDebugOptions
 import com.hitit.app.ui.components.ScannerFrame
 import com.hitit.app.ui.viewmodel.ScannerViewModel
 import com.hitit.app.ui.viewmodel.StatusMessage
@@ -146,30 +151,30 @@ fun ScannerScreen(
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
     ) {
-        // Top bar
+        // Top bar - orange with X close button
         Surface(
             modifier = Modifier
-                .fillMaxWidth()
-                .windowInsetsPadding(WindowInsets.statusBars),
+                .fillMaxWidth(),
             color = MaterialTheme.colorScheme.primary
         ) {
-            Row(
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                    .windowInsetsPadding(WindowInsets.statusBars)
+                    .padding(8.dp)
             ) {
-                Text(
-                    text = stringResource(Res.string.scan_card),
-                    style = MaterialTheme.typography.titleLarge,
-                    color = MaterialTheme.colorScheme.onPrimary
-                )
-                TextButton(onClick = {
-                    viewModel.resetScanner()
-                    onBackToHome()
-                }) {
-                    Text(stringResource(Res.string.close), color = MaterialTheme.colorScheme.onPrimary)
+                IconButton(
+                    onClick = {
+                        viewModel.resetScanner()
+                        onBackToHome()
+                    },
+                    modifier = Modifier.align(Alignment.TopEnd)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Close,
+                        contentDescription = stringResource(Res.string.close),
+                        tint = MaterialTheme.colorScheme.onPrimary
+                    )
                 }
             }
         }
@@ -224,7 +229,9 @@ fun ScannerScreen(
 
         // Status and controls
         Surface(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .windowInsetsPadding(WindowInsets.navigationBars),
             color = MaterialTheme.colorScheme.surfaceVariant
         ) {
             Column(
@@ -241,28 +248,20 @@ fun ScannerScreen(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                OutlinedButton(
+                    onClick = { viewModel.toggleFlashlight() }
                 ) {
-                    OutlinedButton(
-                        onClick = { viewModel.toggleFlashlight() }
-                    ) {
-                        Text(if (uiState.flashlightOn) stringResource(Res.string.flash_off) else stringResource(Res.string.flash_on))
-                    }
-
-                    Button(
-                        onClick = { viewModel.resetScanner() }
-                    ) {
-                        Text(stringResource(Res.string.scan_again))
-                    }
+                    Text(if (uiState.flashlightOn) stringResource(Res.string.flash_off) else stringResource(Res.string.flash_on))
                 }
 
                 // DEBUG: Test button to simulate scanning card #00001
-                Spacer(modifier = Modifier.height(8.dp))
-                TextButton(
-                    onClick = { viewModel.onQrCodeScanned("https://hitstergame.com/en/00001") }
-                ) {
-                    Text("DEBUG: Test Scan", color = Color.Gray)
+                if (AppBuildConfig.showDebugOptions) {
+                    Spacer(modifier = Modifier.height(8.dp))
+                    TextButton(
+                        onClick = { viewModel.onQrCodeScanned("https://hitstergame.com/en/00001") }
+                    ) {
+                        Text("DEBUG: Test Scan", color = Color.Gray)
+                    }
                 }
             }
         }

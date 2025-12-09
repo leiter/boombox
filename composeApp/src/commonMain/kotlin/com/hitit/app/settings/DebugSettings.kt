@@ -1,5 +1,6 @@
 package com.hitit.app.settings
 
+import com.hitit.app.AppBuildConfig
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -36,7 +37,7 @@ object DebugSettings {
     }
 
     val autoFlipEnabled: Boolean
-        get() = _state.value.autoFlipEnabled
+        get() = if (AppBuildConfig.isReleasePreview) false else _state.value.autoFlipEnabled
 
     val autoFlipDelayMs: Long
         get() = _state.value.autoFlipDelayMs
