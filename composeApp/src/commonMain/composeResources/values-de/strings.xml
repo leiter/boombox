@@ -28,7 +28,7 @@
     <string name="scan_again">Erneut scannen</string>
 
     <!-- Scanner Status Messages -->
-    <string name="status_point_camera">Kamera auf eine Hitster-Karte richten</string>
+    <string name="status_point_camera">Spielkarte einscannen</string>
     <string name="status_processing">QR-Code wird verarbeitet…</string>
     <string name="status_scan_error">Scan-Fehler: %1$s</string>
     <string name="status_hitster_card">Hitster-Karte #%1$s</string>

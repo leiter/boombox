@@ -6,11 +6,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.hitit.app.di.allModules
 import com.hitit.app.settings.DebugSettings
 import com.hitit.app.settings.DebugSettingsStore
-import org.koin.android.ext.koin.androidContext
-import org.koin.compose.KoinApplication
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,14 +23,7 @@ class MainActivity : ComponentActivity() {
             navigationBarStyle = SystemBarStyle.dark(orangeColor)
         )
         setContent {
-            KoinApplication(
-                application = {
-                    androidContext(this@MainActivity)
-                    modules(allModules)
-                }
-            ) {
-                App()
-            }
+            App()
         }
     }
 }

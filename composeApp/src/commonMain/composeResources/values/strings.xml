@@ -28,7 +28,7 @@
     <string name="scan_again">Scan Again</string>
 
     <!-- Scanner Status Messages -->
-    <string name="status_point_camera">Point camera at a Hitster card</string>
+    <string name="status_point_camera">Scan game card</string>
     <string name="status_processing">Processing QR code…</string>
     <string name="status_scan_error">Scan error: %1$s</string>
     <string name="status_hitster_card">Hitster card #%1$s</string>
