@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="330dp"
+    android:height="80dp"
+    android:viewportWidth="330"
+    android:viewportHeight="80">
+
+    <!-- Graffiti-style "BoomBox" wordmark -->
+    <!-- Slanted ~3 degrees, bold chunky letters, urban street art feel -->
+    <!-- O's styled as speaker cones -->
+
+    <group
+        android:pivotX="160"
+        android:pivotY="40"
+        android:rotation="-3">
+
+        <!-- Drop shadow layer -->
+        <group
+            android:translateX="3"
+            android:translateY="3">
+
+            <!-- B shadow -->
+            <path
+                android:fillColor="#1A1A2E"
+                android:pathData="M8,12 L8,68 L32,68 Q48,68 48,54 Q48,44 38,42 Q46,40 46,30 Q46,12 32,12 Z M18,22 L28,22 Q34,22 34,30 Q34,38 28,38 L18,38 Z M18,46 L30,46 Q38,46 38,54 Q38,60 30,60 L18,60 Z"/>
+
+            <!-- o shadow (speaker) -->
+            <path
+                android:fillColor="#1A1A2E"
+                android:pathData="M70,40 m-22,0 a22,26 0,1 1,44 0 a22,26 0,1 1,-44 0"/>
+
+            <!-- o shadow (speaker) -->
+            <path
+                android:fillColor="#1A1A2E"
+                android:pathData="M118,40 m-22,0 a22,26 0,1 1,44 0 a22,26 0,1 1,-44 0"/>
+
+            <!-- m shadow -->
+            <path
+                android:fillColor="#1A1A2E"
+                android:pathData="M148,68 L148,12 L160,12 L172,36 L184,12 L196,12 L196,68 L186,68 L186,32 L174,54 L170,54 L158,32 L158,68 Z"/>
+
+            <!-- B shadow -->
+            <path
+                android:fillColor="#1A1A2E"
+                android:pathData="M208,12 L208,68 L232,68 Q248,68 248,54 Q248,44 238,42 Q246,40 246,30 Q246,12 232,12 Z M218,22 L228,22 Q234,22 234,30 Q234,38 228,38 L218,38 Z M218,46 L230,46 Q238,46 238,54 Q238,60 230,60 L218,60 Z"/>
+
+            <!-- o shadow (speaker) -->
+            <path
+                android:fillColor="#1A1A2E"
+                android:pathData="M270,40 m-18,0 a18,24 0,1 1,36 0 a18,24 0,1 1,-36 0"/>
+
+            <!-- x shadow -->
+            <path
+                android:fillColor="#1A1A2E"
+                android:pathData="M310,12 L324,12 L316,40 L326,68 L312,68 L306,50 L300,68 L286,68 L296,40 L288,12 L302,12 L306,28 Z"/>
+        </group>
+
+        <!-- Main letters - Orange fill with dark outline -->
+
+        <!-- Letter B -->
+        <path
+            android:fillColor="#FF6B35"
+            android:strokeColor="#C44D1A"
+            android:strokeWidth="2"
+            android:pathData="M8,12 L8,68 L32,68 Q48,68 48,54 Q48,44 38,42 Q46,40 46,30 Q46,12 32,12 Z M18,22 L28,22 Q34,22 34,30 Q34,38 28,38 L18,38 Z M18,46 L30,46 Q38,46 38,54 Q38,60 30,60 L18,60 Z"/>
+
+        <!-- Letter o (speaker cone style) - outer ring -->
+        <path
+            android:fillColor="#FF6B35"
+            android:strokeColor="#C44D1A"
+            android:strokeWidth="2"
+            android:pathData="M70,40 m-22,0 a22,26 0,1 1,44 0 a22,26 0,1 1,-44 0"/>
+        <!-- o - inner speaker cone -->
+        <path
+            android:fillColor="#FFD93D"
+            android:pathData="M70,40 m-14,0 a14,17 0,1 1,28 0 a14,17 0,1 1,-28 0"/>
+        <!-- o - speaker dome -->
+        <path
+            android:fillColor="#C44D1A"
+            android:pathData="M70,40 m-6,0 a6,7 0,1 1,12 0 a6,7 0,1 1,-12 0"/>
+
+        <!-- Letter o (speaker cone style) - outer ring -->
+        <path
+            android:fillColor="#FF6B35"
+            android:strokeColor="#C44D1A"
+            android:strokeWidth="2"
+            android:pathData="M118,40 m-22,0 a22,26 0,1 1,44 0 a22,26 0,1 1,-44 0"/>
+        <!-- o - inner speaker cone -->
+        <path
+            android:fillColor="#FFD93D"
+            android:pathData="M118,40 m-14,0 a14,17 0,1 1,28 0 a14,17 0,1 1,-28 0"/>
+        <!-- o - speaker dome -->
+        <path
+            android:fillColor="#C44D1A"
+            android:pathData="M118,40 m-6,0 a6,7 0,1 1,12 0 a6,7 0,1 1,-12 0"/>
+
+        <!-- Letter m -->
+        <path
+            android:fillColor="#FF6B35"
+            android:strokeColor="#C44D1A"
+            android:strokeWidth="2"
+            android:pathData="M148,68 L148,12 L160,12 L172,36 L184,12 L196,12 L196,68 L186,68 L186,32 L174,54 L170,54 L158,32 L158,68 Z"/>
+
+        <!-- Letter B -->
+        <path
+            android:fillColor="#FF6B35"
+            android:strokeColor="#C44D1A"
+            android:strokeWidth="2"
+            android:pathData="M208,12 L208,68 L232,68 Q248,68 248,54 Q248,44 238,42 Q246,40 246,30 Q246,12 232,12 Z M218,22 L228,22 Q234,22 234,30 Q234,38 228,38 L218,38 Z M218,46 L230,46 Q238,46 238,54 Q238,60 230,60 L218,60 Z"/>
+
+        <!-- Letter o (speaker style) - outer -->
+        <path
+            android:fillColor="#FF6B35"
+            android:strokeColor="#C44D1A"
+            android:strokeWidth="2"
+            android:pathData="M270,40 m-18,0 a18,24 0,1 1,36 0 a18,24 0,1 1,-36 0"/>
+        <!-- o - inner cone -->
+        <path
+            android:fillColor="#FFD93D"
+            android:pathData="M270,40 m-11,0 a11,15 0,1 1,22 0 a11,15 0,1 1,-22 0"/>
+        <!-- o - dome -->
+        <path
+            android:fillColor="#C44D1A"
+            android:pathData="M270,40 m-5,0 a5,6 0,1 1,10 0 a5,6 0,1 1,-10 0"/>
+
+        <!-- Letter x -->
+        <path
+            android:fillColor="#FF6B35"
+            android:strokeColor="#C44D1A"
+            android:strokeWidth="2"
+            android:pathData="M310,12 L324,12 L316,40 L326,68 L312,68 L306,50 L300,68 L286,68 L296,40 L288,12 L302,12 L306,28 Z"/>
+
+        <!-- Graffiti drip effects -->
+        <path
+            android:fillColor="#FF6B35"
+            android:pathData="M30,68 L30,76 Q30,80 28,80 Q26,80 26,76 L26,68"/>
+        <path
+            android:fillColor="#FF6B35"
+            android:pathData="M186,68 L186,74 Q186,77 184,77 Q182,77 182,74 L182,68"/>
+        <path
+            android:fillColor="#FFD93D"
+            android:pathData="M70,66 L70,72 Q70,75 68,75 Q66,75 66,72 L66,66"/>
+
+        <!-- Highlight accents -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:fillAlpha="0.4"
+            android:pathData="M12,16 L12,24 L16,24 L16,16 Z"/>
+        <path
+            android:fillColor="#FFFFFF"
+            android:fillAlpha="0.4"
+            android:pathData="M212,16 L212,24 L216,24 L216,16 Z"/>
+        <path
+            android:fillColor="#FFFFFF"
+            android:fillAlpha="0.3"
+            android:pathData="M152,16 L152,26 L156,26 L156,16 Z"/>
+
+    </group>
+
+</vector>

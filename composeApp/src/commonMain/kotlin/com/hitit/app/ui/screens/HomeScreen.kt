@@ -11,6 +11,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.foundation.Image
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -18,6 +19,7 @@ import com.hitit.app.AppBuildConfig
 import com.hitit.app.showDebugOptions
 import com.hitit.app.ui.viewmodel.HomeViewModel
 import hitit.composeapp.generated.resources.*
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 
@@ -41,10 +43,11 @@ fun HomeScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text(
-                text = stringResource(Res.string.app_name),
-                style = MaterialTheme.typography.displayLarge,
-                color = MaterialTheme.colorScheme.primary
+            // Graffiti-style BoomBox logo
+            Image(
+                painter = painterResource(Res.drawable.logo_boombox),
+                contentDescription = stringResource(Res.string.app_name),
+                modifier = Modifier.height(80.dp)
             )
 
             Spacer(modifier = Modifier.height(8.dp))
