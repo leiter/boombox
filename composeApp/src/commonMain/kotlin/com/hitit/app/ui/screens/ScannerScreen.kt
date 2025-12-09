@@ -141,7 +141,10 @@ fun ScannerScreen(
     // Show FlipPhoneScreen when waiting for flip
     if (uiState.isWaitingForFlip) {
         FlipPhoneScreen(
-            onClose = { viewModel.resetScanner() }
+            onClose = { viewModel.resetScanner() },
+            isDeezerInstalled = uiState.isDeezerInstalled,
+            selectedPlaybackMode = uiState.selectedPlaybackMode,
+            onPlaybackModeChanged = { mode -> viewModel.setPlaybackMode(mode) }
         )
         return
     }

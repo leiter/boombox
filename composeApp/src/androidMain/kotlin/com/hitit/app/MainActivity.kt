@@ -19,9 +19,11 @@ class MainActivity : ComponentActivity() {
         AppBuildConfig.applicationInfo = applicationInfo
         // Initialize debug settings store
         DebugSettings.initialize(DebugSettingsStore(this))
-        // Set status bar to match primary orange color
+        // Set status bar and navigation bar to match primary orange color
+        val orangeColor = Color.parseColor("#FF6B35")
         enableEdgeToEdge(
-            statusBarStyle = SystemBarStyle.dark(Color.parseColor("#FF6B35"))
+            statusBarStyle = SystemBarStyle.dark(orangeColor),
+            navigationBarStyle = SystemBarStyle.dark(orangeColor)
         )
         setContent {
             KoinApplication(

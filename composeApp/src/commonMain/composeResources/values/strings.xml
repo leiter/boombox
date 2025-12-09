@@ -38,6 +38,9 @@
     <string name="status_flip_to_play_with_info">%1$s - %2$s\nFlip phone face-down to play</string>
     <string name="flip_phone_title">FLIP THE PHONE</string>
     <string name="flip_phone_subtitle">Then the music begins</string>
+    <string name="playback_mode_preview">Preview</string>
+    <string name="playback_mode_deezer">Full Version</string>
+    <string name="playback_mode_preview_only">Preview (Deezer not installed)</string>
     <string name="next_card">NEXT CARD</string>
     <string name="unknown_track">Unknown Track</string>
     <string name="unknown_artist">Unknown Artist</string>

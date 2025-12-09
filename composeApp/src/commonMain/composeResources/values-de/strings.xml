@@ -38,6 +38,9 @@
     <string name="status_flip_to_play_with_info">%1$s - %2$s\nHandy umdrehen zum Abspielen</string>
     <string name="flip_phone_title">TELEFON UMDREHEN</string>
     <string name="flip_phone_subtitle">Dann beginnt die Musik</string>
+    <string name="playback_mode_preview">Hörprobe</string>
+    <string name="playback_mode_deezer">Vollversion</string>
+    <string name="playback_mode_preview_only">Hörprobe (Deezer nicht installiert)</string>
     <string name="next_card">NÄCHSTE KARTE</string>
     <string name="unknown_track">Unbekannter Titel</string>
     <string name="unknown_artist">Unbekannter Künstler</string>
