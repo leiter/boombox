@@ -17,6 +17,7 @@
     <string name="instruction_step_4">4. Überprüfe deine Antwort auf der Karte!</string>
 
     <string name="scan_card">Karte scannen</string>
+    <string name="start_game">Spiel beginnen</string>
     <string name="opening">Wird geöffnet…</string>
     <string name="test_service">%1$s testen (Get Lucky)</string>
 
@@ -27,7 +28,7 @@
     <string name="scan_again">Erneut scannen</string>
 
     <!-- Scanner Status Messages -->
-    <string name="status_point_camera">Kamera auf eine Hitster-Karte richten</string>
+    <string name="status_point_camera">Spielkarte einscannen</string>
     <string name="status_processing">QR-Code wird verarbeitet…</string>
     <string name="status_scan_error">Scan-Fehler: %1$s</string>
     <string name="status_hitster_card">Hitster-Karte #%1$s</string>
@@ -37,6 +38,9 @@
     <string name="status_flip_to_play_with_info">%1$s - %2$s\nHandy umdrehen zum Abspielen</string>
     <string name="flip_phone_title">TELEFON UMDREHEN</string>
     <string name="flip_phone_subtitle">Dann beginnt die Musik</string>
+    <string name="playback_mode_preview">Hörprobe</string>
+    <string name="playback_mode_deezer">Vollversion</string>
+    <string name="playback_mode_preview_only">Hörprobe (Deezer nicht installiert)</string>
     <string name="next_card">NÄCHSTE KARTE</string>
     <string name="unknown_track">Unbekannter Titel</string>
     <string name="unknown_artist">Unbekannter Künstler</string>

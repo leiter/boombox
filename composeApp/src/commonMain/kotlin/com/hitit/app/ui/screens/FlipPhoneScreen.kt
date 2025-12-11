@@ -2,10 +2,13 @@ package com.hitit.app.ui.screens
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.*
@@ -26,12 +29,20 @@ import androidx.compose.ui.unit.sp
 import hitit.composeapp.generated.resources.*
 import org.jetbrains.compose.resources.stringResource
 
+enum class PlaybackMode {
+    PREVIEW,
+    DEEZER
+}
+
 /**
  * Screen shown while waiting for user to flip phone face-down to start music
  */
 @Composable
 fun FlipPhoneScreen(
-    onClose: () -> Unit
+    onClose: () -> Unit,
+    isDeezerInstalled: Boolean = false,
+    selectedPlaybackMode: PlaybackMode = PlaybackMode.PREVIEW,
+    onPlaybackModeChanged: (PlaybackMode) -> Unit = {}
 ) {
     val cyanColor = Color(0xFF00D4FF)
 
@@ -96,7 +107,72 @@ fun FlipPhoneScreen(
                 color = Color.White.copy(alpha = 0.7f),
                 textAlign = TextAlign.Center
             )
+
+            Spacer(modifier = Modifier.height(32.dp))
+
+            // Playback mode selection
+            if (isDeezerInstalled) {
+                // Show choice between Preview and Deezer
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                ) {
+                    PlaybackModeChip(
+                        text = stringResource(Res.string.playback_mode_preview),
+                        selected = selectedPlaybackMode == PlaybackMode.PREVIEW,
+                        onClick = { onPlaybackModeChanged(PlaybackMode.PREVIEW) },
+                        color = cyanColor
+                    )
+                    PlaybackModeChip(
+                        text = stringResource(Res.string.playback_mode_deezer),
+                        selected = selectedPlaybackMode == PlaybackMode.DEEZER,
+                        onClick = { onPlaybackModeChanged(PlaybackMode.DEEZER) },
+                        color = cyanColor
+                    )
+                }
+            } else {
+                // Show info that preview is used
+                Text(
+                    text = stringResource(Res.string.playback_mode_preview_only),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = Color.White.copy(alpha = 0.5f),
+                    textAlign = TextAlign.Center
+                )
+            }
         }
+    }
+}
+
+@Composable
+private fun PlaybackModeChip(
+    text: String,
+    selected: Boolean,
+    onClick: () -> Unit,
+    color: Color
+) {
+    val backgroundColor = if (selected) color.copy(alpha = 0.2f) else Color.Transparent
+    val borderColor = if (selected) color else Color.White.copy(alpha = 0.3f)
+    val textColor = if (selected) color else Color.White.copy(alpha = 0.7f)
+
+    Box(
+        modifier = Modifier
+            .border(
+                width = 1.dp,
+                color = borderColor,
+                shape = RoundedCornerShape(20.dp)
+            )
+            .background(
+                color = backgroundColor,
+                shape = RoundedCornerShape(20.dp)
+            )
+            .clickable(onClick = onClick)
+            .padding(horizontal = 16.dp, vertical = 10.dp)
+    ) {
+        Text(
+            text = text,
+            style = MaterialTheme.typography.bodyMedium,
+            color = textColor
+        )
     }
 }
 

@@ -1,5 +1,6 @@
 package com.hitit.app.settings
 
+import com.hitit.app.AppBuildConfig
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -17,6 +18,8 @@ expect class DebugSettingsStore {
     fun setAutoFlipDelayMs(delayMs: Long)
     fun getUseDeezerDeeplink(): Boolean
     fun setUseDeezerDeeplink(enabled: Boolean)
+    fun getUseFullVersion(): Boolean
+    fun setUseFullVersion(enabled: Boolean)
 }
 
 object DebugSettings {
@@ -36,7 +39,7 @@ object DebugSettings {
     }
 
     val autoFlipEnabled: Boolean
-        get() = _state.value.autoFlipEnabled
+        get() = if (AppBuildConfig.isReleasePreview) false else _state.value.autoFlipEnabled
 
     val autoFlipDelayMs: Long
         get() = _state.value.autoFlipDelayMs
@@ -57,5 +60,14 @@ object DebugSettings {
     fun setUseDeezerDeeplink(enabled: Boolean) {
         store?.setUseDeezerDeeplink(enabled)
         _state.value = _state.value.copy(useDeezerDeeplink = enabled)
+    }
+
+    /** Returns true if user prefers full version (Deezer), false for preview */
+    fun getUseFullVersion(): Boolean {
+        return store?.getUseFullVersion() ?: false
+    }
+
+    fun setUseFullVersion(enabled: Boolean) {
+        store?.setUseFullVersion(enabled)
     }
 }

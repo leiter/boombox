@@ -12,6 +12,7 @@ import com.hitit.app.service.DeviceOrientation
 import com.hitit.app.service.DeviceOrientationService
 import com.hitit.app.service.MusicService
 import com.hitit.app.settings.DebugSettings
+import com.hitit.app.ui.screens.PlaybackMode
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -43,7 +44,9 @@ data class ScannerUiState(
     val lastScannedCode: String? = null,
     val flashlightOn: Boolean = false,
     val isWaitingForFlip: Boolean = false,
-    val isNowPlaying: Boolean = false
+    val isNowPlaying: Boolean = false,
+    val isDeezerInstalled: Boolean = false,
+    val selectedPlaybackMode: PlaybackMode = PlaybackMode.PREVIEW
 )
 
 class ScannerViewModel(
@@ -62,6 +65,23 @@ class ScannerViewModel(
     private var orientationJob: Job? = null
     private var autoFlipJob: Job? = null
 
+    init {
+        // Load saved playback mode preference
+        val savedMode = if (DebugSettings.getUseFullVersion()) PlaybackMode.DEEZER else PlaybackMode.PREVIEW
+        _uiState.value = _uiState.value.copy(selectedPlaybackMode = savedMode)
+
+        // Check if Deezer is installed
+        viewModelScope.launch {
+            val isDeezerInstalled = musicService.isAppInstalled()
+            _uiState.value = _uiState.value.copy(isDeezerInstalled = isDeezerInstalled)
+        }
+    }
+
+    fun setPlaybackMode(mode: PlaybackMode) {
+        _uiState.value = _uiState.value.copy(selectedPlaybackMode = mode)
+        // Persist the selection
+        DebugSettings.setUseFullVersion(mode == PlaybackMode.DEEZER)
+    }
 
     fun toggleFlashlight() {
         _uiState.value = _uiState.value.copy(
@@ -75,7 +95,9 @@ class ScannerViewModel(
         pendingTrack = null
         pendingTrackId = null
         _uiState.value = ScannerUiState(
-            flashlightOn = _uiState.value.flashlightOn
+            flashlightOn = _uiState.value.flashlightOn,
+            isDeezerInstalled = _uiState.value.isDeezerInstalled,
+            selectedPlaybackMode = _uiState.value.selectedPlaybackMode
         )
     }
 
@@ -134,8 +156,9 @@ class ScannerViewModel(
                 ))
                 _uiState.value = _uiState.value.copy(isNowPlaying = true)
 
-                // Use Deezer deeplink or play preview based on setting
-                if (DebugSettings.useDeezerDeeplink) {
+                // Use selected playback mode
+                val useDeeplink = _uiState.value.selectedPlaybackMode == PlaybackMode.DEEZER && _uiState.value.isDeezerInstalled
+                if (useDeeplink) {
                     // Open Deezer to play full song
                     musicService.playTrackById(track.id)
                 } else {
@@ -158,8 +181,9 @@ class ScannerViewModel(
                     ))
                     _uiState.value = _uiState.value.copy(isNowPlaying = true)
 
-                    // Use Deezer deeplink or play preview based on setting
-                    if (DebugSettings.useDeezerDeeplink) {
+                    // Use selected playback mode
+                    val useDeeplink = _uiState.value.selectedPlaybackMode == PlaybackMode.DEEZER && _uiState.value.isDeezerInstalled
+                    if (useDeeplink) {
                         // Open Deezer to play full song
                         musicService.playTrackById(trackId)
                     } else {
