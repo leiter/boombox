@@ -15,5 +15,6 @@
     <!-- Splash screen theme -->
     <style name="Theme.HitIt.Splash" parent="Theme.HitIt">
         <item name="android:windowBackground">@color/primary</item>
+        <item name="android:navigationBarColor">@color/primary</item>
     </style>
 </resources>
