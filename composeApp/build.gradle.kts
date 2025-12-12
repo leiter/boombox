@@ -84,11 +84,11 @@ kotlin {
 }
 
 android {
-    namespace = "com.hitit.app"
+    namespace = "cut.the.crap.jukestar"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.hitit.app"
+        applicationId = "cut.the.crap.jukestar"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
