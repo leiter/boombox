@@ -41,10 +41,19 @@ actual class DebugSettingsStore(context: Context) {
         prefs.edit().putBoolean(KEY_USE_FULL_VERSION, enabled).apply()
     }
 
+    actual fun getFlashEnabled(): Boolean {
+        return prefs.getBoolean(KEY_FLASH_ENABLED, false)
+    }
+
+    actual fun setFlashEnabled(enabled: Boolean) {
+        prefs.edit().putBoolean(KEY_FLASH_ENABLED, enabled).apply()
+    }
+
     companion object {
         private const val KEY_AUTO_FLIP_ENABLED = "auto_flip_enabled"
         private const val KEY_AUTO_FLIP_DELAY = "auto_flip_delay_ms"
         private const val KEY_USE_DEEZER_DEEPLINK = "use_deezer_deeplink"
         private const val KEY_USE_FULL_VERSION = "use_full_version"
+        private const val KEY_FLASH_ENABLED = "flash_enabled"
     }
 }

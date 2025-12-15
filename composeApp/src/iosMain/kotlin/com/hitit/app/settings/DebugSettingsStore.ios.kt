@@ -53,10 +53,23 @@ actual class DebugSettingsStore {
         defaults.setBool(enabled, KEY_USE_FULL_VERSION)
     }
 
+    actual fun getFlashEnabled(): Boolean {
+        return if (defaults.objectForKey(KEY_FLASH_ENABLED) != null) {
+            defaults.boolForKey(KEY_FLASH_ENABLED)
+        } else {
+            false // default value
+        }
+    }
+
+    actual fun setFlashEnabled(enabled: Boolean) {
+        defaults.setBool(enabled, KEY_FLASH_ENABLED)
+    }
+
     companion object {
         private const val KEY_AUTO_FLIP_ENABLED = "auto_flip_enabled"
         private const val KEY_AUTO_FLIP_DELAY = "auto_flip_delay_ms"
         private const val KEY_USE_DEEZER_DEEPLINK = "use_deezer_deeplink"
         private const val KEY_USE_FULL_VERSION = "use_full_version"
+        private const val KEY_FLASH_ENABLED = "flash_enabled"
     }
 }

@@ -10,5 +10,5 @@ actual object AppBuildConfig {
      * Set to true to hide debug UI elements even in debug builds.
      * Toggle this flag before creating preview/demo builds.
      */
-    actual val isReleasePreview: Boolean = false
+    actual val isReleasePreview: Boolean = true
 }

@@ -26,11 +26,13 @@ import com.hitit.app.AppBuildConfig
 import com.hitit.app.service.AudioPlayer
 import com.hitit.app.showDebugOptions
 import com.hitit.app.ui.components.ScannerFrame
+import com.hitit.app.ui.components.ScannerOverlay
 import com.hitit.app.ui.viewmodel.ScannerViewModel
 import com.hitit.app.ui.viewmodel.StatusMessage
 import hitit.composeapp.generated.resources.*
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
+import qrscanner.CameraLens
 import qrscanner.QrScanner
 
 @Composable
@@ -93,11 +95,13 @@ fun ScannerScreen(
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val lifecycleOwner = LocalLifecycleOwner.current
 
+    // Flash state - pass directly to QrScanner, persistence handles restoration
+    // QRKit handles the hardware, we just track user preference
+
     // Stop external playback (Deezer) when returning to BoomBox
     DisposableEffect(lifecycleOwner) {
         val observer = LifecycleEventObserver { _, event ->
             if (event == Lifecycle.Event.ON_RESUME && uiState.isNowPlaying) {
-                // User returned from Deezer - stop external playback
                 audioPlayer.stopExternalPlayback()
             }
         }
@@ -119,89 +123,58 @@ fun ScannerScreen(
         }
     }
 
-    // Show NowPlayingScreen when playing
-    if (uiState.isNowPlaying) {
-        val (title, artist, year, albumCoverUrl) = when (val status = uiState.status) {
-            is StatusMessage.NowPlaying -> listOf(status.title, status.artist, status.year, status.albumCoverUrl)
-            else -> listOf(null, null, null, null)
-        }
-        NowPlayingScreen(
-            title = title as String?,
-            artist = artist as String?,
-            year = year as Int?,
-            albumCoverUrl = albumCoverUrl as String?,
-            isPlaying = true,
-            onPlayPauseClick = { /* TODO: Toggle playback */ },
-            onNextCard = { viewModel.resetScanner() },
-            onClose = { viewModel.resetScanner() }
-        )
-        return
-    }
-
-    // Show FlipPhoneScreen when waiting for flip
-    if (uiState.isWaitingForFlip) {
-        FlipPhoneScreen(
-            onClose = { viewModel.resetScanner() },
-            isDeezerInstalled = uiState.isDeezerInstalled,
-            selectedPlaybackMode = uiState.selectedPlaybackMode,
-            onPlaybackModeChanged = { mode -> viewModel.setPlaybackMode(mode) }
-        )
-        return
-    }
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
-    ) {
-        // Top bar - orange with X close button
-        Surface(
+    // Use Box to layer screens - keeps QrScanner alive when showing overlays
+    Box(modifier = Modifier.fillMaxSize()) {
+        // Base layer: Scanner screen (always rendered to keep camera alive)
+        Column(
             modifier = Modifier
-                .fillMaxWidth(),
-            color = MaterialTheme.colorScheme.primary
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background)
         ) {
-            Box(
+            // Top bar - orange with X close button
+            Surface(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .windowInsetsPadding(WindowInsets.statusBars)
-                    .padding(8.dp)
+                    .fillMaxWidth(),
+                color = MaterialTheme.colorScheme.primary
             ) {
-                IconButton(
-                    onClick = {
-                        viewModel.resetScanner()
-                        onBackToHome()
-                    },
-                    modifier = Modifier.align(Alignment.TopEnd)
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .windowInsetsPadding(WindowInsets.statusBars)
+                        .padding(8.dp)
                 ) {
-                    Icon(
-                        imageVector = Icons.Default.Close,
-                        contentDescription = stringResource(Res.string.close),
-                        tint = MaterialTheme.colorScheme.onPrimary
-                    )
+                    IconButton(
+                        onClick = {
+                            viewModel.resetScanner()
+                            onBackToHome()
+                        },
+                        modifier = Modifier.align(Alignment.TopEnd)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Close,
+                            contentDescription = stringResource(Res.string.close),
+                            tint = MaterialTheme.colorScheme.onPrimary
+                        )
+                    }
                 }
             }
-        }
 
-        // Camera preview - restricted to center scan area
-        Box(
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxWidth()
-                .background(Color.Black),
-            contentAlignment = Alignment.Center
-        ) {
-            // Scanner limited to center square area
+            // Fullscreen camera preview with overlay
             Box(
                 modifier = Modifier
-                    .fillMaxWidth(0.75f)
-                    .aspectRatio(1f)
+                    .weight(1f)
+                    .fillMaxWidth()
+                    .background(Color.Black),
+                contentAlignment = Alignment.Center
             ) {
+                // Fullscreen QR Scanner with custom overlay
+                // Flash turns off when overlays are shown, restores when returning to scanner
                 QrScanner(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .clip(RoundedCornerShape(16.dp)),
-                    flashlightOn = uiState.flashlightOn,
+                    modifier = Modifier.fillMaxSize(),
+                    cameraLens = CameraLens.Back,
+                    flashlightOn = uiState.flashlightOn && !uiState.isWaitingForFlip && !uiState.isNowPlaying,
                     openImagePicker = false,
+                    customOverlay = { /* Empty - we draw our own overlay */ },
                     imagePickerHandler = { /* Not used */ },
                     onFailure = { error ->
                         viewModel.onScanError(error.toString())
@@ -211,16 +184,25 @@ fun ScannerScreen(
                     }
                 )
 
-                // Cyan scanning frame overlay
+                // Dark overlay with transparent cutout
+                ScannerOverlay(
+                    modifier = Modifier.fillMaxSize(),
+                    scanAreaFraction = 0.75f
+                )
+
+                // Cyan scanning frame
                 ScannerFrame(
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier
+                        .fillMaxWidth(0.75f)
+                        .aspectRatio(1f)
                 )
 
                 // Scanning overlay indicator
                 if (uiState.isProcessing) {
                     Box(
                         modifier = Modifier
-                            .fillMaxSize()
+                            .fillMaxWidth(0.75f)
+                            .aspectRatio(1f)
                             .background(Color.Black.copy(alpha = 0.5f)),
                         contentAlignment = Alignment.Center
                     ) {
@@ -228,45 +210,73 @@ fun ScannerScreen(
                     }
                 }
             }
-        }
 
-        // Status and controls
-        Surface(
-            modifier = Modifier
-                .fillMaxWidth()
-                .windowInsetsPadding(WindowInsets.navigationBars),
-            color = MaterialTheme.colorScheme.surfaceVariant
-        ) {
-            Column(
+            // Status and controls
+            Surface(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+                    .windowInsetsPadding(WindowInsets.navigationBars),
+                color = MaterialTheme.colorScheme.surfaceVariant
             ) {
-                Text(
-                    text = uiState.status.toLocalizedString(),
-                    style = MaterialTheme.typography.bodyLarge,
-                    textAlign = TextAlign.Center
-                )
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                OutlinedButton(
-                    onClick = { viewModel.toggleFlashlight() }
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(if (uiState.flashlightOn) stringResource(Res.string.flash_off) else stringResource(Res.string.flash_on))
-                }
+                    Text(
+                        text = uiState.status.toLocalizedString(),
+                        style = MaterialTheme.typography.bodyLarge,
+                        textAlign = TextAlign.Center
+                    )
 
-                // DEBUG: Test button to simulate scanning card #00001
-                if (AppBuildConfig.showDebugOptions) {
-                    Spacer(modifier = Modifier.height(8.dp))
-                    TextButton(
-                        onClick = { viewModel.onQrCodeScanned("https://hitstergame.com/en/00001") }
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    OutlinedButton(
+                        onClick = { viewModel.toggleFlashlight() }
                     ) {
-                        Text("DEBUG: Test Scan", color = Color.Gray)
+                        Text(if (uiState.flashlightOn) stringResource(Res.string.flash_off) else stringResource(Res.string.flash_on))
+                    }
+
+                    // DEBUG: Test button to simulate scanning card #00001
+                    if (AppBuildConfig.showDebugOptions) {
+                        Spacer(modifier = Modifier.height(8.dp))
+                        TextButton(
+                            onClick = { viewModel.onQrCodeScanned("https://hitstergame.com/en/00001") }
+                        ) {
+                            Text("DEBUG: Test Scan", color = Color.Gray)
+                        }
                     }
                 }
             }
+        } // End of Column (base scanner layer)
+
+        // Overlay layer: FlipPhoneScreen (shown when waiting for flip)
+        if (uiState.isWaitingForFlip) {
+            FlipPhoneScreen(
+                onClose = { viewModel.resetScanner() },
+                isDeezerInstalled = uiState.isDeezerInstalled,
+                selectedPlaybackMode = uiState.selectedPlaybackMode,
+                onPlaybackModeChanged = { mode -> viewModel.setPlaybackMode(mode) }
+            )
         }
-    }
+
+        // Overlay layer: NowPlayingScreen (shown when playing)
+        if (uiState.isNowPlaying) {
+            val (title, artist, year, albumCoverUrl) = when (val status = uiState.status) {
+                is StatusMessage.NowPlaying -> listOf(status.title, status.artist, status.year, status.albumCoverUrl)
+                else -> listOf(null, null, null, null)
+            }
+            NowPlayingScreen(
+                title = title as String?,
+                artist = artist as String?,
+                year = year as Int?,
+                albumCoverUrl = albumCoverUrl as String?,
+                isPlaying = true,
+                onPlayPauseClick = { /* TODO: Toggle playback */ },
+                onNextCard = { viewModel.resetScanner() },
+                onClose = { viewModel.resetScanner() }
+            )
+        }
+    } // End of Box
 }

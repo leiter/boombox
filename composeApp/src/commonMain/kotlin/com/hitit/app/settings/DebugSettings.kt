@@ -20,6 +20,8 @@ expect class DebugSettingsStore {
     fun setUseDeezerDeeplink(enabled: Boolean)
     fun getUseFullVersion(): Boolean
     fun setUseFullVersion(enabled: Boolean)
+    fun getFlashEnabled(): Boolean
+    fun setFlashEnabled(enabled: Boolean)
 }
 
 object DebugSettings {
@@ -69,5 +71,13 @@ object DebugSettings {
 
     fun setUseFullVersion(enabled: Boolean) {
         store?.setUseFullVersion(enabled)
+    }
+
+    fun getFlashEnabled(): Boolean {
+        return store?.getFlashEnabled() ?: false
+    }
+
+    fun setFlashEnabled(enabled: Boolean) {
+        store?.setFlashEnabled(enabled)
     }
 }

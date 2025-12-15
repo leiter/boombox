@@ -66,9 +66,13 @@ class ScannerViewModel(
     private var autoFlipJob: Job? = null
 
     init {
-        // Load saved playback mode preference
+        // Load saved preferences
         val savedMode = if (DebugSettings.getUseFullVersion()) PlaybackMode.DEEZER else PlaybackMode.PREVIEW
-        _uiState.value = _uiState.value.copy(selectedPlaybackMode = savedMode)
+        val savedFlash = DebugSettings.getFlashEnabled()
+        _uiState.value = _uiState.value.copy(
+            selectedPlaybackMode = savedMode,
+            flashlightOn = savedFlash
+        )
 
         // Check if Deezer is installed
         viewModelScope.launch {
@@ -84,9 +88,9 @@ class ScannerViewModel(
     }
 
     fun toggleFlashlight() {
-        _uiState.value = _uiState.value.copy(
-            flashlightOn = !_uiState.value.flashlightOn
-        )
+        val newFlashState = !_uiState.value.flashlightOn
+        _uiState.value = _uiState.value.copy(flashlightOn = newFlashState)
+        DebugSettings.setFlashEnabled(newFlashState)
     }
 
     fun resetScanner() {
@@ -105,7 +109,11 @@ class ScannerViewModel(
         if (orientationJob != null) return
 
         orientationJob = viewModelScope.launch {
+            // Small delay to let user see the FlipPhoneScreen before detecting
+            kotlinx.coroutines.delay(500)
+
             orientationService.observeOrientation().collect { orientation ->
+                // Trigger when phone is flipped face-down
                 if (orientation == DeviceOrientation.FACE_DOWN && _uiState.value.isWaitingForFlip) {
                     onDeviceFlippedFaceDown()
                 }

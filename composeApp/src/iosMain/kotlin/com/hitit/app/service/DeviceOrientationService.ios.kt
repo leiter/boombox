@@ -24,11 +24,12 @@ actual class DeviceOrientationService {
                 data?.let { accelerometerData ->
                     val z = accelerometerData.acceleration.useContents { z }
 
-                    // Z-axis: positive when face-up, negative when face-down
-                    // Threshold of ~0.7 (gravity normalized to 1.0)
+                    // iOS CoreMotion Z-axis:
+                    // - Face UP (screen visible): z ≈ -1.0 (gravity toward screen)
+                    // - Face DOWN (screen on table): z ≈ +1.0 (gravity away from screen)
                     val orientation = when {
-                        z < -FACE_DOWN_THRESHOLD -> DeviceOrientation.FACE_DOWN
-                        z > FACE_UP_THRESHOLD -> DeviceOrientation.FACE_UP
+                        z < -FACE_UP_THRESHOLD -> DeviceOrientation.FACE_UP
+                        z > FACE_DOWN_THRESHOLD -> DeviceOrientation.FACE_DOWN
                         else -> DeviceOrientation.OTHER
                     }
 
