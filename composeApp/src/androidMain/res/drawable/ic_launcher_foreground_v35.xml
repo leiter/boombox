@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Background - Dark purple -->
+    <path
+        android:fillColor="#0D0221"
+        android:pathData="M0,0 L108,0 L108,108 L0,108 Z"/>
+
+    <!-- === DUKESTAR - Star Speaker === -->
+
+    <!-- Background glow -->
+    <path
+        android:fillColor="#FF00FF10"
+        android:pathData="M54,54 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/>
+
+    <!-- Star-shaped speaker cone - outer -->
+    <path
+        android:fillColor="#1A0A2E"
+        android:pathData="M54,14 L66,40 L96,40 L74,58 L84,90 L54,70 L24,90 L34,58 L12,40 L42,40 Z"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,14 L66,40 L96,40 L74,58 L84,90 L54,70 L24,90 L34,58 L12,40 L42,40 Z"
+        android:strokeWidth="3"
+        android:strokeColor="#FF6B35"
+        android:strokeLineJoin="round"/>
+    <!-- Glow -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,14 L66,40 L96,40 L74,58 L84,90 L54,70 L24,90 L34,58 L12,40 L42,40 Z"
+        android:strokeWidth="7"
+        android:strokeColor="#FF6B3533"
+        android:strokeLineJoin="round"/>
+
+    <!-- Speaker cone rings - star shaped inner rings -->
+    <!-- Middle ring -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,26 L62,42 L82,42 L68,54 L76,76 L54,62 L32,76 L40,54 L26,42 L46,42 Z"
+        android:strokeWidth="2.5"
+        android:strokeColor="#FF00FF"
+        android:strokeLineJoin="round"/>
+
+    <!-- Inner ring -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,36 L58,44 L70,44 L62,50 L66,62 L54,54 L42,62 L46,50 L38,44 L50,44 Z"
+        android:strokeWidth="2"
+        android:strokeColor="#00FFFF"
+        android:strokeLineJoin="round"/>
+
+    <!-- Center dome -->
+    <path
+        android:fillColor="#FF00FF"
+        android:pathData="M54,54 m-8,0 a8,8 0 1,1 16,0 a8,8 0 1,1 -16,0"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,54 m-8,0 a8,8 0 1,1 16,0 a8,8 0 1,1 -16,0"
+        android:strokeWidth="4"
+        android:strokeColor="#FF00FF44"/>
+
+    <!-- Inner dome -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,54 m-5,0 a5,5 0 1,1 10,0 a5,5 0 1,1 -10,0"
+        android:strokeWidth="1.5"
+        android:strokeColor="#00FFFF"/>
+
+    <!-- Center highlight -->
+    <path
+        android:fillColor="#00FFFF"
+        android:pathData="M54,54 m-2,0 a2,2 0 1,1 4,0 a2,2 0 1,1 -4,0"/>
+
+    <!-- Sound waves emanating -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M90,54 Q95,44 95,54 Q95,64 90,54"
+        android:strokeWidth="2"
+        android:strokeColor="#00FFFF66"
+        android:strokeLineCap="round"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M18,54 Q13,44 13,54 Q13,64 18,54"
+        android:strokeWidth="2"
+        android:strokeColor="#00FFFF66"
+        android:strokeLineCap="round"/>
+
+</vector>

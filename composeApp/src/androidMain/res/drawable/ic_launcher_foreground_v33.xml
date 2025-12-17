@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Background - Dark purple -->
+    <path
+        android:fillColor="#0D0221"
+        android:pathData="M0,0 L108,0 L108,108 L0,108 Z"/>
+
+    <!-- === DUKESTAR - Crown with Star === -->
+
+    <!-- Background glow -->
+    <path
+        android:fillColor="#FF00FF15"
+        android:pathData="M54,54 m-42,0 a42,42 0 1,1 84,0 a42,42 0 1,1 -84,0"/>
+
+    <!-- Main 5-point star - magenta fill -->
+    <path
+        android:fillColor="#FF00FF"
+        android:pathData="M54,18 L62,42 L88,42 L68,58 L76,84 L54,68 L32,84 L40,58 L20,42 L46,42 Z"/>
+    <!-- Star glow -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,18 L62,42 L88,42 L68,58 L76,84 L54,68 L32,84 L40,58 L20,42 L46,42 Z"
+        android:strokeWidth="4"
+        android:strokeColor="#FF00FF44"
+        android:strokeLineJoin="round"/>
+
+    <!-- Inner star outline - cyan -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,28 L60,44 L78,44 L64,54 L70,72 L54,62 L38,72 L44,54 L30,44 L48,44 Z"
+        android:strokeWidth="2"
+        android:strokeColor="#00FFFF"
+        android:strokeLineJoin="round"/>
+
+    <!-- Crown on top of star -->
+    <!-- Crown base -->
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M40,20 L68,20 L66,28 L42,28 Z"/>
+    <!-- Crown points -->
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M40,20 L38,10 L44,16 L54,6 L64,16 L70,10 L68,20 Z"/>
+    <!-- Crown glow -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M40,20 L38,10 L44,16 L54,6 L64,16 L70,10 L68,20 Z"
+        android:strokeWidth="2"
+        android:strokeColor="#FF6B3566"
+        android:strokeLineJoin="round"/>
+
+    <!-- Crown jewels -->
+    <path
+        android:fillColor="#00FFFF"
+        android:pathData="M54,14 m-2,0 a2,2 0 1,1 4,0 a2,2 0 1,1 -4,0"/>
+    <path
+        android:fillColor="#FF00FF"
+        android:pathData="M44,18 m-1.5,0 a1.5,1.5 0 1,1 3,0 a1.5,1.5 0 1,1 -3,0"/>
+    <path
+        android:fillColor="#FF00FF"
+        android:pathData="M64,18 m-1.5,0 a1.5,1.5 0 1,1 3,0 a1.5,1.5 0 1,1 -3,0"/>
+
+    <!-- Center music note icon -->
+    <path
+        android:fillColor="#0D0221"
+        android:pathData="M50,52 m-4,0 a4,3 20 1,1 8,0 a4,3 20 1,1 -8,0"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,50 L54,40"
+        android:strokeWidth="2.5"
+        android:strokeColor="#0D0221"
+        android:strokeLineCap="round"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,40 L60,38"
+        android:strokeWidth="2.5"
+        android:strokeColor="#0D0221"
+        android:strokeLineCap="round"/>
+
+</vector>

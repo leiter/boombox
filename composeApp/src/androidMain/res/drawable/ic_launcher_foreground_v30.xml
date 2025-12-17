@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Background - Dark purple gradient effect -->
+    <path
+        android:fillColor="#0D0221"
+        android:pathData="M0,0 L108,0 L108,108 L0,108 Z"/>
+
+    <!-- Subtle glow behind boombox -->
+    <path
+        android:fillColor="#FF00FF15"
+        android:pathData="M54,58 m-45,0 a45,25 0 1,1 90,0 a45,25 0 1,1 -90,0"/>
+
+    <!-- === NEON BOOMBOX === -->
+
+    <!-- Handle - neon cyan -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M32,32 Q32,20 54,20 Q76,20 76,32"
+        android:strokeWidth="4"
+        android:strokeColor="#00FFFF"
+        android:strokeLineCap="round"/>
+    <!-- Handle glow -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M32,32 Q32,20 54,20 Q76,20 76,32"
+        android:strokeWidth="8"
+        android:strokeColor="#00FFFF22"
+        android:strokeLineCap="round"/>
+
+    <!-- Main body outline - orange neon -->
+    <path
+        android:fillColor="#1A0A2E"
+        android:pathData="M16,32 L92,32 Q96,32 96,36 L96,76 Q96,80 92,80 L16,80 Q12,80 12,76 L12,36 Q12,32 16,32 Z"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M16,32 L92,32 Q96,32 96,36 L96,76 Q96,80 92,80 L16,80 Q12,80 12,76 L12,36 Q12,32 16,32 Z"
+        android:strokeWidth="2.5"
+        android:strokeColor="#FF6B35"
+        android:strokeLineJoin="round"/>
+    <!-- Body glow -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M16,32 L92,32 Q96,32 96,36 L96,76 Q96,80 92,80 L16,80 Q12,80 12,76 L12,36 Q12,32 16,32 Z"
+        android:strokeWidth="6"
+        android:strokeColor="#FF6B3522"
+        android:strokeLineJoin="round"/>
+
+    <!-- Left speaker - magenta neon -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M34,56 m-16,0 a16,16 0 1,1 32,0 a16,16 0 1,1 -32,0"
+        android:strokeWidth="3"
+        android:strokeColor="#FF00FF"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M34,56 m-16,0 a16,16 0 1,1 32,0 a16,16 0 1,1 -32,0"
+        android:strokeWidth="8"
+        android:strokeColor="#FF00FF22"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M34,56 m-10,0 a10,10 0 1,1 20,0 a10,10 0 1,1 -20,0"
+        android:strokeWidth="2"
+        android:strokeColor="#FF00FF88"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M34,56 m-5,0 a5,5 0 1,1 10,0 a5,5 0 1,1 -10,0"
+        android:strokeWidth="1.5"
+        android:strokeColor="#FF00FF66"/>
+    <path
+        android:fillColor="#FF00FF"
+        android:pathData="M34,56 m-2,0 a2,2 0 1,1 4,0 a2,2 0 1,1 -4,0"/>
+
+    <!-- Right speaker - magenta neon -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M74,56 m-16,0 a16,16 0 1,1 32,0 a16,16 0 1,1 -32,0"
+        android:strokeWidth="3"
+        android:strokeColor="#FF00FF"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M74,56 m-16,0 a16,16 0 1,1 32,0 a16,16 0 1,1 -32,0"
+        android:strokeWidth="8"
+        android:strokeColor="#FF00FF22"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M74,56 m-10,0 a10,10 0 1,1 20,0 a10,10 0 1,1 -20,0"
+        android:strokeWidth="2"
+        android:strokeColor="#FF00FF88"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M74,56 m-5,0 a5,5 0 1,1 10,0 a5,5 0 1,1 -10,0"
+        android:strokeWidth="1.5"
+        android:strokeColor="#FF00FF66"/>
+    <path
+        android:fillColor="#FF00FF"
+        android:pathData="M74,56 m-2,0 a2,2 0 1,1 4,0 a2,2 0 1,1 -4,0"/>
+
+    <!-- Center display - cyan neon -->
+    <path
+        android:fillColor="#0D0221"
+        android:pathData="M46,40 L62,40 L62,52 L46,52 Z"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M46,40 L62,40 L62,52 L46,52 Z"
+        android:strokeWidth="2"
+        android:strokeColor="#00FFFF"/>
+    <!-- EQ bars inside display -->
+    <path
+        android:fillColor="#00FFFF"
+        android:pathData="M49,50 L49,44"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M49,50 L49,44"
+        android:strokeWidth="2"
+        android:strokeColor="#00FFFF"
+        android:strokeLineCap="round"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,50 L54,42"
+        android:strokeWidth="2"
+        android:strokeColor="#00FFFF"
+        android:strokeLineCap="round"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M59,50 L59,46"
+        android:strokeWidth="2"
+        android:strokeColor="#00FFFF"
+        android:strokeLineCap="round"/>
+
+    <!-- Control buttons row -->
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M46,58 m-2,0 a2,2 0 1,1 4,0 a2,2 0 1,1 -4,0"/>
+    <path
+        android:fillColor="#00FFFF"
+        android:pathData="M54,58 m-2,0 a2,2 0 1,1 4,0 a2,2 0 1,1 -4,0"/>
+    <path
+        android:fillColor="#FF00FF"
+        android:pathData="M62,58 m-2,0 a2,2 0 1,1 4,0 a2,2 0 1,1 -4,0"/>
+
+    <!-- Cassette slot - orange accent -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M44,64 L64,64 L64,72 L44,72 Z"
+        android:strokeWidth="1.5"
+        android:strokeColor="#FF6B35"/>
+    <path
+        android:fillColor="#FF6B3544"
+        android:pathData="M46,66 L62,66 L62,70 L46,70 Z"/>
+
+</vector>

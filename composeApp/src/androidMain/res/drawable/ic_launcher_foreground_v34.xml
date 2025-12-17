@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Background - Dark purple -->
+    <path
+        android:fillColor="#1A0A2E"
+        android:pathData="M0,0 L108,0 L108,108 L0,108 Z"/>
+
+    <!-- === DUKESTAR - Neon Star Burst === -->
+
+    <!-- Outer glow rays -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,54 L54,8"
+        android:strokeWidth="3"
+        android:strokeColor="#00FFFF44"
+        android:strokeLineCap="round"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,54 L54,100"
+        android:strokeWidth="3"
+        android:strokeColor="#00FFFF44"
+        android:strokeLineCap="round"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,54 L8,54"
+        android:strokeWidth="3"
+        android:strokeColor="#FF00FF44"
+        android:strokeLineCap="round"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,54 L100,54"
+        android:strokeWidth="3"
+        android:strokeColor="#FF00FF44"
+        android:strokeLineCap="round"/>
+
+    <!-- Diagonal rays -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,54 L22,22"
+        android:strokeWidth="2"
+        android:strokeColor="#FF6B3555"
+        android:strokeLineCap="round"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,54 L86,22"
+        android:strokeWidth="2"
+        android:strokeColor="#FF6B3555"
+        android:strokeLineCap="round"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,54 L22,86"
+        android:strokeWidth="2"
+        android:strokeColor="#FF6B3555"
+        android:strokeLineCap="round"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,54 L86,86"
+        android:strokeWidth="2"
+        android:strokeColor="#FF6B3555"
+        android:strokeLineCap="round"/>
+
+    <!-- Main star - outline style -->
+    <path
+        android:fillColor="#0D0221"
+        android:pathData="M54,16 L64,44 L94,44 L70,62 L80,92 L54,74 L28,92 L38,62 L14,44 L44,44 Z"/>
+
+    <!-- Star neon outline - magenta -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,16 L64,44 L94,44 L70,62 L80,92 L54,74 L28,92 L38,62 L14,44 L44,44 Z"
+        android:strokeWidth="3"
+        android:strokeColor="#FF00FF"
+        android:strokeLineJoin="round"/>
+    <!-- Star glow -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,16 L64,44 L94,44 L70,62 L80,92 L54,74 L28,92 L38,62 L14,44 L44,44 Z"
+        android:strokeWidth="8"
+        android:strokeColor="#FF00FF33"
+        android:strokeLineJoin="round"/>
+
+    <!-- Inner star - cyan -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,30 L60,46 L78,46 L64,56 L70,74 L54,64 L38,74 L44,56 L30,46 L48,46 Z"
+        android:strokeWidth="2"
+        android:strokeColor="#00FFFF"
+        android:strokeLineJoin="round"/>
+
+    <!-- Center circle -->
+    <path
+        android:fillColor="#FF00FF"
+        android:pathData="M54,54 m-8,0 a8,8 0 1,1 16,0 a8,8 0 1,1 -16,0"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,54 m-8,0 a8,8 0 1,1 16,0 a8,8 0 1,1 -16,0"
+        android:strokeWidth="2"
+        android:strokeColor="#00FFFF"/>
+
+    <!-- Center dot -->
+    <path
+        android:fillColor="#00FFFF"
+        android:pathData="M54,54 m-3,0 a3,3 0 1,1 6,0 a3,3 0 1,1 -6,0"/>
+
+</vector>

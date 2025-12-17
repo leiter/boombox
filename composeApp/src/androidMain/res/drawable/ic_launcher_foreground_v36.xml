@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Background - Dark purple -->
+    <path
+        android:fillColor="#1A0A2E"
+        android:pathData="M0,0 L108,0 L108,108 L0,108 Z"/>
+
+    <!-- === DUKESTAR - DJ Turntable with Star === -->
+
+    <!-- Background glow -->
+    <path
+        android:fillColor="#00FFFF0A"
+        android:pathData="M54,58 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/>
+
+    <!-- Turntable base - rounded rectangle -->
+    <path
+        android:fillColor="#0D0221"
+        android:pathData="M14,36 L94,36 Q98,36 98,40 L98,82 Q98,86 94,86 L14,86 Q10,86 10,82 L10,40 Q10,36 14,36 Z"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M14,36 L94,36 Q98,36 98,40 L98,82 Q98,86 94,86 L14,86 Q10,86 10,82 L10,40 Q10,36 14,36 Z"
+        android:strokeWidth="2"
+        android:strokeColor="#FF6B35"
+        android:strokeLineJoin="round"/>
+
+    <!-- Vinyl record -->
+    <path
+        android:fillColor="#0D0221"
+        android:pathData="M54,60 m-28,0 a28,28 0 1,1 56,0 a28,28 0 1,1 -56,0"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,60 m-28,0 a28,28 0 1,1 56,0 a28,28 0 1,1 -56,0"
+        android:strokeWidth="2.5"
+        android:strokeColor="#FF00FF"/>
+    <!-- Record glow -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,60 m-28,0 a28,28 0 1,1 56,0 a28,28 0 1,1 -56,0"
+        android:strokeWidth="6"
+        android:strokeColor="#FF00FF22"/>
+
+    <!-- Record grooves -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,60 m-22,0 a22,22 0 1,1 44,0 a22,22 0 1,1 -44,0"
+        android:strokeWidth="1"
+        android:strokeColor="#FF00FF44"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,60 m-16,0 a16,16 0 1,1 32,0 a16,16 0 1,1 -32,0"
+        android:strokeWidth="1"
+        android:strokeColor="#FF00FF44"/>
+
+    <!-- Center label - star shaped -->
+    <path
+        android:fillColor="#00FFFF"
+        android:pathData="M54,52 L56,58 L62,58 L57,62 L59,68 L54,64 L49,68 L51,62 L46,58 L52,58 Z"/>
+    <!-- Star glow -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,52 L56,58 L62,58 L57,62 L59,68 L54,64 L49,68 L51,62 L46,58 L52,58 Z"
+        android:strokeWidth="2"
+        android:strokeColor="#00FFFF44"/>
+
+    <!-- Tonearm -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M86,40 L86,50 L70,66"
+        android:strokeWidth="3"
+        android:strokeColor="#FF6B35"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"/>
+    <!-- Tonearm pivot -->
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M86,40 m-4,0 a4,4 0 1,1 8,0 a4,4 0 1,1 -8,0"/>
+    <!-- Cartridge -->
+    <path
+        android:fillColor="#00FFFF"
+        android:pathData="M68,68 L72,64 L74,66 L70,70 Z"/>
+
+    <!-- Small star decorations -->
+    <path
+        android:fillColor="#FF00FF"
+        android:pathData="M20,44 L21,46 L23,46 L21.5,47.5 L22,50 L20,48.5 L18,50 L18.5,47.5 L17,46 L19,46 Z"/>
+    <path
+        android:fillColor="#00FFFF"
+        android:pathData="M88,76 L89,78 L91,78 L89.5,79.5 L90,82 L88,80.5 L86,82 L86.5,79.5 L85,78 L87,78 Z"/>
+
+</vector>

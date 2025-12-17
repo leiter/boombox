@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Background - Dark purple -->
+    <path
+        android:fillColor="#0D0221"
+        android:pathData="M0,0 L108,0 L108,108 L0,108 Z"/>
+
+    <!-- === DUKESTAR - Microphone Star === -->
+
+    <!-- Background radial glow -->
+    <path
+        android:fillColor="#FF00FF0C"
+        android:pathData="M54,54 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/>
+    <path
+        android:fillColor="#00FFFF08"
+        android:pathData="M54,54 m-32,0 a32,32 0 1,1 64,0 a32,32 0 1,1 -64,0"/>
+
+    <!-- Microphone head (capsule) -->
+    <path
+        android:fillColor="#1A0A2E"
+        android:pathData="M40,20 L68,20 Q76,20 76,28 L76,52 Q76,60 68,60 L40,60 Q32,60 32,52 L32,28 Q32,20 40,20 Z"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M40,20 L68,20 Q76,20 76,28 L76,52 Q76,60 68,60 L40,60 Q32,60 32,52 L32,28 Q32,20 40,20 Z"
+        android:strokeWidth="3"
+        android:strokeColor="#FF00FF"
+        android:strokeLineJoin="round"/>
+    <!-- Head glow -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M40,20 L68,20 Q76,20 76,28 L76,52 Q76,60 68,60 L40,60 Q32,60 32,52 L32,28 Q32,20 40,20 Z"
+        android:strokeWidth="8"
+        android:strokeColor="#FF00FF22"
+        android:strokeLineJoin="round"/>
+
+    <!-- Microphone grille lines -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M36,28 L72,28"
+        android:strokeWidth="1.5"
+        android:strokeColor="#00FFFF66"
+        android:strokeLineCap="round"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M36,36 L72,36"
+        android:strokeWidth="1.5"
+        android:strokeColor="#00FFFF66"
+        android:strokeLineCap="round"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M36,44 L72,44"
+        android:strokeWidth="1.5"
+        android:strokeColor="#00FFFF66"
+        android:strokeLineCap="round"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M36,52 L72,52"
+        android:strokeWidth="1.5"
+        android:strokeColor="#00FFFF66"
+        android:strokeLineCap="round"/>
+
+    <!-- Microphone handle -->
+    <path
+        android:fillColor="#1A0A2E"
+        android:pathData="M46,60 L62,60 L62,88 Q62,92 54,92 Q46,92 46,88 L46,60 Z"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M46,60 L62,60 L62,88 Q62,92 54,92 Q46,92 46,88 L46,60 Z"
+        android:strokeWidth="2.5"
+        android:strokeColor="#FF6B35"
+        android:strokeLineJoin="round"/>
+
+    <!-- Handle accent ring -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M46,66 L62,66"
+        android:strokeWidth="3"
+        android:strokeColor="#00FFFF"
+        android:strokeLineCap="round"/>
+
+    <!-- Star on microphone head -->
+    <path
+        android:fillColor="#00FFFF"
+        android:pathData="M54,32 L56,36 L60,36 L57,39 L58,43 L54,40 L50,43 L51,39 L48,36 L52,36 Z"/>
+    <!-- Star glow -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,32 L56,36 L60,36 L57,39 L58,43 L54,40 L50,43 L51,39 L48,36 L52,36 Z"
+        android:strokeWidth="2"
+        android:strokeColor="#00FFFF44"
+        android:strokeLineJoin="round"/>
+
+    <!-- Decorative stars around -->
+    <path
+        android:fillColor="#FF00FF"
+        android:pathData="M20,30 L21,32 L23,32 L21.5,33.5 L22,36 L20,34.5 L18,36 L18.5,33.5 L17,32 L19,32 Z"/>
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M86,46 L87,48 L89,48 L87.5,49.5 L88,52 L86,50.5 L84,52 L84.5,49.5 L83,48 L85,48 Z"/>
+    <path
+        android:fillColor="#00FFFF88"
+        android:pathData="M24,70 L25,72 L27,72 L25.5,73.5 L26,76 L24,74.5 L22,76 L22.5,73.5 L21,72 L23,72 Z"/>
+    <path
+        android:fillColor="#FF00FF88"
+        android:pathData="M82,74 L83,76 L85,76 L83.5,77.5 L84,80 L82,78.5 L80,80 L80.5,77.5 L79,76 L81,76 Z"/>
+
+</vector>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Background - Dark purple -->
+    <path
+        android:fillColor="#1A0A2E"
+        android:pathData="M0,0 L108,0 L108,108 L0,108 Z"/>
+
+    <!-- === DUKESTAR - Headphones with Star === -->
+
+    <!-- Background glow -->
+    <path
+        android:fillColor="#00FFFF0A"
+        android:pathData="M54,54 m-42,0 a42,42 0 1,1 84,0 a42,42 0 1,1 -84,0"/>
+
+    <!-- Headband arc -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M22,54 Q22,20 54,20 Q86,20 86,54"
+        android:strokeWidth="5"
+        android:strokeColor="#FF00FF"
+        android:strokeLineCap="round"/>
+    <!-- Headband glow -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M22,54 Q22,20 54,20 Q86,20 86,54"
+        android:strokeWidth="12"
+        android:strokeColor="#FF00FF22"
+        android:strokeLineCap="round"/>
+
+    <!-- Inner headband -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M28,52 Q28,28 54,28 Q80,28 80,52"
+        android:strokeWidth="2"
+        android:strokeColor="#FF00FF66"
+        android:strokeLineCap="round"/>
+
+    <!-- Left ear cup -->
+    <path
+        android:fillColor="#0D0221"
+        android:pathData="M14,48 L30,48 Q34,48 34,52 L34,76 Q34,80 30,80 L14,80 Q10,80 10,76 L10,52 Q10,48 14,48 Z"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M14,48 L30,48 Q34,48 34,52 L34,76 Q34,80 30,80 L14,80 Q10,80 10,76 L10,52 Q10,48 14,48 Z"
+        android:strokeWidth="2.5"
+        android:strokeColor="#00FFFF"
+        android:strokeLineJoin="round"/>
+    <!-- Left cup inner -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M22,64 m-8,0 a8,8 0 1,1 16,0 a8,8 0 1,1 -16,0"
+        android:strokeWidth="2"
+        android:strokeColor="#00FFFF66"/>
+    <path
+        android:fillColor="#00FFFF"
+        android:pathData="M22,64 m-3,0 a3,3 0 1,1 6,0 a3,3 0 1,1 -6,0"/>
+
+    <!-- Right ear cup -->
+    <path
+        android:fillColor="#0D0221"
+        android:pathData="M78,48 L94,48 Q98,48 98,52 L98,76 Q98,80 94,80 L78,80 Q74,80 74,76 L74,52 Q74,48 78,48 Z"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M78,48 L94,48 Q98,48 98,52 L98,76 Q98,80 94,80 L78,80 Q74,80 74,76 L74,52 Q74,48 78,48 Z"
+        android:strokeWidth="2.5"
+        android:strokeColor="#00FFFF"
+        android:strokeLineJoin="round"/>
+    <!-- Right cup inner -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M86,64 m-8,0 a8,8 0 1,1 16,0 a8,8 0 1,1 -16,0"
+        android:strokeWidth="2"
+        android:strokeColor="#00FFFF66"/>
+    <path
+        android:fillColor="#00FFFF"
+        android:pathData="M86,64 m-3,0 a3,3 0 1,1 6,0 a3,3 0 1,1 -6,0"/>
+
+    <!-- Center star on headband -->
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M54,16 L56,20 L60,20 L57,23 L58,27 L54,24 L50,27 L51,23 L48,20 L52,20 Z"/>
+    <!-- Star glow -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,16 L56,20 L60,20 L57,23 L58,27 L54,24 L50,27 L51,23 L48,20 L52,20 Z"
+        android:strokeWidth="2"
+        android:strokeColor="#FF6B3555"
+        android:strokeLineJoin="round"/>
+
+    <!-- Small decorative stars -->
+    <path
+        android:fillColor="#FF00FF88"
+        android:pathData="M54,90 L55,92 L57,92 L55.5,93.5 L56,96 L54,94.5 L52,96 L52.5,93.5 L51,92 L53,92 Z"/>
+
+</vector>

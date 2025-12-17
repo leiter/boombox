@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Background - Dark purple -->
+    <path
+        android:fillColor="#0D0221"
+        android:pathData="M0,0 L108,0 L108,108 L0,108 Z"/>
+
+    <!-- === DUKESTAR - Minimal Star & Music === -->
+
+    <!-- Subtle background glow -->
+    <path
+        android:fillColor="#FF00FF08"
+        android:pathData="M54,54 m-48,0 a48,48 0 1,1 96,0 a48,48 0 1,1 -96,0"/>
+
+    <!-- Large D letter outline - representing Duke -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M28,24 L28,84 L50,84 Q78,84 78,54 Q78,24 50,24 L28,24 Z"
+        android:strokeWidth="4"
+        android:strokeColor="#FF00FF"
+        android:strokeLineJoin="round"/>
+    <!-- D glow -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M28,24 L28,84 L50,84 Q78,84 78,54 Q78,24 50,24 L28,24 Z"
+        android:strokeWidth="10"
+        android:strokeColor="#FF00FF22"
+        android:strokeLineJoin="round"/>
+
+    <!-- Inner D curve -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M36,32 L36,76 L48,76 Q68,76 68,54 Q68,32 48,32 L36,32 Z"
+        android:strokeWidth="2"
+        android:strokeColor="#FF00FF66"
+        android:strokeLineJoin="round"/>
+
+    <!-- Star inside the D -->
+    <path
+        android:fillColor="#00FFFF"
+        android:pathData="M50,40 L54,50 L64,50 L56,56 L60,66 L50,60 L40,66 L44,56 L36,50 L46,50 Z"/>
+    <!-- Star glow -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M50,40 L54,50 L64,50 L56,56 L60,66 L50,60 L40,66 L44,56 L36,50 L46,50 Z"
+        android:strokeWidth="3"
+        android:strokeColor="#00FFFF44"
+        android:strokeLineJoin="round"/>
+
+    <!-- Inner star highlight -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M50,46 L52,52 L58,52 L54,55 L56,61 L50,57 L44,61 L46,55 L42,52 L48,52 Z"
+        android:strokeWidth="1"
+        android:strokeColor="#FFFFFF66"
+        android:strokeLineJoin="round"/>
+
+    <!-- Small accent stars -->
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M84,28 L86,32 L90,32 L87,35 L88,39 L84,36 L80,39 L81,35 L78,32 L82,32 Z"/>
+    <path
+        android:fillColor="#FF6B35AA"
+        android:pathData="M88,70 L89,72 L91,72 L89.5,73.5 L90,76 L88,74.5 L86,76 L86.5,73.5 L85,72 L87,72 Z"/>
+    <path
+        android:fillColor="#00FFFF66"
+        android:pathData="M20,74 L21,76 L23,76 L21.5,77.5 L22,80 L20,78.5 L18,80 L18.5,77.5 L17,76 L19,76 Z"/>
+
+</vector>

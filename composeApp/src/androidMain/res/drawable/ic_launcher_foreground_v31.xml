@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Background - Deep dark purple -->
+    <path
+        android:fillColor="#0D0221"
+        android:pathData="M0,0 L108,0 L108,108 L0,108 Z"/>
+
+    <!-- === NEON PULSE - Sound waves emanating from center === -->
+
+    <!-- Outermost pulse ring - cyan, fading -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,54 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"
+        android:strokeWidth="1.5"
+        android:strokeColor="#00FFFF33"/>
+
+    <!-- Outer pulse ring - cyan -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,54 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"
+        android:strokeWidth="2"
+        android:strokeColor="#00FFFF55"/>
+
+    <!-- Middle pulse ring - magenta/cyan gradient effect -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,54 m-30,0 a30,30 0 1,1 60,0 a30,30 0 1,1 -60,0"
+        android:strokeWidth="2.5"
+        android:strokeColor="#00FFFF88"/>
+
+    <!-- Inner pulse ring - magenta -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,54 m-22,0 a22,22 0 1,1 44,0 a22,22 0 1,1 -44,0"
+        android:strokeWidth="3"
+        android:strokeColor="#FF00FF88"/>
+
+    <!-- Core pulse ring - bright magenta -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,54 m-14,0 a14,14 0 1,1 28,0 a14,14 0 1,1 -28,0"
+        android:strokeWidth="3"
+        android:strokeColor="#FF00FFCC"/>
+
+    <!-- Center speaker cone -->
+    <path
+        android:fillColor="#1A0A2E"
+        android:pathData="M54,54 m-10,0 a10,10 0 1,1 20,0 a10,10 0 1,1 -20,0"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,54 m-10,0 a10,10 0 1,1 20,0 a10,10 0 1,1 -20,0"
+        android:strokeWidth="2.5"
+        android:strokeColor="#FF00FF"/>
+    <!-- Speaker cone glow -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,54 m-10,0 a10,10 0 1,1 20,0 a10,10 0 1,1 -20,0"
+        android:strokeWidth="6"
+        android:strokeColor="#FF00FF33"/>
+
+    <!-- Inner cone ring -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,54 m-6,0 a6,6 0 1,1 12,0 a6,6 0 1,1 -12,0"
+        android:strokeWidth="1.5"
+        android:strokeColor="#FF00FF88"/>
+
+    <!-- Center dot - bright core -->
+    <path
+        android:fillColor="#FF00FF"
+        android:pathData="M54,54 m-3,0 a3,3 0 1,1 6,0 a3,3 0 1,1 -6,0"/>
+
+    <!-- Accent rays - orange neon -->
+    <!-- Top ray -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,40 L54,18"
+        android:strokeWidth="2"
+        android:strokeColor="#FF6B35"
+        android:strokeLineCap="round"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,40 L54,18"
+        android:strokeWidth="5"
+        android:strokeColor="#FF6B3533"
+        android:strokeLineCap="round"/>
+
+    <!-- Bottom ray -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,68 L54,90"
+        android:strokeWidth="2"
+        android:strokeColor="#FF6B35"
+        android:strokeLineCap="round"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,68 L54,90"
+        android:strokeWidth="5"
+        android:strokeColor="#FF6B3533"
+        android:strokeLineCap="round"/>
+
+    <!-- Left ray -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M40,54 L18,54"
+        android:strokeWidth="2"
+        android:strokeColor="#FF6B35"
+        android:strokeLineCap="round"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M40,54 L18,54"
+        android:strokeWidth="5"
+        android:strokeColor="#FF6B3533"
+        android:strokeLineCap="round"/>
+
+    <!-- Right ray -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M68,54 L90,54"
+        android:strokeWidth="2"
+        android:strokeColor="#FF6B35"
+        android:strokeLineCap="round"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M68,54 L90,54"
+        android:strokeWidth="5"
+        android:strokeColor="#FF6B3533"
+        android:strokeLineCap="round"/>
+
+</vector>
