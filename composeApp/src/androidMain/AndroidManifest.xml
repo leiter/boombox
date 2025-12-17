@@ -18,7 +18,7 @@
     </queries>
 
     <application
-        android:name=".HitItApplication"
+        android:name="com.hitit.app.HitItApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="BoomBox"
@@ -26,7 +26,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HitIt">
         <activity
-            android:name=".MainActivity"
+            android:name="com.hitit.app.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.HitIt.Splash">
             <intent-filter>

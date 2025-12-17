@@ -116,10 +116,25 @@ fun MinimalFreshSplashScreen(modifier: Modifier = Modifier) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Geometric boombox icon using Canvas
-            MinimalSpeakerIcon(
-                modifier = Modifier.size(180.dp, 120.dp)
-            )
+            // Geometric boombox icon in rounded gradient frame
+            Box(
+                modifier = Modifier
+                    .size(200.dp)
+                    .clip(RoundedCornerShape(32.dp))
+                    .background(MinimalFreshColors.Surface)
+                    .border(
+                        width = 3.dp,
+                        brush = Brush.linearGradient(
+                            listOf(MinimalFreshColors.Primary, MinimalFreshColors.Secondary)
+                        ),
+                        shape = RoundedCornerShape(32.dp)
+                    ),
+                contentAlignment = Alignment.Center
+            ) {
+                MinimalSpeakerIcon(
+                    modifier = Modifier.size(160.dp, 100.dp)
+                )
+            }
 
             Spacer(modifier = Modifier.height(48.dp))
 
