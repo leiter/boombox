@@ -5,7 +5,7 @@
     android:viewportWidth="330"
     android:viewportHeight="80">
 
-    <!-- Graffiti-style "BoomBox" wordmark -->
+    <!-- Legacy graffiti-style wordmark (originally "BoomBox") -->
     <!-- Slanted ~3 degrees, bold chunky letters, urban street art feel -->
     <!-- O's styled as speaker cones -->
 

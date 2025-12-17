@@ -70,7 +70,7 @@ fun NeonCyberSplashScreen(modifier: Modifier = Modifier) {
 
             Spacer(Modifier.height(32.dp))
 
-            Text("BoomBox", fontSize = 48.sp, fontWeight = FontWeight.Bold, color = NeonCyberColors.TextPrimary)
+            Text("DukeStar", fontSize = 48.sp, fontWeight = FontWeight.Bold, color = NeonCyberColors.TextPrimary)
             Spacer(Modifier.height(8.dp))
             Text("Music Quiz Game", fontSize = 18.sp, color = NeonCyberColors.Secondary)
         }
@@ -92,7 +92,7 @@ fun NeonCyberHomeScreen(modifier: Modifier = Modifier) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text("BoomBox", fontSize = 32.sp, fontWeight = FontWeight.Bold, color = NeonCyberColors.TextPrimary)
+            Text("DukeStar", fontSize = 32.sp, fontWeight = FontWeight.Bold, color = NeonCyberColors.TextPrimary)
             Spacer(Modifier.height(48.dp))
 
             // Glass card

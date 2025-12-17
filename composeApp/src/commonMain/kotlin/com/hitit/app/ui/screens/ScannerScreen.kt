@@ -21,12 +21,10 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -141,7 +139,7 @@ fun ScannerScreen(
     audioPlayer: AudioPlayer = koinInject()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val lifecycleOwner = LocalLifecycleOwner.current
+    val lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current
 
     // Flash state - pass directly to QrScanner, persistence handles restoration
     // QRKit handles the hardware, we just track user preference
@@ -151,7 +149,6 @@ fun ScannerScreen(
         val observer = LifecycleEventObserver { _, event ->
             if (event == Lifecycle.Event.ON_RESUME && uiState.isNowPlaying) {
                 audioPlayer.stopExternalPlayback()
-                // Update play button state when returning from external playback (Deezer)
                 viewModel.onAudioFocusReturned()
             }
         }

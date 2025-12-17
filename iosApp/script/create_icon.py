@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-Generate iOS app icon for BoomBox app.
+Generate iOS app icon for DukeStar app.
 Creates a 1024x1024 PNG matching the Android neon style.
 """
 
 from PIL import Image, ImageDraw, ImageFilter
 
-def create_boombox_icon(size=1024):
-    """Create a BoomBox app icon matching the Android adaptive icon appearance."""
+def create_dukestar_icon(size=1024):
+    """Create a DukeStar app icon matching the Android adaptive icon appearance."""
 
     # Colors matching Android screenshot appearance
     dark_purple = (26, 10, 46)      # #1A0A2E - speaker cabinet fill
@@ -156,8 +156,8 @@ def main():
     os.makedirs(output_dir, exist_ok=True)
     output_path = os.path.join(output_dir, "icon_1024.png")
 
-    print("Creating BoomBox iOS app icon...")
-    icon = create_boombox_icon(1024)
+    print("Creating DukeStar iOS app icon...")
+    icon = create_dukestar_icon(1024)
 
     # Save as PNG with sRGB color profile
     icon.save(output_path, "PNG", optimize=False)

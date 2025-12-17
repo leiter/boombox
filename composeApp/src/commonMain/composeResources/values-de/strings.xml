@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <!-- App name -->
-    <string name="app_name">BoomBox</string>
+    <string name="app_name">DukeStar</string>
     <string name="app_subtitle">Musik-Quiz-Spiel</string>
 
     <!-- Home Screen -->

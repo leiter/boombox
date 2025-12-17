@@ -167,7 +167,7 @@ fun RetroWarmSplashScreen(modifier: Modifier = Modifier) {
 
             // App name
             Text(
-                text = "BoomBox",
+                text = "DukeStar",
                 fontSize = 52.sp,
                 fontWeight = FontWeight.Bold,
                 color = RetroWarmColors.TextPrimary
@@ -351,7 +351,7 @@ fun RetroWarmHomeScreen(modifier: Modifier = Modifier) {
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = "BoomBox",
+                text = "DukeStar",
                 fontSize = 36.sp,
                 fontWeight = FontWeight.Bold,
                 color = RetroWarmColors.TextPrimary
