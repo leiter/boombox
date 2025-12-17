@@ -13,8 +13,6 @@ import androidx.core.graphics.toColorInt
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Set debug flag from application info
-        AppBuildConfig.applicationInfo = applicationInfo
         // Initialize debug settings store
         DebugSettings.initialize(DebugSettingsStore(this))
         // Set system bars to match Neon Cyber dark purple background

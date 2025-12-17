@@ -68,13 +68,14 @@ class ScannerViewModel(
     private var autoFlipJob: Job? = null
 
     init {
-        // Load saved preferences
+        // Load saved preferences (flash always starts off for safety)
         val savedMode = if (DebugSettings.getUseFullVersion()) PlaybackMode.DEEZER else PlaybackMode.PREVIEW
-        val savedFlash = DebugSettings.getFlashEnabled()
         _uiState.value = _uiState.value.copy(
             selectedPlaybackMode = savedMode,
-            flashlightOn = savedFlash
+            flashlightOn = false
         )
+        // Reset flash preference to off on app start
+        DebugSettings.setFlashEnabled(false)
 
         // Check if Deezer is installed
         viewModelScope.launch {

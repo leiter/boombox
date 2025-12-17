@@ -1,12 +1,15 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
+import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.BOOLEAN
+
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.buildkonfig)
 }
 
 kotlin {
@@ -108,5 +111,34 @@ android {
 
     buildFeatures {
         compose = true
+    }
+}
+
+buildkonfig {
+    packageName = "com.hitit.app"
+
+    // Flavor to use for commonMain generation
+    defaultConfigs {
+        buildConfigField(BOOLEAN, "IS_DEBUG", "false")
+        buildConfigField(BOOLEAN, "IS_RELEASE_PREVIEW", "false")
+    }
+
+    targetConfigs {
+        create("android") {
+            buildConfigField(BOOLEAN, "IS_DEBUG", "true")
+            buildConfigField(BOOLEAN, "IS_RELEASE_PREVIEW", "true")
+        }
+        create("iosArm64") {
+            buildConfigField(BOOLEAN, "IS_DEBUG", "true")
+            buildConfigField(BOOLEAN, "IS_RELEASE_PREVIEW", "true")
+        }
+        create("iosX64") {
+            buildConfigField(BOOLEAN, "IS_DEBUG", "true")
+            buildConfigField(BOOLEAN, "IS_RELEASE_PREVIEW", "true")
+        }
+        create("iosSimulatorArm64") {
+            buildConfigField(BOOLEAN, "IS_DEBUG", "true")
+            buildConfigField(BOOLEAN, "IS_RELEASE_PREVIEW", "true")
+        }
     }
 }

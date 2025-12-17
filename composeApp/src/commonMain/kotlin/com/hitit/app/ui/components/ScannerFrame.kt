@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun ScannerFrame(
     modifier: Modifier = Modifier,
-    frameColor: Color = Color(0xFF00D4FF), // Cyan color like Hitster app
+    frameColor: Color = Color(0xFF00D4FF),
     cornerLength: Dp = 40.dp,
     cornerRadius: Dp = 16.dp,
     strokeWidth: Dp = 4.dp

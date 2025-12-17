@@ -35,13 +35,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.hitit.app.AppBuildConfig
+import com.hitit.app.BuildKonfig
 import com.hitit.app.service.AudioPlayer
 import com.hitit.app.showDebugOptions
 import com.hitit.app.ui.components.PlatformBackHandler
@@ -94,7 +94,10 @@ fun StatusMessage.toLocalizedString(): String {
                 stringResource(Res.string.status_hitster_card, cardId)
             }
         }
-        is StatusMessage.FetchingTrack -> stringResource(Res.string.status_fetching_track, cardId)
+        is StatusMessage.FetchingTrack ->
+            if (BuildKonfig.IS_DEBUG)
+                stringResource(Res.string.status_fetching_track, cardId)
+            else ""
         is StatusMessage.FlipToPlay -> {
             if (title != null && artist != null) {
                 stringResource(Res.string.status_flip_to_play_with_info, artist, title)

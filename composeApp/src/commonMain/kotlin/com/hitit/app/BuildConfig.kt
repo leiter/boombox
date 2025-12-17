@@ -1,13 +1,12 @@
 package com.hitit.app
 
-expect object AppBuildConfig {
-    val isDebug: Boolean
-
-    /**
-     * Set to true in code to hide debug UI elements even in debug builds.
-     * Useful for creating preview/demo builds for stakeholders.
-     */
-    val isReleasePreview: Boolean
+/**
+ * Build configuration using BuildKonfig plugin.
+ * Values are compile-time constants, enabling dead code elimination.
+ */
+object AppBuildConfig {
+    val isDebug: Boolean = BuildKonfig.IS_DEBUG
+    val isReleasePreview: Boolean = BuildKonfig.IS_RELEASE_PREVIEW
 }
 
 /**
