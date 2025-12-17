@@ -25,6 +25,8 @@ import platform.Foundation.NSLog
 import platform.Foundation.NSNotificationCenter
 import platform.Foundation.NSURL
 import platform.darwin.NSObjectProtocol
+import platform.darwin.dispatch_async
+import platform.darwin.dispatch_get_main_queue
 
 @OptIn(ExperimentalForeignApi::class, BetaInteropApi::class)
 actual class AudioPlayer {
@@ -62,36 +64,64 @@ actual class AudioPlayer {
                 queue = null
             ) { _ ->
                 NSLog("AudioPlayer.ios: Track ended, looping...")
-                player?.seekToTime(CMTimeMake(value = 0, timescale = 1))
-                player?.play()
+                dispatch_async(dispatch_get_main_queue()) {
+                    player?.seekToTime(CMTimeMake(value = 0, timescale = 1))
+                    player?.play()
+                }
             }
 
-            // Start playback
-            player?.play()
-            NSLog("AudioPlayer.ios: Playback started")
+            // Start playback on main thread
+            val p = player
+            dispatch_async(dispatch_get_main_queue()) {
+                p?.play()
+                NSLog("AudioPlayer.ios: Playback started")
+            }
         } catch (e: Exception) {
             NSLog("AudioPlayer.ios: Exception in play(): ${e.message ?: "unknown"}")
         }
     }
 
     actual fun pause() {
-        player?.pause()
+        NSLog("AudioPlayer.ios: pause() called")
+        val p = player
+        if (p == null) {
+            NSLog("AudioPlayer.ios: pause() called but player is null")
+            return
+        }
+        dispatch_async(dispatch_get_main_queue()) {
+            p.pause()
+            NSLog("AudioPlayer.ios: Paused playback")
+        }
     }
 
     actual fun resume() {
-        player?.play()
+        NSLog("AudioPlayer.ios: resume() called")
+        val p = player
+        if (p == null) {
+            NSLog("AudioPlayer.ios: resume() called but player is null")
+            return
+        }
+        dispatch_async(dispatch_get_main_queue()) {
+            p.play()
+            NSLog("AudioPlayer.ios: Resumed playback")
+        }
     }
 
     actual fun stop() {
+        NSLog("AudioPlayer.ios: stop() called")
         // Remove loop observer
         loopObserver?.let {
             NSNotificationCenter.defaultCenter.removeObserver(it)
         }
         loopObserver = null
 
-        player?.pause()
-        player?.replaceCurrentItemWithPlayerItem(null)
+        val p = player
         player = null
+        dispatch_async(dispatch_get_main_queue()) {
+            p?.pause()
+            p?.replaceCurrentItemWithPlayerItem(null)
+            NSLog("AudioPlayer.ios: Stopped playback")
+        }
     }
 
     actual fun isPlaying(): Boolean {
@@ -99,18 +129,29 @@ actual class AudioPlayer {
     }
 
     actual fun stopExternalPlayback() {
+        NSLog("AudioPlayer.ios: stopExternalPlayback() called")
         // Request audio session to interrupt other apps (like Deezer)
         try {
             val session = AVAudioSession.sharedInstance()
             session.setCategory(AVAudioSessionCategoryPlayback, null)
             memScoped {
                 val errorPtr = alloc<ObjCObjectVar<NSError?>>()
+                // Activate with notify others option to interrupt other audio
                 session.setActive(true, errorPtr.ptr)
-                // Immediately deactivate - we just wanted to interrupt other apps
-                session.setActive(false, errorPtr.ptr)
+                NSLog("AudioPlayer.ios: Audio session activated to interrupt other apps")
+
+                // Keep session active briefly, then deactivate with notify
+                // This gives other apps time to receive the interruption
+                dispatch_async(dispatch_get_main_queue()) {
+                    memScoped {
+                        val deactivateErrorPtr = alloc<ObjCObjectVar<NSError?>>()
+                        session.setActive(false, deactivateErrorPtr.ptr)
+                        NSLog("AudioPlayer.ios: Audio session deactivated")
+                    }
+                }
             }
         } catch (e: Exception) {
-            // Handle error silently
+            NSLog("AudioPlayer.ios: stopExternalPlayback error: ${e.message}")
         }
     }
 }

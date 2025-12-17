@@ -98,8 +98,14 @@ class ScannerViewModel(
 
     fun togglePlayPause() {
         if (_uiState.value.isUsingExternalPlayback) {
-            // Deezer mode - fire intent to open Deezer
-            if (!_uiState.value.isAudioPlaying) {
+            // Deezer mode
+            if (_uiState.value.isAudioPlaying) {
+                // Try to interrupt Deezer by requesting audio focus/session
+                // This will cause Deezer to pause on most devices
+                audioPlayer.stopExternalPlayback()
+                _uiState.value = _uiState.value.copy(isAudioPlaying = false)
+            } else {
+                // Resume: re-open Deezer with the track
                 val trackId = pendingTrack?.id ?: pendingTrackId
                 if (trackId != null) {
                     viewModelScope.launch {
@@ -176,7 +182,8 @@ class ScannerViewModel(
     }
 
     private fun onDeviceFlippedFaceDown() {
-        _uiState.value = _uiState.value.copy(isWaitingForFlip = false)
+        // Set both flags atomically to prevent flashlight flicker during transition
+        _uiState.value = _uiState.value.copy(isWaitingForFlip = false, isNowPlaying = true)
 
         // Don't cancel jobs here - we might still be inside one
         // Just stop the orientation monitoring flow
@@ -198,7 +205,6 @@ class ScannerViewModel(
                     track.year,
                     albumCoverUrl
                 ))
-                _uiState.value = _uiState.value.copy(isNowPlaying = true)
 
                 // Use selected playback mode
                 val useDeeplink = _uiState.value.selectedPlaybackMode == PlaybackMode.DEEZER && _uiState.value.isDeezerInstalled
@@ -225,7 +231,6 @@ class ScannerViewModel(
                         null, // Year not available from Deezer API directly
                         trackInfo.album?.coverMedium
                     ))
-                    _uiState.value = _uiState.value.copy(isNowPlaying = true)
 
                     // Use selected playback mode
                     val useDeeplink = _uiState.value.selectedPlaybackMode == PlaybackMode.DEEZER && _uiState.value.isDeezerInstalled
@@ -241,7 +246,6 @@ class ScannerViewModel(
                     }
                 } else {
                     updateStatus(StatusMessage.NowPlaying(null, null, null, null))
-                    _uiState.value = _uiState.value.copy(isNowPlaying = true)
                 }
             }
         }
