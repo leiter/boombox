@@ -89,7 +89,7 @@ private fun FlatButton(
     Box(
         modifier = modifier
             .height(56.dp)
-            .clip(RoundedCornerShape(12.dp))
+            .clip(RoundedCornerShape(28.dp))
             .background(color),
         contentAlignment = Alignment.Center
     ) {
@@ -259,7 +259,7 @@ fun MinimalFreshHomeScreen(modifier: Modifier = Modifier) {
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "BoomBox",
+                text = "DukeStar",
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Black,
                 color = MinimalFreshColors.TextPrimary,
@@ -303,14 +303,14 @@ fun MinimalFreshHomeScreen(modifier: Modifier = Modifier) {
                 }
             }
 
-            Spacer(modifier = Modifier.height(56.dp))
+            Spacer(modifier = Modifier.height(48.dp))
 
-            // Gradient button
+            // Gradient button - pill shape
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(56.dp)
-                    .clip(RoundedCornerShape(12.dp))
+                    .clip(RoundedCornerShape(28.dp))
                     .background(Brush.horizontalGradient(listOf(MinimalFreshColors.Primary, MinimalFreshColors.Secondary))),
                 contentAlignment = Alignment.Center
             ) {
@@ -765,12 +765,12 @@ fun MinimalFreshNowPlayingScreen(modifier: Modifier = Modifier) {
 
             Spacer(modifier = Modifier.height(48.dp))
 
-            // Next card button with gradient
+            // Next card button with gradient - pill shape
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(56.dp)
-                    .clip(RoundedCornerShape(12.dp))
+                    .clip(RoundedCornerShape(28.dp))
                     .background(Brush.horizontalGradient(listOf(MinimalFreshColors.Primary, MinimalFreshColors.Secondary))),
                 contentAlignment = Alignment.Center
             ) {
