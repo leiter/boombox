@@ -1,28 +1,43 @@
 package com.hitit.app.ui.screens
 
-import com.hitit.app.ui.components.PlatformBackHandler
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLifecycleOwner
-import com.hitit.app.ui.theme.BackgroundDark
-import com.hitit.app.ui.theme.Primary
-import com.hitit.app.ui.theme.Secondary
-import com.hitit.app.ui.theme.SurfaceLight
-import com.hitit.app.ui.theme.TextSecondary
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
@@ -31,11 +46,38 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.hitit.app.AppBuildConfig
 import com.hitit.app.service.AudioPlayer
 import com.hitit.app.showDebugOptions
+import com.hitit.app.ui.components.PlatformBackHandler
 import com.hitit.app.ui.components.ScannerFrame
 import com.hitit.app.ui.components.ScannerOverlay
+import com.hitit.app.ui.theme.BackgroundDark
+import com.hitit.app.ui.theme.Primary
+import com.hitit.app.ui.theme.Secondary
+import com.hitit.app.ui.theme.SurfaceLight
+import com.hitit.app.ui.theme.TextSecondary
 import com.hitit.app.ui.viewmodel.ScannerViewModel
 import com.hitit.app.ui.viewmodel.StatusMessage
-import hitit.composeapp.generated.resources.*
+import hitit.composeapp.generated.resources.Res
+import hitit.composeapp.generated.resources.close
+import hitit.composeapp.generated.resources.flash_off
+import hitit.composeapp.generated.resources.flash_on
+import hitit.composeapp.generated.resources.status_card_not_found
+import hitit.composeapp.generated.resources.status_could_not_open
+import hitit.composeapp.generated.resources.status_fetching_track
+import hitit.composeapp.generated.resources.status_flip_to_play
+import hitit.composeapp.generated.resources.status_flip_to_play_with_info
+import hitit.composeapp.generated.resources.status_hitster_card
+import hitit.composeapp.generated.resources.status_hitster_card_with_info
+import hitit.composeapp.generated.resources.status_opening_track
+import hitit.composeapp.generated.resources.status_opening_track_with_info
+import hitit.composeapp.generated.resources.status_playing
+import hitit.composeapp.generated.resources.status_playing_with_info
+import hitit.composeapp.generated.resources.status_point_camera
+import hitit.composeapp.generated.resources.status_processing
+import hitit.composeapp.generated.resources.status_scan_error
+import hitit.composeapp.generated.resources.status_spotify_detected
+import hitit.composeapp.generated.resources.status_unknown_qr
+import hitit.composeapp.generated.resources.status_url_detected
+import hitit.composeapp.generated.resources.status_youtube_detected
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 import qrscanner.CameraLens
@@ -104,11 +146,13 @@ fun ScannerScreen(
     // Flash state - pass directly to QrScanner, persistence handles restoration
     // QRKit handles the hardware, we just track user preference
 
-    // Stop external playback (Deezer) when returning to BoomBox
+    // Handle audio focus changes when returning to DukeStar
     DisposableEffect(lifecycleOwner) {
         val observer = LifecycleEventObserver { _, event ->
             if (event == Lifecycle.Event.ON_RESUME && uiState.isNowPlaying) {
                 audioPlayer.stopExternalPlayback()
+                // Update play button state when returning from external playback (Deezer)
+                viewModel.onAudioFocusReturned()
             }
         }
         lifecycleOwner.lifecycle.addObserver(observer)
@@ -210,14 +254,39 @@ fun ScannerScreen(
 
                     Spacer(modifier = Modifier.height(20.dp))
 
-                    OutlinedButton(
-                        onClick = { viewModel.toggleFlashlight() },
-                        colors = ButtonDefaults.outlinedButtonColors(
-                            contentColor = Secondary
-                        ),
-                        shape = RoundedCornerShape(8.dp)
+                    // Flash button with clear on/off indication
+                    Box(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(28.dp))
+                            .then(
+                                if (uiState.flashlightOn) {
+                                    Modifier.background(Brush.horizontalGradient(listOf(Primary, Secondary)))
+                                } else {
+                                    Modifier
+                                        .background(Color.Transparent)
+                                        .border(1.dp, Secondary, RoundedCornerShape(28.dp))
+                                }
+                            )
+                            .clickable { viewModel.toggleFlashlight() }
+                            .padding(horizontal = 24.dp, vertical = 12.dp),
+                        contentAlignment = Alignment.Center
                     ) {
-                        Text(if (uiState.flashlightOn) stringResource(Res.string.flash_off) else stringResource(Res.string.flash_on))
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            // Flash indicator dot
+                            Box(
+                                modifier = Modifier
+                                    .size(8.dp)
+                                    .clip(RoundedCornerShape(4.dp))
+                                    .background(if (uiState.flashlightOn) Color.White else Secondary)
+                            )
+                            Text(
+                                text = if (uiState.flashlightOn) stringResource(Res.string.flash_off) else stringResource(Res.string.flash_on),
+                                color = if (uiState.flashlightOn) Color.White else Secondary
+                            )
+                        }
                     }
 
                     // DEBUG: Test button to simulate scanning card #00001
@@ -272,8 +341,8 @@ fun ScannerScreen(
                 artist = artist as String?,
                 year = year as Int?,
                 albumCoverUrl = albumCoverUrl as String?,
-                isPlaying = true,
-                onPlayPauseClick = { /* TODO: Toggle playback */ },
+                isPlaying = uiState.isAudioPlaying,
+                onPlayPauseClick = { viewModel.togglePlayPause() },
                 onNextCard = { viewModel.resetScanner() },
                 onClose = { viewModel.resetScanner() }
             )

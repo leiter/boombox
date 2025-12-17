@@ -45,6 +45,8 @@ data class ScannerUiState(
     val flashlightOn: Boolean = false,
     val isWaitingForFlip: Boolean = false,
     val isNowPlaying: Boolean = false,
+    val isAudioPlaying: Boolean = false,
+    val isUsingExternalPlayback: Boolean = false,
     val isDeezerInstalled: Boolean = false,
     val selectedPlaybackMode: PlaybackMode = PlaybackMode.PREVIEW
 )
@@ -91,6 +93,39 @@ class ScannerViewModel(
         val newFlashState = !_uiState.value.flashlightOn
         _uiState.value = _uiState.value.copy(flashlightOn = newFlashState)
         DebugSettings.setFlashEnabled(newFlashState)
+    }
+
+    fun togglePlayPause() {
+        if (_uiState.value.isUsingExternalPlayback) {
+            // Deezer mode - fire intent to open Deezer
+            if (!_uiState.value.isAudioPlaying) {
+                val trackId = pendingTrack?.id ?: pendingTrackId
+                if (trackId != null) {
+                    viewModelScope.launch {
+                        musicService.playTrackById(trackId)
+                    }
+                    _uiState.value = _uiState.value.copy(isAudioPlaying = true)
+                }
+            }
+            // Note: We can't pause Deezer from here, audio focus handles that
+        } else {
+            // Preview mode - control in-app audio
+            if (_uiState.value.isAudioPlaying) {
+                audioPlayer.pause()
+                _uiState.value = _uiState.value.copy(isAudioPlaying = false)
+            } else {
+                audioPlayer.resume()
+                _uiState.value = _uiState.value.copy(isAudioPlaying = true)
+            }
+        }
+    }
+
+    fun onAudioFocusReturned() {
+        // When audio focus returns to DukeStar (e.g., user comes back from Deezer),
+        // update state to show play icon since external playback has stopped
+        if (_uiState.value.isUsingExternalPlayback && _uiState.value.isAudioPlaying) {
+            _uiState.value = _uiState.value.copy(isAudioPlaying = false)
+        }
     }
 
     fun resetScanner() {
@@ -169,9 +204,11 @@ class ScannerViewModel(
                 if (useDeeplink) {
                     // Open Deezer to play full song
                     musicService.playTrackById(track.id)
+                    _uiState.value = _uiState.value.copy(isUsingExternalPlayback = true, isAudioPlaying = true)
                 } else {
                     trackInfo?.preview?.let { previewUrl ->
                         audioPlayer.play(previewUrl)
+                        _uiState.value = _uiState.value.copy(isAudioPlaying = true, isUsingExternalPlayback = false)
                     }
                 }
                 return@launch
@@ -194,9 +231,11 @@ class ScannerViewModel(
                     if (useDeeplink) {
                         // Open Deezer to play full song
                         musicService.playTrackById(trackId)
+                        _uiState.value = _uiState.value.copy(isUsingExternalPlayback = true, isAudioPlaying = true)
                     } else {
                         trackInfo.preview?.let { previewUrl ->
                             audioPlayer.play(previewUrl)
+                            _uiState.value = _uiState.value.copy(isAudioPlaying = true, isUsingExternalPlayback = false)
                         }
                     }
                 } else {

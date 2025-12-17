@@ -2,12 +2,14 @@ package com.hitit.app.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.Canvas
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.PlayArrow
@@ -154,15 +156,41 @@ fun NowPlayingScreen(
                 modifier = Modifier
                     .size(64.dp)
                     .clip(CircleShape)
-                    .background(Brush.linearGradient(listOf(Primary, Secondary))),
+                    .background(Brush.linearGradient(listOf(Primary, Secondary)))
+                    .clickable { onPlayPauseClick() },
                 contentAlignment = Alignment.Center
             ) {
-                Icon(
-                    imageVector = Icons.Default.PlayArrow,
-                    contentDescription = if (isPlaying) "Playing" else "Play",
-                    modifier = Modifier.size(32.dp),
-                    tint = Color.White
-                )
+                if (isPlaying) {
+                    // Custom pause icon (two vertical bars)
+                    Canvas(modifier = Modifier.size(32.dp)) {
+                        val barWidth = size.width * 0.25f
+                        val barHeight = size.height * 0.7f
+                        val gap = size.width * 0.15f
+                        val startY = (size.height - barHeight) / 2
+                        val leftBarX = (size.width - barWidth * 2 - gap) / 2
+                        val rightBarX = leftBarX + barWidth + gap
+
+                        drawRoundRect(
+                            color = Color.White,
+                            topLeft = androidx.compose.ui.geometry.Offset(leftBarX, startY),
+                            size = androidx.compose.ui.geometry.Size(barWidth, barHeight),
+                            cornerRadius = androidx.compose.ui.geometry.CornerRadius(4f, 4f)
+                        )
+                        drawRoundRect(
+                            color = Color.White,
+                            topLeft = androidx.compose.ui.geometry.Offset(rightBarX, startY),
+                            size = androidx.compose.ui.geometry.Size(barWidth, barHeight),
+                            cornerRadius = androidx.compose.ui.geometry.CornerRadius(4f, 4f)
+                        )
+                    }
+                } else {
+                    Icon(
+                        imageVector = Icons.Default.PlayArrow,
+                        contentDescription = "Play",
+                        modifier = Modifier.size(32.dp),
+                        tint = Color.White
+                    )
+                }
             }
 
             Spacer(modifier = Modifier.height(48.dp))

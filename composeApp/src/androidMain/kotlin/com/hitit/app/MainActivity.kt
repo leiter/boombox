@@ -8,6 +8,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.hitit.app.settings.DebugSettings
 import com.hitit.app.settings.DebugSettingsStore
+import androidx.core.graphics.toColorInt
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,8 +18,8 @@ class MainActivity : ComponentActivity() {
         // Initialize debug settings store
         DebugSettings.initialize(DebugSettingsStore(this))
         // Set system bars to match Neon Cyber dark purple background
-        val backgroundLight = Color.parseColor("#1A0A2E")
-        val backgroundDark = Color.parseColor("#0D0221")
+        val backgroundLight = "#1A0A2E".toColorInt()
+        val backgroundDark = "#0D0221".toColorInt()
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.dark(backgroundLight),
             navigationBarStyle = SystemBarStyle.dark(backgroundDark)
