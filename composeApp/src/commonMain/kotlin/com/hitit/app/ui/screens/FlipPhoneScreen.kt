@@ -26,6 +26,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.hitit.app.ui.theme.BackgroundDark
+import com.hitit.app.ui.theme.BackgroundLight
+import com.hitit.app.ui.theme.Primary
+import com.hitit.app.ui.theme.Secondary
+import com.hitit.app.ui.theme.TextSecondary
 import hitit.composeapp.generated.resources.*
 import org.jetbrains.compose.resources.stringResource
 
@@ -44,18 +49,12 @@ fun FlipPhoneScreen(
     selectedPlaybackMode: PlaybackMode = PlaybackMode.PREVIEW,
     onPlaybackModeChanged: (PlaybackMode) -> Unit = {}
 ) {
-    val cyanColor = Color(0xFF00D4FF)
-
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(
                 Brush.verticalGradient(
-                    colors = listOf(
-                        Color(0xFF1A1A2E),
-                        Color(0xFF16213E),
-                        Color(0xFF0F3460)
-                    )
+                    colors = listOf(BackgroundLight, BackgroundDark)
                 )
             )
             .windowInsetsPadding(WindowInsets.systemBars)
@@ -81,10 +80,16 @@ fun FlipPhoneScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            // Phone illustration
-            PhoneIllustration(
-                modifier = Modifier.size(200.dp, 320.dp),
-                color = cyanColor
+            // Phone illustration with gradient border
+            Box(
+                modifier = Modifier
+                    .width(120.dp)
+                    .height(200.dp)
+                    .border(
+                        width = 3.dp,
+                        brush = Brush.linearGradient(listOf(Primary, Secondary)),
+                        shape = RoundedCornerShape(24.dp)
+                    )
             )
 
             Spacer(modifier = Modifier.height(48.dp))
@@ -92,10 +97,11 @@ fun FlipPhoneScreen(
             // Main text
             Text(
                 text = stringResource(Res.string.flip_phone_title),
-                style = MaterialTheme.typography.headlineMedium,
-                fontWeight = FontWeight.Bold,
+                fontSize = 32.sp,
+                fontWeight = FontWeight.Black,
                 color = Color.White,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                lineHeight = 36.sp
             )
 
             Spacer(modifier = Modifier.height(12.dp))
@@ -103,12 +109,12 @@ fun FlipPhoneScreen(
             // Subtitle
             Text(
                 text = stringResource(Res.string.flip_phone_subtitle),
-                style = MaterialTheme.typography.bodyLarge,
-                color = Color.White.copy(alpha = 0.7f),
+                fontSize = 16.sp,
+                color = TextSecondary,
                 textAlign = TextAlign.Center
             )
 
-            Spacer(modifier = Modifier.height(32.dp))
+            Spacer(modifier = Modifier.height(40.dp))
 
             // Playback mode selection
             if (isDeezerInstalled) {
@@ -121,13 +127,13 @@ fun FlipPhoneScreen(
                         text = stringResource(Res.string.playback_mode_preview),
                         selected = selectedPlaybackMode == PlaybackMode.PREVIEW,
                         onClick = { onPlaybackModeChanged(PlaybackMode.PREVIEW) },
-                        color = cyanColor
+                        color = Primary
                     )
                     PlaybackModeChip(
                         text = stringResource(Res.string.playback_mode_deezer),
                         selected = selectedPlaybackMode == PlaybackMode.DEEZER,
                         onClick = { onPlaybackModeChanged(PlaybackMode.DEEZER) },
-                        color = cyanColor
+                        color = Secondary
                     )
                 }
             } else {
@@ -135,7 +141,7 @@ fun FlipPhoneScreen(
                 Text(
                     text = stringResource(Res.string.playback_mode_preview_only),
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Color.White.copy(alpha = 0.5f),
+                    color = TextSecondary,
                     textAlign = TextAlign.Center
                 )
             }

@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Primary brand colors -->
-    <color name="primary">#FF6B35</color>
-    <color name="primary_dark">#E55A25</color>
-    <color name="primary_light">#FF8F5E</color>
+    <!-- Primary brand colors - Neon Cyber -->
+    <color name="primary">#FF00FF</color>
+    <color name="primary_dark">#CC00CC</color>
+    <color name="primary_light">#FF66FF</color>
 
-    <!-- Accent colors -->
-    <color name="accent">#FFD93D</color>
-    <color name="accent_dark">#E5C235</color>
+    <!-- Secondary - Cyan -->
+    <color name="secondary">#00FFFF</color>
+    <color name="secondary_dark">#00CCCC</color>
 
-    <!-- Background colors -->
-    <color name="background_dark">#1A1A2E</color>
-    <color name="background_light">#FFF8F0</color>
+    <!-- Accent colors - Orange -->
+    <color name="accent">#FF6B35</color>
+    <color name="accent_dark">#E55A25</color>
+
+    <!-- Background colors - Dark Purple -->
+    <color name="background_dark">#0D0221</color>
+    <color name="background_light">#1A0A2E</color>
 
     <!-- Surface colors -->
-    <color name="surface_dark">#16213E</color>
-    <color name="surface_light">#FFFFFF</color>
+    <color name="surface_dark">#0D0221</color>
+    <color name="surface_light">#1A0A2E</color>
 
     <!-- Launcher icon background -->
-    <color name="ic_launcher_background">#FF6B35</color>
+    <color name="ic_launcher_background">#0D0221</color>
 </resources>

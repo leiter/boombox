@@ -1,10 +1,12 @@
 package com.hitit.app.ui.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
@@ -22,6 +24,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
+import com.hitit.app.ui.theme.BackgroundDark
+import com.hitit.app.ui.theme.BackgroundLight
+import com.hitit.app.ui.theme.Primary
+import com.hitit.app.ui.theme.Secondary
+import com.hitit.app.ui.theme.TextSecondary
 import hitit.composeapp.generated.resources.*
 import org.jetbrains.compose.resources.stringResource
 
@@ -39,19 +46,12 @@ fun NowPlayingScreen(
     onNextCard: () -> Unit,
     onClose: () -> Unit
 ) {
-    val primaryColor = Color(0xFFFF6B35) // Orange from theme
-    val accentColor = Color(0xFF00D4FF) // Cyan accent
-
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(
                 Brush.verticalGradient(
-                    colors = listOf(
-                        Color(0xFF1A1A2E),
-                        Color(0xFF16213E),
-                        Color(0xFF0F3460)
-                    )
+                    colors = listOf(BackgroundLight, BackgroundDark)
                 )
             )
             .windowInsetsPadding(WindowInsets.systemBars)
@@ -77,16 +77,17 @@ fun NowPlayingScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            // Album art
+            // Album art with gradient border
             Box(
                 modifier = Modifier
-                    .size(200.dp)
+                    .size(180.dp)
                     .clip(RoundedCornerShape(16.dp))
-                    .background(
-                        Brush.linearGradient(
-                            colors = listOf(primaryColor, primaryColor.copy(alpha = 0.7f))
-                        )
-                    ),
+                    .border(
+                        width = 3.dp,
+                        brush = Brush.linearGradient(listOf(Primary, Secondary)),
+                        shape = RoundedCornerShape(16.dp)
+                    )
+                    .background(Primary.copy(alpha = 0.2f)),
                 contentAlignment = Alignment.Center
             ) {
                 if (albumCoverUrl != null) {
@@ -111,7 +112,7 @@ fun NowPlayingScreen(
             // Track title
             Text(
                 text = title ?: stringResource(Res.string.unknown_track),
-                style = MaterialTheme.typography.headlineMedium,
+                fontSize = 26.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White,
                 textAlign = TextAlign.Center
@@ -122,62 +123,66 @@ fun NowPlayingScreen(
             // Artist
             Text(
                 text = artist ?: stringResource(Res.string.unknown_artist),
-                style = MaterialTheme.typography.titleMedium,
-                color = Color.White.copy(alpha = 0.8f),
+                fontSize = 18.sp,
+                color = TextSecondary,
                 textAlign = TextAlign.Center
             )
 
             // Year - important for the game!
             if (year != null) {
                 Spacer(modifier = Modifier.height(16.dp))
-                Surface(
-                    shape = RoundedCornerShape(20.dp),
-                    color = accentColor.copy(alpha = 0.2f)
+                Box(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(20.dp))
+                        .background(Secondary.copy(alpha = 0.2f))
+                        .border(1.dp, Secondary, RoundedCornerShape(20.dp))
+                        .padding(horizontal = 24.dp, vertical = 8.dp)
                 ) {
                     Text(
                         text = year.toString(),
-                        style = MaterialTheme.typography.headlineSmall,
+                        fontSize = 22.sp,
                         fontWeight = FontWeight.Bold,
-                        color = accentColor,
-                        modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp)
+                        color = Secondary
                     )
                 }
             }
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            // Play/Pause button (using PlayArrow as visual indicator)
-            FloatingActionButton(
-                onClick = onPlayPauseClick,
-                containerColor = primaryColor,
-                contentColor = Color.White,
-                modifier = Modifier.size(72.dp)
+            // Play/Pause button with gradient
+            Box(
+                modifier = Modifier
+                    .size(64.dp)
+                    .clip(CircleShape)
+                    .background(Brush.linearGradient(listOf(Primary, Secondary))),
+                contentAlignment = Alignment.Center
             ) {
                 Icon(
                     imageVector = Icons.Default.PlayArrow,
                     contentDescription = if (isPlaying) "Playing" else "Play",
-                    modifier = Modifier.size(36.dp)
+                    modifier = Modifier.size(32.dp),
+                    tint = Color.White
                 )
             }
 
             Spacer(modifier = Modifier.height(48.dp))
 
-            // Next Card button
-            Button(
-                onClick = onNextCard,
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = primaryColor
-                ),
+            // Next Card button - gradient pill
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(56.dp),
-                shape = RoundedCornerShape(28.dp)
+                    .height(56.dp)
+                    .clip(RoundedCornerShape(28.dp))
+                    .background(Brush.horizontalGradient(listOf(Primary, Secondary))),
+                contentAlignment = Alignment.Center
             ) {
-                Text(
-                    text = stringResource(Res.string.next_card),
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold
-                )
+                TextButton(onClick = onNextCard) {
+                    Text(
+                        text = stringResource(Res.string.next_card),
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
+                    )
+                }
             }
         }
     }

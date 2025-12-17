@@ -2,7 +2,11 @@ package com.hitit.app.ui.screens
 
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
@@ -12,11 +16,23 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.foundation.Image
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.hitit.app.AppBuildConfig
 import com.hitit.app.showDebugOptions
+import com.hitit.app.ui.theme.BackgroundDark
+import com.hitit.app.ui.theme.BackgroundLight
+import com.hitit.app.ui.theme.Primary
+import com.hitit.app.ui.theme.Secondary
+import com.hitit.app.ui.theme.SurfaceBorder
+import com.hitit.app.ui.theme.SurfaceLight
+import com.hitit.app.ui.theme.TextSecondary
 import com.hitit.app.ui.viewmodel.HomeViewModel
 import hitit.composeapp.generated.resources.*
 import org.jetbrains.compose.resources.painterResource
@@ -32,9 +48,10 @@ fun HomeScreen(
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     var instructionsExpanded by remember { mutableStateOf(false) }
 
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Brush.verticalGradient(listOf(BackgroundLight, BackgroundDark)))
     ) {
         Column(
             modifier = Modifier
@@ -43,19 +60,21 @@ fun HomeScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            // Graffiti-style BoomBox logo
-            Image(
-                painter = painterResource(Res.drawable.logo_boombox),
-                contentDescription = stringResource(Res.string.app_name),
-                modifier = Modifier.height(80.dp)
+            // App title
+            Text(
+                text = "DukeStar",
+                fontSize = 32.sp,
+                fontWeight = FontWeight.Black,
+                color = Color.White,
+                letterSpacing = (-0.5).sp
             )
 
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(4.dp))
 
             Text(
                 text = stringResource(Res.string.app_subtitle),
                 style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                color = TextSecondary
             )
 
             Spacer(modifier = Modifier.height(48.dp))
@@ -98,10 +117,14 @@ fun HomeScreen(
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            // Instructions - Animated expandable button/card
-            Card(
+            // Instructions - Glass card with expandable content
+            Surface(
                 onClick = { instructionsExpanded = !instructionsExpanded },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(12.dp))
+                    .border(1.dp, SurfaceBorder, RoundedCornerShape(12.dp)),
+                color = SurfaceLight
             ) {
                 Column(
                     modifier = Modifier
@@ -112,7 +135,7 @@ fun HomeScreen(
                                 stiffness = Spring.StiffnessLow
                             )
                         )
-                        .padding(16.dp)
+                        .padding(20.dp)
                 ) {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -121,7 +144,9 @@ fun HomeScreen(
                     ) {
                         Text(
                             text = stringResource(Res.string.how_to_play),
-                            style = MaterialTheme.typography.titleMedium
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            color = Color.White
                         )
                         Icon(
                             imageVector = if (instructionsExpanded)
@@ -129,7 +154,7 @@ fun HomeScreen(
                             else
                                 Icons.Default.KeyboardArrowDown,
                             contentDescription = null,
-                            tint = MaterialTheme.colorScheme.onSurfaceVariant
+                            tint = Secondary
                         )
                     }
 
@@ -150,7 +175,8 @@ fun HomeScreen(
                                         stringResource(Res.string.instruction_step_2, viewModel.serviceName) + "\n" +
                                         stringResource(Res.string.instruction_step_3) + "\n" +
                                         stringResource(Res.string.instruction_step_4),
-                                style = MaterialTheme.typography.bodyMedium
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = TextSecondary
                             )
                         }
                     }
@@ -159,16 +185,31 @@ fun HomeScreen(
 
             Spacer(modifier = Modifier.height(48.dp))
 
-            Button(
-                onClick = onStartScanning,
+            // Gradient pill button
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(56.dp),
-                enabled = uiState.isDeezerAvailable != null
+                    .height(56.dp)
+                    .clip(RoundedCornerShape(28.dp))
+                    .background(
+                        if (uiState.isDeezerAvailable != null)
+                            Brush.horizontalGradient(listOf(Primary, Secondary))
+                        else
+                            Brush.horizontalGradient(listOf(Color.Gray, Color.DarkGray))
+                    )
+                    .then(
+                        if (uiState.isDeezerAvailable != null)
+                            Modifier.clickable { onStartScanning() }
+                        else
+                            Modifier
+                    ),
+                contentAlignment = Alignment.Center
             ) {
                 Text(
                     text = stringResource(Res.string.start_game),
-                    style = MaterialTheme.typography.titleMedium
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
                 )
             }
 

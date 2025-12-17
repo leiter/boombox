@@ -15,8 +15,14 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import com.hitit.app.ui.theme.BackgroundDark
+import com.hitit.app.ui.theme.Primary
+import com.hitit.app.ui.theme.Secondary
+import com.hitit.app.ui.theme.SurfaceLight
+import com.hitit.app.ui.theme.TextSecondary
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
@@ -129,36 +135,8 @@ fun ScannerScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(MaterialTheme.colorScheme.background)
+                .background(BackgroundDark)
         ) {
-            // Top bar - orange with X close button
-            Surface(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                color = MaterialTheme.colorScheme.primary
-            ) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .windowInsetsPadding(WindowInsets.statusBars)
-                        .padding(8.dp)
-                ) {
-                    IconButton(
-                        onClick = {
-                            viewModel.resetScanner()
-                            onBackToHome()
-                        },
-                        modifier = Modifier.align(Alignment.TopEnd)
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Close,
-                            contentDescription = stringResource(Res.string.close),
-                            tint = MaterialTheme.colorScheme.onPrimary
-                        )
-                    }
-                }
-            }
-
             // Fullscreen camera preview with overlay
             Box(
                 modifier = Modifier
@@ -212,28 +190,32 @@ fun ScannerScreen(
             }
 
             // Status and controls
-            Surface(
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .windowInsetsPadding(WindowInsets.navigationBars),
-                color = MaterialTheme.colorScheme.surfaceVariant
+                    .background(SurfaceLight)
+                    .windowInsetsPadding(WindowInsets.navigationBars)
+                    .padding(24.dp)
             ) {
                 Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp),
+                    modifier = Modifier.fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
                         text = uiState.status.toLocalizedString(),
                         style = MaterialTheme.typography.bodyLarge,
-                        textAlign = TextAlign.Center
+                        textAlign = TextAlign.Center,
+                        color = Color.White
                     )
 
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(20.dp))
 
                     OutlinedButton(
-                        onClick = { viewModel.toggleFlashlight() }
+                        onClick = { viewModel.toggleFlashlight() },
+                        colors = ButtonDefaults.outlinedButtonColors(
+                            contentColor = Secondary
+                        ),
+                        shape = RoundedCornerShape(8.dp)
                     ) {
                         Text(if (uiState.flashlightOn) stringResource(Res.string.flash_off) else stringResource(Res.string.flash_on))
                     }
@@ -244,12 +226,30 @@ fun ScannerScreen(
                         TextButton(
                             onClick = { viewModel.onQrCodeScanned("https://hitstergame.com/en/00001") }
                         ) {
-                            Text("DEBUG: Test Scan", color = Color.Gray)
+                            Text("DEBUG: Test Scan", color = TextSecondary)
                         }
                     }
                 }
             }
         } // End of Column (base scanner layer)
+
+        // Floating close button (not contained in a bar)
+        IconButton(
+            onClick = {
+                viewModel.resetScanner()
+                onBackToHome()
+            },
+            modifier = Modifier
+                .align(Alignment.TopEnd)
+                .windowInsetsPadding(WindowInsets.statusBars)
+                .padding(8.dp)
+        ) {
+            Icon(
+                imageVector = Icons.Default.Close,
+                contentDescription = stringResource(Res.string.close),
+                tint = Color.White
+            )
+        }
 
         // Overlay layer: FlipPhoneScreen (shown when waiting for flip)
         if (uiState.isWaitingForFlip) {

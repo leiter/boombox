@@ -16,11 +16,12 @@ class MainActivity : ComponentActivity() {
         AppBuildConfig.applicationInfo = applicationInfo
         // Initialize debug settings store
         DebugSettings.initialize(DebugSettingsStore(this))
-        // Set status bar and navigation bar to match primary orange color
-        val orangeColor = Color.parseColor("#FF6B35")
+        // Set system bars to match Neon Cyber dark purple background
+        val backgroundLight = Color.parseColor("#1A0A2E")
+        val backgroundDark = Color.parseColor("#0D0221")
         enableEdgeToEdge(
-            statusBarStyle = SystemBarStyle.dark(orangeColor),
-            navigationBarStyle = SystemBarStyle.dark(orangeColor)
+            statusBarStyle = SystemBarStyle.dark(backgroundLight),
+            navigationBarStyle = SystemBarStyle.dark(backgroundDark)
         )
         setContent {
             App()
