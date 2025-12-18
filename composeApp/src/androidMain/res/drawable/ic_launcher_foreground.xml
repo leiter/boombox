@@ -5,182 +5,46 @@
     android:viewportWidth="108"
     android:viewportHeight="108">
 
-    <!-- Background fill - Dark purple for neon effect -->
+    <!--
+    === BOOMBOX - Scaled to ~85% to match iOS proportions ===
+    Body: 44dp wide, 15dp tall, centered at (54, 57)
+    Handle: 22dp wide, with rounded bottom corners meeting body
+    Speakers: radius 5, at 25%/75% of body
+    -->
+
+    <!-- Main body - white rounded rectangle -->
     <path
-        android:fillColor="#1A0A2E"
-        android:pathData="M0,0 L108,0 L108,108 L0,108 Z"/>
+        android:fillColor="#FFFFFF"
+        android:pathData="M32,50 L76,50 Q79,50 79,53 L79,62 Q79,65 76,65 L32,65 Q29,65 29,62 L29,53 Q29,50 32,50 Z"/>
 
-    <!-- === STEREO SPEAKERS - NEON OUTLINE STYLE (80% size) === -->
-    <group
-        android:pivotX="54"
-        android:pivotY="54"
-        android:scaleX="0.85"
-        android:scaleY="0.85">
+    <!-- Handle - white, overlapping body more, narrower -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M46,45 L62,45 Q65,45 65,48 L65,53 L43,53 L43,48 Q43,45 46,45 Z"/>
 
-        <!-- Neon glow burst behind speakers -->
-        <path
-            android:fillColor="#FF00FF33"
-            android:pathData="M54,54 m-40,0 a40,40 0 1,1 80,0 a40,40 0 1,1 -80,0"/>
-        <path
-            android:fillColor="#00FFFF22"
-            android:pathData="M54,54 m-30,0 a30,30 0 1,1 60,0 a30,30 0 1,1 -60,0"/>
+    <!-- Left speaker - magenta outer (radius 5, center at 43, 57.5) -->
+    <path
+        android:fillColor="#FF00FF"
+        android:pathData="M43,57.5 m-5,0 a5,5 0 1,1 10,0 a5,5 0 1,1 -10,0"/>
 
-        <!-- Neon rays -->
-        <path
-            android:fillColor="#00000000"
-            android:pathData="M54,54 L54,10"
-            android:strokeWidth="2"
-            android:strokeColor="#FF00FF"
-            android:strokeLineCap="round"/>
-        <path
-            android:fillColor="#00000000"
-            android:pathData="M54,54 L54,98"
-            android:strokeWidth="2"
-            android:strokeColor="#FF00FF"
-            android:strokeLineCap="round"/>
-        <path
-            android:fillColor="#00000000"
-            android:pathData="M54,54 L10,54"
-            android:strokeWidth="2"
-            android:strokeColor="#00FFFF"
-            android:strokeLineCap="round"/>
-        <path
-            android:fillColor="#00000000"
-            android:pathData="M54,54 L98,54"
-            android:strokeWidth="2"
-            android:strokeColor="#00FFFF"
-            android:strokeLineCap="round"/>
+    <!-- Left speaker - white inner (radius 2) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M43,57.5 m-2,0 a2,2 0 1,1 4,0 a2,2 0 1,1 -4,0"/>
 
-        <!-- LEFT SPEAKER - Neon outline, tilted -->
-        <group
-            android:pivotX="32"
-            android:pivotY="54"
-            android:rotation="-12">
+    <!-- Right speaker - cyan outer (center at 65, 57.5) -->
+    <path
+        android:fillColor="#00FFFF"
+        android:pathData="M65,57.5 m-5,0 a5,5 0 1,1 10,0 a5,5 0 1,1 -10,0"/>
 
-            <!-- Speaker cabinet outline -->
-            <path
-                android:fillColor="#1A0A2E"
-                android:pathData="M18,28 L46,28 L46,80 L18,80 Z"/>
-            <path
-                android:fillColor="#00000000"
-                android:pathData="M18,28 L46,28 L46,80 L18,80 Z"
-                android:strokeWidth="2.5"
-                android:strokeColor="#FF6B35"
-                android:strokeLineJoin="round"/>
+    <!-- Right speaker - white inner -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M65,57.5 m-2,0 a2,2 0 1,1 4,0 a2,2 0 1,1 -4,0"/>
 
-            <!-- 3D edges -->
-            <path
-                android:fillColor="#00000000"
-                android:pathData="M46,28 L52,22 L52,74 L46,80"
-                android:strokeWidth="1.5"
-                android:strokeColor="#FF6B3588"/>
-            <path
-                android:fillColor="#00000000"
-                android:pathData="M18,28 L24,22 L52,22"
-                android:strokeWidth="1.5"
-                android:strokeColor="#FF6B3588"/>
-
-            <!-- Upper speaker (tweeter) - neon circles -->
-            <path
-                android:fillColor="#00000000"
-                android:pathData="M32,42 m-10,0 a10,10 0 1,1 20,0 a10,10 0 1,1 -20,0"
-                android:strokeWidth="2"
-                android:strokeColor="#00FFFF"/>
-            <path
-                android:fillColor="#00000000"
-                android:pathData="M32,42 m-6,0 a6,6 0 1,1 12,0 a6,6 0 1,1 -12,0"
-                android:strokeWidth="1.5"
-                android:strokeColor="#00FFFF88"/>
-            <path
-                android:fillColor="#00FFFF"
-                android:pathData="M32,42 m-2,0 a2,2 0 1,1 4,0 a2,2 0 1,1 -4,0"/>
-
-            <!-- Lower speaker (woofer) - neon circles -->
-            <path
-                android:fillColor="#00000000"
-                android:pathData="M32,64 m-12,0 a12,12 0 1,1 24,0 a12,12 0 1,1 -24,0"
-                android:strokeWidth="2.5"
-                android:strokeColor="#FF00FF"/>
-            <path
-                android:fillColor="#00000000"
-                android:pathData="M32,64 m-8,0 a8,8 0 1,1 16,0 a8,8 0 1,1 -16,0"
-                android:strokeWidth="1.5"
-                android:strokeColor="#FF00FF88"/>
-            <path
-                android:fillColor="#00000000"
-                android:pathData="M32,64 m-4,0 a4,4 0 1,1 8,0 a4,4 0 1,1 -8,0"
-                android:strokeWidth="1"
-                android:strokeColor="#FF00FF66"/>
-            <path
-                android:fillColor="#FF00FF"
-                android:pathData="M32,64 m-2,0 a2,2 0 1,1 4,0 a2,2 0 1,1 -4,0"/>
-        </group>
-
-        <!-- RIGHT SPEAKER - Neon outline, tilted opposite -->
-        <group
-            android:pivotX="76"
-            android:pivotY="54"
-            android:rotation="12">
-
-            <!-- Speaker cabinet outline -->
-            <path
-                android:fillColor="#1A0A2E"
-                android:pathData="M62,28 L90,28 L90,80 L62,80 Z"/>
-            <path
-                android:fillColor="#00000000"
-                android:pathData="M62,28 L90,28 L90,80 L62,80 Z"
-                android:strokeWidth="2.5"
-                android:strokeColor="#FF6B35"
-                android:strokeLineJoin="round"/>
-
-            <!-- 3D edges -->
-            <path
-                android:fillColor="#00000000"
-                android:pathData="M56,22 L62,28 L62,80 L56,74"
-                android:strokeWidth="1.5"
-                android:strokeColor="#FF6B3588"/>
-            <path
-                android:fillColor="#00000000"
-                android:pathData="M56,22 L84,22 L90,28"
-                android:strokeWidth="1.5"
-                android:strokeColor="#FF6B3588"/>
-
-            <!-- Upper speaker (tweeter) - neon circles -->
-            <path
-                android:fillColor="#00000000"
-                android:pathData="M76,42 m-10,0 a10,10 0 1,1 20,0 a10,10 0 1,1 -20,0"
-                android:strokeWidth="2"
-                android:strokeColor="#00FFFF"/>
-            <path
-                android:fillColor="#00000000"
-                android:pathData="M76,42 m-6,0 a6,6 0 1,1 12,0 a6,6 0 1,1 -12,0"
-                android:strokeWidth="1.5"
-                android:strokeColor="#00FFFF88"/>
-            <path
-                android:fillColor="#00FFFF"
-                android:pathData="M76,42 m-2,0 a2,2 0 1,1 4,0 a2,2 0 1,1 -4,0"/>
-
-            <!-- Lower speaker (woofer) - neon circles -->
-            <path
-                android:fillColor="#00000000"
-                android:pathData="M76,64 m-12,0 a12,12 0 1,1 24,0 a12,12 0 1,1 -24,0"
-                android:strokeWidth="2.5"
-                android:strokeColor="#FF00FF"/>
-            <path
-                android:fillColor="#00000000"
-                android:pathData="M76,64 m-8,0 a8,8 0 1,1 16,0 a8,8 0 1,1 -16,0"
-                android:strokeWidth="1.5"
-                android:strokeColor="#FF00FF88"/>
-            <path
-                android:fillColor="#00000000"
-                android:pathData="M76,64 m-4,0 a4,4 0 1,1 8,0 a4,4 0 1,1 -8,0"
-                android:strokeWidth="1"
-                android:strokeColor="#FF00FF66"/>
-            <path
-                android:fillColor="#FF00FF"
-                android:pathData="M76,64 m-2,0 a2,2 0 1,1 4,0 a2,2 0 1,1 -4,0"/>
-        </group>
-
-    </group>
+    <!-- Center cassette - orange (shorter height) -->
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M50,54 L58,54 Q59,54 59,55 L59,59 Q59,60 58,60 L50,60 Q49,60 49,59 L49,55 Q49,54 50,54 Z"/>
 
 </vector>
