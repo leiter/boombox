@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Generate iOS app icon for DukeStar - Pixel-perfect match to Canvas
-Uses exact proportions from SplashScreen BoomboxIcon Canvas drawing
+Generate iOS app icon for DukeStar - Gradient background with large boombox
+Magenta-to-cyan gradient background with white boombox.
 Output: 1024x1024 PNG
 """
 
@@ -11,8 +11,6 @@ from PIL import Image, ImageDraw
 SIZE = 1024
 
 # Colors
-BACKGROUND = (13, 2, 33)  # #0D0221
-FRAME_FILL = (42, 24, 72)  # #2A1848
 MAGENTA = (255, 0, 255)  # #FF00FF
 CYAN = (0, 255, 255)  # #00FFFF
 WHITE = (255, 255, 255)  # #FFFFFF
@@ -40,94 +38,49 @@ def lerp_color(c1, c2, t):
     return tuple(int(c1[i] + (c2[i] - c1[i]) * t) for i in range(3))
 
 
-def draw_gradient_frame_stroke(img, bbox, radius, stroke_width):
-    """Draw gradient stroke around rounded rectangle."""
-    x1, y1, x2, y2 = bbox
-    width = x2 - x1
-    draw = ImageDraw.Draw(img)
-    r = radius
-
-    # Top and bottom edges with gradient
-    for x in range(int(x1 + r), int(x2 - r)):
-        t = (x - x1) / width
-        color = lerp_color(MAGENTA, CYAN, t)
-        for sw in range(stroke_width):
-            draw.point((x, y1 + sw), fill=color)
-            draw.point((x, y2 - sw - 1), fill=color)
-
-    # Left edge - magenta
-    draw.rectangle([x1, y1 + r, x1 + stroke_width, y2 - r], fill=MAGENTA)
-
-    # Right edge - cyan
-    draw.rectangle([x2 - stroke_width, y1 + r, x2, y2 - r], fill=CYAN)
-
-    # Corners
-    draw.arc([x1, y1, x1 + r * 2, y1 + r * 2], 180, 270, fill=MAGENTA, width=stroke_width)
-    draw.arc([x2 - r * 2, y1, x2, y1 + r * 2], 270, 360, fill=CYAN, width=stroke_width)
-    draw.arc([x1, y2 - r * 2, x1 + r * 2, y2], 90, 180, fill=MAGENTA, width=stroke_width)
-    draw.arc([x2 - r * 2, y2 - r * 2, x2, y2], 0, 90, fill=CYAN, width=stroke_width)
-
-
 def main():
     """
-    Pixel-perfect recreation of SplashScreen Canvas boombox.
-
-    Canvas proportions (160×100dp):
-    - Body: 90% width × 50% height = 144×50dp, corner radius 12dp
-    - Handle: 60×20dp, centered, 16dp above body, corner radius 10dp
-    - Speakers: radius = 35% of body height = 17.5dp
-    - Speaker inner: 40% of outer radius = 7dp
-    - Speaker positions: 25% and 75% of body width from body left
-    - Cassette: 30×24dp centered, corner radius 4dp
+    New design: Large boombox on gradient background.
     """
-    img = Image.new('RGB', (SIZE, SIZE), BACKGROUND)
+    img = Image.new('RGB', (SIZE, SIZE), MAGENTA)
     draw = ImageDraw.Draw(img)
 
-    # Frame proportions (200×200dp in splash, maps to center of 1024)
-    # Frame takes ~60% of icon size, centered
-    frame_size = int(SIZE * 0.6)
-    frame_margin = (SIZE - frame_size) // 2
-    frame_x1 = frame_margin
-    frame_y1 = frame_margin
-    frame_x2 = SIZE - frame_margin
-    frame_y2 = SIZE - frame_margin
-    frame_radius = int(frame_size * 0.16)  # 32/200 = 16%
-    stroke_width = int(frame_size * 0.015)  # 3/200 = 1.5%
+    # === GRADIENT BACKGROUND (magenta to cyan, left to right) ===
+    for x in range(SIZE):
+        t = x / SIZE
+        color = lerp_color(MAGENTA, CYAN, t)
+        draw.line([(x, 0), (x, SIZE)], fill=color)
 
-    # Draw frame fill
-    draw_rounded_rect(draw, (frame_x1, frame_y1, frame_x2, frame_y2),
-                      frame_radius, fill=FRAME_FILL)
+    # === BOOMBOX (filling ~75% of center) ===
+    # Using Canvas proportions: 160×100 = 1.6:1 aspect ratio
 
-    # Draw gradient stroke
-    draw_gradient_frame_stroke(img, (frame_x1, frame_y1, frame_x2, frame_y2),
-                               frame_radius, stroke_width)
-
-    # === BOOMBOX (matching Canvas exactly) ===
-    # Canvas is 160×100 inside 200×200 frame = 80% × 50%
-    # Canvas center is at frame center
-
-    canvas_width = int(frame_size * 0.8)   # 160/200 = 80%
-    canvas_height = int(frame_size * 0.5)  # 100/200 = 50%
-    canvas_center_x = SIZE // 2
-    canvas_center_y = SIZE // 2
+    boombox_scale = 0.75  # Scale factor
+    canvas_width = int(SIZE * boombox_scale)
+    canvas_height = int(canvas_width / 1.6)
+    center_x = SIZE // 2
+    center_y = SIZE // 2
 
     # Body: 90% of canvas width, 50% of canvas height
     body_width = int(canvas_width * 0.9)
     body_height = int(canvas_height * 0.5)
-    body_left = canvas_center_x - body_width // 2
-    body_top = canvas_center_y - body_height // 2
-    body_radius = int(canvas_height * 0.12)  # 12/100 = 12%
+    body_left = center_x - body_width // 2
+    body_radius = int(canvas_height * 0.12)
 
-    # Handle: 60×20dp = 37.5% × 20% of canvas
-    # Handle top is at boxTop - 16dp, height is 20dp
-    # So handle bottom = boxTop - 16 + 20 = boxTop + 4 (overlaps body by 4dp)
+    # Handle: 37.5% × 20% of canvas
     handle_width = int(canvas_width * 0.375)
     handle_height = int(canvas_height * 0.2)
-    handle_left = canvas_center_x - handle_width // 2
-    handle_top = body_top - int(canvas_height * 0.16)  # 16dp above body top
-    handle_radius = int(canvas_height * 0.1)  # 10/100 = 10%
+    handle_left = center_x - handle_width // 2
+    handle_radius = int(canvas_height * 0.1)
 
-    # Draw body first (handle will overlap it)
+    # Calculate vertical positioning to center the whole boombox
+    handle_extension = int(canvas_height * 0.16)
+    total_height = body_height + handle_extension
+
+    boombox_top = center_y - total_height // 2
+    handle_top = boombox_top
+    body_top = handle_top + handle_extension
+
+    # Draw body first
     draw_rounded_rect(draw, (body_left, body_top,
                             body_left + body_width, body_top + body_height),
                       body_radius, fill=WHITE)
@@ -137,11 +90,10 @@ def main():
                             handle_left + handle_width, handle_top + handle_height),
                       handle_radius, fill=WHITE)
 
-
     # Speakers: radius = 35% of body height
     speaker_radius = int(body_height * 0.35)
     speaker_inner_radius = int(speaker_radius * 0.4)
-    speaker_y = canvas_center_y
+    speaker_y = body_top + body_height // 2
 
     # Left speaker at 25% of body width
     left_speaker_x = body_left + int(body_width * 0.25)
@@ -157,24 +109,24 @@ def main():
     draw.ellipse([right_speaker_x - speaker_inner_radius, speaker_y - speaker_inner_radius,
                   right_speaker_x + speaker_inner_radius, speaker_y + speaker_inner_radius], fill=WHITE)
 
-    # Cassette: 30×24dp = 18.75% × 24% of canvas, centered
+    # Cassette: 18.75% × 24% of canvas, centered
     cassette_width = int(canvas_width * 0.1875)
     cassette_height = int(canvas_height * 0.24)
-    cassette_left = canvas_center_x - cassette_width // 2
-    cassette_top = canvas_center_y - cassette_height // 2
-    cassette_radius = int(canvas_height * 0.04)  # 4/100 = 4%
+    cassette_left = center_x - cassette_width // 2
+    cassette_top = speaker_y - cassette_height // 2
+    cassette_radius = int(canvas_height * 0.04)
 
     draw_rounded_rect(draw, (cassette_left, cassette_top,
                             cassette_left + cassette_width, cassette_top + cassette_height),
                       cassette_radius, fill=ORANGE)
 
     # Save the icon
-    output_path = '/home/mandroid/Videos/hitit/iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/icon_1024.png'
+    output_path = '/home/mandroid/Videos/hitit-logo/iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/icon_1024.png'
     img.save(output_path, 'PNG')
     print(f"iOS icon saved to: {output_path}")
 
     # Also save a copy to tmp for preview
-    preview_path = '/home/mandroid/Videos/hitit/tmp/ios_icon_preview.png'
+    preview_path = '/home/mandroid/Videos/hitit-logo/tmp/ios_icon_preview.png'
     img.save(preview_path, 'PNG')
     print(f"Preview saved to: {preview_path}")
 

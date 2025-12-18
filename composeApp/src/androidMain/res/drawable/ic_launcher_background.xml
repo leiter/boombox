@@ -6,35 +6,18 @@
     android:viewportWidth="108"
     android:viewportHeight="108">
 
-    <!-- Full background - Dark purple -->
+    <!-- Full background with magenta-to-cyan gradient -->
     <path
-        android:fillColor="#0D0221"
-        android:pathData="M0,0 L108,0 L108,108 L0,108 Z"/>
-
-    <!-- Rounded frame with gradient stroke -->
-    <path
-        android:pathData="M28,28 L80,28 Q86,28 86,34 L86,74 Q86,80 80,80 L28,80 Q22,80 22,74 L22,34 Q22,28 28,28 Z"
-        android:strokeWidth="2.5">
-        <aapt:attr name="android:strokeColor">
-            <gradient
-                android:type="linear"
-                android:startX="22"
-                android:startY="54"
-                android:endX="86"
-                android:endY="54">
-                <item android:offset="0" android:color="#FFFF00FF"/>
-                <item android:offset="1" android:color="#FF00FFFF"/>
-            </gradient>
-        </aapt:attr>
+        android:pathData="M0,0 L108,0 L108,108 L0,108 Z">
         <aapt:attr name="android:fillColor">
             <gradient
                 android:type="linear"
-                android:startX="22"
-                android:startY="28"
-                android:endX="86"
-                android:endY="80">
-                <item android:offset="0" android:color="#FF2A1848"/>
-                <item android:offset="1" android:color="#FF1A0A30"/>
+                android:startX="0"
+                android:startY="54"
+                android:endX="108"
+                android:endY="54">
+                <item android:offset="0" android:color="#FFFF00FF"/>
+                <item android:offset="1" android:color="#FF00FFFF"/>
             </gradient>
         </aapt:attr>
     </path>
