@@ -6,51 +6,52 @@
     android:viewportHeight="108">
 
     <!--
-    === BOOMBOX - Larger design filling ~85% of safe zone ===
+    === BOOMBOX - Scaled to 95% (5% smaller) ===
     Safe zone: 66×66dp (from 21 to 87), centered at (54, 54)
     Using Canvas proportions: 160×100 = 1.6:1 aspect ratio
-
-    Virtual canvas: 56×35dp centered at (54, 54)
-    Body: 90% × 50% = 50×17.5dp
-    Handle: 37.5% × 20% = 21×7dp
-    Speakers: radius = 35% of body height = 6dp
     -->
 
-    <!-- Main body - white rounded rectangle -->
-    <!-- Body: 50dp wide × 18dp tall, centered at (54, 56) -->
-    <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M29,47 L79,47 Q82,47 82,50 L82,62 Q82,65 79,65 L29,65 Q26,65 26,62 L26,50 Q26,47 29,47 Z"/>
+    <group
+        android:pivotX="54"
+        android:pivotY="54"
+        android:scaleX="0.95"
+        android:scaleY="0.95">
 
-    <!-- Handle - white, overlapping body top -->
-    <!-- Handle: 21dp wide × 8dp tall, top at y=40 -->
-    <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M43.5,40 L64.5,40 Q67,40 67,42.5 L67,49 L41,49 L41,42.5 Q41,40 43.5,40 Z"/>
+        <!-- Main body - white rounded rectangle -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M29,47 L79,47 Q82,47 82,50 L82,62 Q82,65 79,65 L29,65 Q26,65 26,62 L26,50 Q26,47 29,47 Z"/>
 
-    <!-- Left speaker - magenta outer (radius 6, center at body 25% = 26 + 14 = 40, y=56) -->
-    <path
-        android:fillColor="#FF00FF"
-        android:pathData="M40,56 m-6,0 a6,6 0 1,1 12,0 a6,6 0 1,1 -12,0"/>
+        <!-- Handle - white, overlapping body top -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M43.5,40 L64.5,40 Q67,40 67,42.5 L67,49 L41,49 L41,42.5 Q41,40 43.5,40 Z"/>
 
-    <!-- Left speaker - white inner (radius 2.5) -->
-    <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M40,56 m-2.5,0 a2.5,2.5 0 1,1 5,0 a2.5,2.5 0 1,1 -5,0"/>
+        <!-- Left speaker - magenta outer -->
+        <path
+            android:fillColor="#FF00FF"
+            android:pathData="M40,56 m-6,0 a6,6 0 1,1 12,0 a6,6 0 1,1 -12,0"/>
 
-    <!-- Right speaker - cyan outer (center at body 75% = 26 + 42 = 68, y=56) -->
-    <path
-        android:fillColor="#00FFFF"
-        android:pathData="M68,56 m-6,0 a6,6 0 1,1 12,0 a6,6 0 1,1 -12,0"/>
+        <!-- Left speaker - white inner -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M40,56 m-2.5,0 a2.5,2.5 0 1,1 5,0 a2.5,2.5 0 1,1 -5,0"/>
 
-    <!-- Right speaker - white inner -->
-    <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M68,56 m-2.5,0 a2.5,2.5 0 1,1 5,0 a2.5,2.5 0 1,1 -5,0"/>
+        <!-- Right speaker - cyan outer -->
+        <path
+            android:fillColor="#00FFFF"
+            android:pathData="M68,56 m-6,0 a6,6 0 1,1 12,0 a6,6 0 1,1 -12,0"/>
 
-    <!-- Center cassette - orange (18.75% × 24% of canvas ≈ 10.5×8.4dp) -->
-    <path
-        android:fillColor="#FF6B35"
-        android:pathData="M49,52 L59,52 Q60,52 60,53 L60,60 Q60,61 59,61 L49,61 Q48,61 48,60 L48,53 Q48,52 49,52 Z"/>
+        <!-- Right speaker - white inner -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M68,56 m-2.5,0 a2.5,2.5 0 1,1 5,0 a2.5,2.5 0 1,1 -5,0"/>
+
+        <!-- Center cassette - orange -->
+        <path
+            android:fillColor="#FF6B35"
+            android:pathData="M49,52 L59,52 Q60,52 60,53 L60,60 Q60,61 59,61 L49,61 Q48,61 48,60 L48,53 Q48,52 49,52 Z"/>
+
+    </group>
 
 </vector>

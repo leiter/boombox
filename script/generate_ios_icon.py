@@ -80,13 +80,12 @@ def main():
         draw.line([(x, 0), (x, SIZE)], fill=color)
 
     # === DARK SQUIRCLE centered - creates gradient ring effect ===
-    # iOS mask is about 85% of icon, so make dark squircle ~90% of that
-    # to leave a visible gradient border
-    squircle_size = int(SIZE * 0.85)  # Slightly smaller than iOS mask
+    # Make dark squircle smaller to leave a visible gradient border (5% smaller)
+    squircle_size = int(SIZE * 0.71)  # 5% smaller for thicker gradient frame
     draw_squircle(draw, SIZE // 2, SIZE // 2, squircle_size, BACKGROUND, n=5)
 
-    # === BOOMBOX (filling ~75% of center) ===
-    boombox_scale = 0.75
+    # === BOOMBOX (5% smaller) ===
+    boombox_scale = 0.71
     canvas_width = int(SIZE * boombox_scale)
     canvas_height = int(canvas_width / 1.6)
     center_x = SIZE // 2

@@ -23,9 +23,9 @@
     </path>
 
     <!-- Dark circle centered - leaves gradient ring visible around edges -->
-    <!-- Circle radius ~34dp centered at (54,54) - leaves thicker gradient ring when masked -->
+    <!-- Circle radius ~32dp centered at (54,54) - 5% smaller for thicker gradient ring -->
     <path
         android:fillColor="#0D0221"
-        android:pathData="M54,54 m-34,0 a34,34 0 1,1 68,0 a34,34 0 1,1 -68,0"/>
+        android:pathData="M54,54 m-32,0 a32,32 0 1,1 64,0 a32,32 0 1,1 -64,0"/>
 
 </vector>
