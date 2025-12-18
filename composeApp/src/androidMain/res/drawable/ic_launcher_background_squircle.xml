@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Full gradient background (magenta to cyan) -->
+    <path
+        android:pathData="M0,0 L108,0 L108,108 L0,108 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="linear"
+                android:startX="0"
+                android:startY="54"
+                android:endX="108"
+                android:endY="54">
+                <item android:offset="0" android:color="#FFFF00FF"/>
+                <item android:offset="1" android:color="#FF00FFFF"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Dark squircle centered - leaves gradient ring visible around edges -->
+    <!-- Squircle approximated with rounded rectangle, corner radius ~18dp for squircle look -->
+    <!-- Size ~68dp (from 20 to 88), leaving gradient border visible -->
+    <path
+        android:fillColor="#0D0221"
+        android:pathData="M38,20 L70,20 Q88,20 88,38 L88,70 Q88,88 70,88 L38,88 Q20,88 20,70 L20,38 Q20,20 38,20 Z"/>
+
+</vector>
