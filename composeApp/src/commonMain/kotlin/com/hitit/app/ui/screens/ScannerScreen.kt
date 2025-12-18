@@ -173,9 +173,9 @@ fun ScannerScreen(
         }
     }
 
-    // Use Box to layer screens - keeps QrScanner alive when showing overlays
+    // Use Box to layer screens
     Box(modifier = Modifier.fillMaxSize()) {
-        // Base layer: Scanner screen (always rendered to keep camera alive)
+        // Base layer: Scanner screen
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -189,22 +189,24 @@ fun ScannerScreen(
                     .background(Color.Black),
                 contentAlignment = Alignment.Center
             ) {
-                // Fullscreen QR Scanner with custom overlay
-                // Flash turns off when overlays are shown, restores when returning to scanner
-                QrScanner(
-                    modifier = Modifier.fillMaxSize(),
-                    cameraLens = CameraLens.Back,
-                    flashlightOn = uiState.flashlightOn && !uiState.isWaitingForFlip && !uiState.isNowPlaying,
-                    openImagePicker = false,
-                    customOverlay = { /* Empty - we draw our own overlay */ },
-                    imagePickerHandler = { /* Not used */ },
-                    onFailure = { error ->
-                        viewModel.onScanError(error.toString())
-                    },
-                    onCompletion = { result ->
-                        viewModel.onQrCodeScanned(result)
-                    }
-                )
+                // Only render camera when actively scanning (saves battery)
+                val isScanning = !uiState.isWaitingForFlip && !uiState.isNowPlaying
+                if (isScanning) {
+                    QrScanner(
+                        modifier = Modifier.fillMaxSize(),
+                        cameraLens = CameraLens.Back,
+                        flashlightOn = uiState.flashlightOn,
+                        openImagePicker = false,
+                        customOverlay = { /* Empty - we draw our own overlay */ },
+                        imagePickerHandler = { /* Not used */ },
+                        onFailure = { error ->
+                            viewModel.onScanError(error.toString())
+                        },
+                        onCompletion = { result ->
+                            viewModel.onQrCodeScanned(result)
+                        }
+                    )
+                }
 
                 // Dark overlay with transparent cutout
                 ScannerOverlay(

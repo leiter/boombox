@@ -51,7 +51,7 @@ actual class DeviceOrientationService(private val context: Context) {
             sensorManager.registerListener(
                 sensorListener,
                 sensor,
-                SensorManager.SENSOR_DELAY_UI
+                SensorManager.SENSOR_DELAY_NORMAL
             )
         }
 
@@ -81,7 +81,7 @@ actual class DeviceOrientationService(private val context: Context) {
             sensorManager.registerListener(
                 listener,
                 sensor,
-                SensorManager.SENSOR_DELAY_UI
+                SensorManager.SENSOR_DELAY_NORMAL
             )
         }
     }

@@ -38,9 +38,7 @@ actual class AudioPlayer(context: Context) {
                 }
 
                 setOnCompletionListener {
-                    Log.d("AudioPlayer", "onCompletion - looping")
-                    it.seekTo(0)
-                    it.start()
+                    Log.d("AudioPlayer", "onCompletion - playback finished")
                 }
 
                 Log.d("AudioPlayer", "Setting data source...")

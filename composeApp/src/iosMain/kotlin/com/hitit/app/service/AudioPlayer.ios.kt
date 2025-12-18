@@ -57,17 +57,13 @@ actual class AudioPlayer {
             val playerItem = AVPlayerItem(uRL = nsUrl)
             player = AVPlayer(playerItem = playerItem)
 
-            // Add observer for looping
+            // Add observer for completion
             loopObserver = NSNotificationCenter.defaultCenter.addObserverForName(
                 name = AVPlayerItemDidPlayToEndTimeNotification,
                 `object` = playerItem,
                 queue = null
             ) { _ ->
-                NSLog("AudioPlayer.ios: Track ended, looping...")
-                dispatch_async(dispatch_get_main_queue()) {
-                    player?.seekToTime(CMTimeMake(value = 0, timescale = 1))
-                    player?.play()
-                }
+                NSLog("AudioPlayer.ios: Track ended, playback finished")
             }
 
             // Start playback on main thread
