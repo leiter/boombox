@@ -12,7 +12,7 @@ import math
 SIZE = 1024
 
 # Colors
-BACKGROUND = (13, 2, 33)  # #0D0221 - Dark purple
+BACKGROUND = (42, 24, 72)  # #2A1848 - Lighter purple (like splash SurfaceLight)
 MAGENTA = (255, 0, 255)  # #FF00FF
 CYAN = (0, 255, 255)  # #00FFFF
 WHITE = (255, 255, 255)  # #FFFFFF
@@ -80,12 +80,12 @@ def main():
         draw.line([(x, 0), (x, SIZE)], fill=color)
 
     # === DARK SQUIRCLE centered - creates gradient ring effect ===
-    # Make dark squircle smaller to leave a visible gradient border (5% smaller)
-    squircle_size = int(SIZE * 0.71)  # 5% smaller for thicker gradient frame
+    # Make dark squircle smaller to leave a visible gradient border
+    squircle_size = int(SIZE * 0.65)  # Smaller for visible gradient border
     draw_squircle(draw, SIZE // 2, SIZE // 2, squircle_size, BACKGROUND, n=5)
 
-    # === BOOMBOX (5% smaller) ===
-    boombox_scale = 0.71
+    # === BOOMBOX (smaller to fit in squircle) ===
+    boombox_scale = 0.65
     canvas_width = int(SIZE * boombox_scale)
     canvas_height = int(canvas_width / 1.6)
     center_x = SIZE // 2

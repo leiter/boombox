@@ -14,18 +14,18 @@
     <group
         android:pivotX="54"
         android:pivotY="54"
-        android:scaleX="0.95"
-        android:scaleY="0.95">
+        android:scaleX="0.85"
+        android:scaleY="0.85">
 
         <!-- Main body - white rounded rectangle -->
         <path
             android:fillColor="#FFFFFF"
             android:pathData="M29,47 L79,47 Q82,47 82,50 L82,62 Q82,65 79,65 L29,65 Q26,65 26,62 L26,50 Q26,47 29,47 Z"/>
 
-        <!-- Handle - white, overlapping body top -->
+        <!-- Handle - white, full pill shape -->
         <path
             android:fillColor="#FFFFFF"
-            android:pathData="M43.5,40 L64.5,40 Q67,40 67,42.5 L67,49 L41,49 L41,42.5 Q41,40 43.5,40 Z"/>
+            android:pathData="M49,40 L59,40 Q67,40 67,44.5 Q67,49 59,49 L49,49 Q41,49 41,44.5 Q41,40 49,40 Z"/>
 
         <!-- Left speaker - magenta outer -->
         <path

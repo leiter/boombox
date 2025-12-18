@@ -23,10 +23,10 @@
     </path>
 
     <!-- Dark squircle centered - leaves gradient ring visible around edges -->
-    <!-- Squircle approximated with rounded rectangle - 5% smaller for thicker gradient ring -->
-    <!-- Size ~64dp (from 22 to 86), leaving gradient border visible -->
+    <!-- Squircle approximated with rounded rectangle - smaller to show visible gradient border -->
+    <!-- Size ~56dp (from 26 to 82), leaving gradient border visible -->
     <path
-        android:fillColor="#0D0221"
-        android:pathData="M40,22 L68,22 Q86,22 86,40 L86,68 Q86,86 68,86 L40,86 Q22,86 22,68 L22,40 Q22,22 40,22 Z"/>
+        android:fillColor="#2A1848"
+        android:pathData="M42,26 L66,26 Q82,26 82,42 L82,66 Q82,82 66,82 L42,82 Q26,82 26,66 L26,42 Q26,26 42,26 Z"/>
 
 </vector>
