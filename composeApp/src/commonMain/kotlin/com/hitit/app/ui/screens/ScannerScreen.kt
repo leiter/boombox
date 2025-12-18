@@ -29,6 +29,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -52,8 +53,10 @@ import com.hitit.app.ui.theme.Primary
 import com.hitit.app.ui.theme.Secondary
 import com.hitit.app.ui.theme.SurfaceLight
 import com.hitit.app.ui.theme.TextSecondary
+import com.hitit.app.settings.DebugSettings
 import com.hitit.app.ui.viewmodel.ScannerViewModel
 import com.hitit.app.ui.viewmodel.StatusMessage
+import kotlinx.coroutines.delay
 import hitit.composeapp.generated.resources.Res
 import hitit.composeapp.generated.resources.close
 import hitit.composeapp.generated.resources.flash_off
@@ -94,10 +97,7 @@ fun StatusMessage.toLocalizedString(): String {
                 stringResource(Res.string.status_hitster_card, cardId)
             }
         }
-        is StatusMessage.FetchingTrack ->
-            if (BuildKonfig.IS_DEBUG)
-                stringResource(Res.string.status_fetching_track, cardId)
-            else ""
+        is StatusMessage.FetchingTrack -> ""
         is StatusMessage.FlipToPlay -> {
             if (title != null && artist != null) {
                 stringResource(Res.string.status_flip_to_play_with_info, artist, title)

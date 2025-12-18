@@ -1,5 +1,6 @@
 package com.hitit.app.ui.viewmodel
 
+import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hitit.app.model.QrCodeParser
@@ -24,12 +25,33 @@ sealed class StatusMessage {
     data object PointCamera : StatusMessage()
     data object Processing : StatusMessage()
     data class ScanError(val error: String) : StatusMessage()
-    data class HitsterCard(val cardId: String, val title: String? = null, val artist: String? = null) : StatusMessage()
+    data class HitsterCard(
+        val cardId: String,
+        val title: String? = null,
+        val artist: String? = null
+    ) : StatusMessage()
+
     data class FetchingTrack(val cardId: String) : StatusMessage()
     data class FlipToPlay(val title: String? = null, val artist: String? = null) : StatusMessage()
-    data class NowPlaying(val title: String? = null, val artist: String? = null, val year: Int? = null, val albumCoverUrl: String? = null) : StatusMessage()
-    data class OpeningTrack(val serviceName: String, val title: String? = null, val artist: String? = null) : StatusMessage()
-    data class Playing(val serviceName: String, val title: String? = null, val artist: String? = null) : StatusMessage()
+    data class NowPlaying(
+        val title: String? = null,
+        val artist: String? = null,
+        val year: Int? = null,
+        val albumCoverUrl: String? = null
+    ) : StatusMessage()
+
+    data class OpeningTrack(
+        val serviceName: String,
+        val title: String? = null,
+        val artist: String? = null
+    ) : StatusMessage()
+
+    data class Playing(
+        val serviceName: String,
+        val title: String? = null,
+        val artist: String? = null
+    ) : StatusMessage()
+
     data class CouldNotOpen(val serviceName: String) : StatusMessage()
     data class CardNotFound(val cardId: String) : StatusMessage()
     data class SpotifyDetected(val trackId: String) : StatusMessage()
@@ -69,7 +91,8 @@ class ScannerViewModel(
 
     init {
         // Load saved preferences (flash always starts off for safety)
-        val savedMode = if (DebugSettings.getUseFullVersion()) PlaybackMode.DEEZER else PlaybackMode.PREVIEW
+        val savedMode =
+            if (DebugSettings.getUseFullVersion()) PlaybackMode.DEEZER else PlaybackMode.PREVIEW
         _uiState.value = _uiState.value.copy(
             selectedPlaybackMode = savedMode,
             flashlightOn = false
@@ -145,6 +168,13 @@ class ScannerViewModel(
             isDeezerInstalled = _uiState.value.isDeezerInstalled,
             selectedPlaybackMode = _uiState.value.selectedPlaybackMode
         )
+        if (_uiState.value.flashlightOn) {
+            viewModelScope.launch {
+                toggleFlashlight()
+                delay(500)
+                toggleFlashlight()
+            }
+        }
     }
 
     fun startOrientationMonitoring() {
@@ -199,23 +229,30 @@ class ScannerViewModel(
                 val trackInfo = deezerApi.getTrackInfo(track.id)
                 val albumCoverUrl = trackInfo?.album?.coverMedium
 
-                updateStatus(StatusMessage.NowPlaying(
-                    track.title,
-                    track.artist,
-                    track.year,
-                    albumCoverUrl
-                ))
+                updateStatus(
+                    StatusMessage.NowPlaying(
+                        track.title,
+                        track.artist,
+                        track.year,
+                        albumCoverUrl
+                    )
+                )
 
                 // Use selected playback mode
-                val useDeeplink = _uiState.value.selectedPlaybackMode == PlaybackMode.DEEZER && _uiState.value.isDeezerInstalled
+                val useDeeplink =
+                    _uiState.value.selectedPlaybackMode == PlaybackMode.DEEZER && _uiState.value.isDeezerInstalled
                 if (useDeeplink) {
                     // Open Deezer to play full song
                     musicService.playTrackById(track.id)
-                    _uiState.value = _uiState.value.copy(isUsingExternalPlayback = true, isAudioPlaying = true)
+                    _uiState.value =
+                        _uiState.value.copy(isUsingExternalPlayback = true, isAudioPlaying = true)
                 } else {
                     trackInfo?.preview?.let { previewUrl ->
                         audioPlayer.play(previewUrl)
-                        _uiState.value = _uiState.value.copy(isAudioPlaying = true, isUsingExternalPlayback = false)
+                        _uiState.value = _uiState.value.copy(
+                            isAudioPlaying = true,
+                            isUsingExternalPlayback = false
+                        )
                     }
                 }
                 return@launch
@@ -225,23 +262,32 @@ class ScannerViewModel(
                 // Fetch track info from Deezer API
                 val trackInfo = deezerApi.getTrackInfo(trackId)
                 if (trackInfo != null) {
-                    updateStatus(StatusMessage.NowPlaying(
-                        trackInfo.title,
-                        trackInfo.artist?.name,
-                        null, // Year not available from Deezer API directly
-                        trackInfo.album?.coverMedium
-                    ))
+                    updateStatus(
+                        StatusMessage.NowPlaying(
+                            trackInfo.title,
+                            trackInfo.artist?.name,
+                            null, // Year not available from Deezer API directly
+                            trackInfo.album?.coverMedium
+                        )
+                    )
 
                     // Use selected playback mode
-                    val useDeeplink = _uiState.value.selectedPlaybackMode == PlaybackMode.DEEZER && _uiState.value.isDeezerInstalled
+                    val useDeeplink =
+                        _uiState.value.selectedPlaybackMode == PlaybackMode.DEEZER && _uiState.value.isDeezerInstalled
                     if (useDeeplink) {
                         // Open Deezer to play full song
                         musicService.playTrackById(trackId)
-                        _uiState.value = _uiState.value.copy(isUsingExternalPlayback = true, isAudioPlaying = true)
+                        _uiState.value = _uiState.value.copy(
+                            isUsingExternalPlayback = true,
+                            isAudioPlaying = true
+                        )
                     } else {
                         trackInfo.preview?.let { previewUrl ->
                             audioPlayer.play(previewUrl)
-                            _uiState.value = _uiState.value.copy(isAudioPlaying = true, isUsingExternalPlayback = false)
+                            _uiState.value = _uiState.value.copy(
+                                isAudioPlaying = true,
+                                isUsingExternalPlayback = false
+                            )
                         }
                     }
                 } else {
