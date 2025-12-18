@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 """
-Generate iOS app icon for DukeStar - Gradient background with large boombox
-Magenta-to-cyan gradient background with white boombox.
+Generate iOS app icon for DukeStar - Gradient background with dark squircle frame
+Magenta-to-cyan gradient with dark squircle creating a gradient ring/frame effect.
 Output: 1024x1024 PNG
 """
 
 from PIL import Image, ImageDraw
+import math
 
 # Icon size
 SIZE = 1024
 
 # Colors
+BACKGROUND = (13, 2, 33)  # #0D0221 - Dark purple
 MAGENTA = (255, 0, 255)  # #FF00FF
 CYAN = (0, 255, 255)  # #00FFFF
 WHITE = (255, 255, 255)  # #FFFFFF
@@ -38,9 +40,35 @@ def lerp_color(c1, c2, t):
     return tuple(int(c1[i] + (c2[i] - c1[i]) * t) for i in range(3))
 
 
+def draw_squircle(draw, center_x, center_y, size, fill, n=5):
+    """
+    Draw a squircle (superellipse) shape.
+    n controls the squareness: 2=ellipse, higher=more square corners
+    Apple uses approximately n=5 for iOS icons.
+    """
+    points = []
+    half_size = size // 2
+
+    for angle in range(360):
+        rad = math.radians(angle)
+        cos_a = math.cos(rad)
+        sin_a = math.sin(rad)
+
+        # Superellipse formula: |x/a|^n + |y/b|^n = 1
+        # Solved for radius: r = (|cos|^n + |sin|^n)^(-1/n)
+        r = (abs(cos_a)**n + abs(sin_a)**n)**(-1/n)
+
+        x = center_x + int(half_size * r * cos_a)
+        y = center_y + int(half_size * r * sin_a)
+        points.append((x, y))
+
+    draw.polygon(points, fill=fill)
+
+
 def main():
     """
-    New design: Large boombox on gradient background.
+    Design: Gradient background with dark squircle frame.
+    The gradient shows as a ring/border around the dark squircle where boombox sits.
     """
     img = Image.new('RGB', (SIZE, SIZE), MAGENTA)
     draw = ImageDraw.Draw(img)
@@ -51,10 +79,14 @@ def main():
         color = lerp_color(MAGENTA, CYAN, t)
         draw.line([(x, 0), (x, SIZE)], fill=color)
 
-    # === BOOMBOX (filling ~75% of center) ===
-    # Using Canvas proportions: 160×100 = 1.6:1 aspect ratio
+    # === DARK SQUIRCLE centered - creates gradient ring effect ===
+    # iOS mask is about 85% of icon, so make dark squircle ~90% of that
+    # to leave a visible gradient border
+    squircle_size = int(SIZE * 0.85)  # Slightly smaller than iOS mask
+    draw_squircle(draw, SIZE // 2, SIZE // 2, squircle_size, BACKGROUND, n=5)
 
-    boombox_scale = 0.75  # Scale factor
+    # === BOOMBOX (filling ~75% of center) ===
+    boombox_scale = 0.75
     canvas_width = int(SIZE * boombox_scale)
     canvas_height = int(canvas_width / 1.6)
     center_x = SIZE // 2
@@ -72,7 +104,7 @@ def main():
     handle_left = center_x - handle_width // 2
     handle_radius = int(canvas_height * 0.1)
 
-    # Calculate vertical positioning to center the whole boombox
+    # Vertical positioning
     handle_extension = int(canvas_height * 0.16)
     total_height = body_height + handle_extension
 
@@ -85,31 +117,31 @@ def main():
                             body_left + body_width, body_top + body_height),
                       body_radius, fill=WHITE)
 
-    # Draw handle (overlaps body top)
+    # Draw handle
     draw_rounded_rect(draw, (handle_left, handle_top,
                             handle_left + handle_width, handle_top + handle_height),
                       handle_radius, fill=WHITE)
 
-    # Speakers: radius = 35% of body height
+    # Speakers
     speaker_radius = int(body_height * 0.35)
     speaker_inner_radius = int(speaker_radius * 0.4)
     speaker_y = body_top + body_height // 2
 
-    # Left speaker at 25% of body width
+    # Left speaker
     left_speaker_x = body_left + int(body_width * 0.25)
     draw.ellipse([left_speaker_x - speaker_radius, speaker_y - speaker_radius,
                   left_speaker_x + speaker_radius, speaker_y + speaker_radius], fill=MAGENTA)
     draw.ellipse([left_speaker_x - speaker_inner_radius, speaker_y - speaker_inner_radius,
                   left_speaker_x + speaker_inner_radius, speaker_y + speaker_inner_radius], fill=WHITE)
 
-    # Right speaker at 75% of body width
+    # Right speaker
     right_speaker_x = body_left + int(body_width * 0.75)
     draw.ellipse([right_speaker_x - speaker_radius, speaker_y - speaker_radius,
                   right_speaker_x + speaker_radius, speaker_y + speaker_radius], fill=CYAN)
     draw.ellipse([right_speaker_x - speaker_inner_radius, speaker_y - speaker_inner_radius,
                   right_speaker_x + speaker_inner_radius, speaker_y + speaker_inner_radius], fill=WHITE)
 
-    # Cassette: 18.75% × 24% of canvas, centered
+    # Cassette
     cassette_width = int(canvas_width * 0.1875)
     cassette_height = int(canvas_height * 0.24)
     cassette_left = center_x - cassette_width // 2
