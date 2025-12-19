@@ -5,12 +5,12 @@ import com.hitit.app.di.allModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
-class HitItApplication : Application() {
+class DukeStarApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
         startKoin {
-            androidContext(this@HitItApplication)
+            androidContext(this@DukeStarApplication)
             modules(allModules)
         }
     }

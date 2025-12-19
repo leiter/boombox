@@ -3,6 +3,7 @@ package com.hitit.app.service
 /**
  * Platform-specific interface for launching external apps via deep links
  */
+@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 expect class AppLauncher {
     /**
      * Open a URL or deep link

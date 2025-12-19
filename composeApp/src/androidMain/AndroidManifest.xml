@@ -18,7 +18,7 @@
     </queries>
 
     <application
-        android:name="com.hitit.app.HitItApplication"
+        android:name="com.hitit.app.DukeStarApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="DukeStar"
