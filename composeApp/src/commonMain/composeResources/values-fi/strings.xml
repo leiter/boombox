@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- App name -->
+    <string name="app_name">DukeStar</string>
+    <string name="app_subtitle">Musiikkivisapeli</string>
+
+    <!-- Home Screen -->
+    <string name="service_ready">%1$s Valmis</string>
+    <string name="service_not_found">%1$s Ei Löydy</string>
+    <string name="service_checking">Tarkistetaan %1$s…</string>
+    <string name="service_install_prompt">Asenna %1$s-sovellus musiikin toistamiseen</string>
+
+    <string name="how_to_play">Kuinka Pelata</string>
+    <string name="instruction_step_1">1. Skannaa Hitster-kortin QR-koodi</string>
+    <string name="instruction_step_2">2. Kuuntele kappale %1$s:ssa</string>
+    <string name="instruction_step_3">3. Arvaa vuosi, artisti &amp; nimi</string>
+    <string name="instruction_step_4">4. Tarkista vastaus kortista!</string>
+
+    <string name="scan_card">Skannaa Kortti</string>
+    <string name="start_game">Aloita Peli</string>
+    <string name="opening">Avataan…</string>
+    <string name="test_service">Testaa %1$s (Get Lucky)</string>
+
+    <!-- Scanner Screen -->
+    <string name="close">Sulje</string>
+    <string name="flash_on">Salama Päällä</string>
+    <string name="flash_off">Salama Pois</string>
+    <string name="scan_again">Skannaa Uudelleen</string>
+
+    <!-- Scanner Status Messages -->
+    <string name="status_point_camera">Skannaa pelikortti</string>
+    <string name="status_processing">Käsitellään QR-koodia…</string>
+    <string name="status_scan_error">Skannausvirhe: %1$s</string>
+    <string name="status_hitster_card">Hitster-kortti #%1$s</string>
+    <string name="status_hitster_card_with_info">%1$s\n%2$s</string>
+    <string name="status_fetching_track">Haetaan korttia #%1$s…</string>
+    <string name="status_flip_to_play">Käännä puhelin toistaaksesi</string>
+    <string name="status_flip_to_play_with_info">%1$s - %2$s\nKäännä puhelin toistaaksesi</string>
+    <string name="flip_phone_title">KÄÄNNÄ PUHELIN</string>
+    <string name="flip_phone_subtitle">Sitten musiikki alkaa</string>
+    <string name="playback_mode_preview">Esikatselu</string>
+    <string name="playback_mode_deezer">Täysi Versio</string>
+    <string name="playback_mode_preview_only">Esikatselu (Deezer ei asennettu)</string>
+    <string name="next_card">SEURAAVA KORTTI</string>
+    <string name="unknown_track">Tuntematon Kappale</string>
+    <string name="unknown_artist">Tuntematon Artisti</string>
+    <string name="status_opening_track">Avataan kappaletta %1$s:ssa…</string>
+    <string name="status_opening_track_with_info">Avataan %1$s - %2$s…</string>
+    <string name="status_playing">Toistetaan %1$s:ssa</string>
+    <string name="status_playing_with_info">Toistetaan: %1$s - %2$s</string>
+    <string name="status_could_not_open">%1$s:n avaaminen epäonnistui</string>
+    <string name="status_card_not_found">Korttia #%1$s ei löydy tietokannasta</string>
+    <string name="status_spotify_detected">Spotify-kappale havaittu: %1$s\n(Käytä Deezer-linkkejä tässä sovelluksessa)</string>
+    <string name="status_youtube_detected">YouTube-video havaittu: %1$s\n(Käytä Deezer-linkkejä tässä sovelluksessa)</string>
+    <string name="status_url_detected">URL havaittu:\n%1$s</string>
+    <string name="status_unknown_qr">Tuntematon QR-koodi:\n%1$s</string>
+</resources>
