@@ -13,13 +13,10 @@ import platform.AVFoundation.AVPlayer
 import platform.AVFoundation.AVPlayerItem
 import platform.AVFoundation.AVPlayerItemDidPlayToEndTimeNotification
 import platform.AVFoundation.AVPlayerTimeControlStatusPlaying
-import platform.AVFoundation.currentItem
 import platform.AVFoundation.pause
 import platform.AVFoundation.play
 import platform.AVFoundation.replaceCurrentItemWithPlayerItem
-import platform.AVFoundation.seekToTime
 import platform.AVFoundation.timeControlStatus
-import platform.CoreMedia.CMTimeMake
 import platform.Foundation.NSError
 import platform.Foundation.NSLog
 import platform.Foundation.NSNotificationCenter

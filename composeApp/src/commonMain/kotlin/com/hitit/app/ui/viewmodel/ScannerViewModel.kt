@@ -1,6 +1,5 @@
 package com.hitit.app.ui.viewmodel
 
-import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hitit.app.model.QrCodeParser
@@ -182,7 +181,7 @@ class ScannerViewModel(
 
         orientationJob = viewModelScope.launch {
             // Small delay to let user see the FlipPhoneScreen before detecting
-            kotlinx.coroutines.delay(500)
+            delay(500)
 
             orientationService.observeOrientation().collect { orientation ->
                 // Trigger when phone is flipped face-down

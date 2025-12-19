@@ -29,7 +29,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -42,7 +41,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.hitit.app.AppBuildConfig
-import com.hitit.app.BuildKonfig
 import com.hitit.app.service.AudioPlayer
 import com.hitit.app.showDebugOptions
 import com.hitit.app.ui.components.PlatformBackHandler
@@ -53,17 +51,14 @@ import com.hitit.app.ui.theme.Primary
 import com.hitit.app.ui.theme.Secondary
 import com.hitit.app.ui.theme.SurfaceLight
 import com.hitit.app.ui.theme.TextSecondary
-import com.hitit.app.settings.DebugSettings
 import com.hitit.app.ui.viewmodel.ScannerViewModel
 import com.hitit.app.ui.viewmodel.StatusMessage
-import kotlinx.coroutines.delay
 import hitit.composeapp.generated.resources.Res
 import hitit.composeapp.generated.resources.close
 import hitit.composeapp.generated.resources.flash_off
 import hitit.composeapp.generated.resources.flash_on
 import hitit.composeapp.generated.resources.status_card_not_found
 import hitit.composeapp.generated.resources.status_could_not_open
-import hitit.composeapp.generated.resources.status_fetching_track
 import hitit.composeapp.generated.resources.status_flip_to_play
 import hitit.composeapp.generated.resources.status_flip_to_play_with_info
 import hitit.composeapp.generated.resources.status_hitster_card

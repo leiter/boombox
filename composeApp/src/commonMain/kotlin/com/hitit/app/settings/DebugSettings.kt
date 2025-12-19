@@ -66,7 +66,7 @@ object DebugSettings {
 
     /** Returns true if user prefers full version (Deezer), false for preview */
     fun getUseFullVersion(): Boolean {
-        return store?.getUseFullVersion() ?: false
+        return store?.getUseFullVersion() == true
     }
 
     fun setUseFullVersion(enabled: Boolean) {
@@ -74,7 +74,7 @@ object DebugSettings {
     }
 
     fun getFlashEnabled(): Boolean {
-        return store?.getFlashEnabled() ?: false
+        return store?.getFlashEnabled() == true
     }
 
     fun setFlashEnabled(enabled: Boolean) {

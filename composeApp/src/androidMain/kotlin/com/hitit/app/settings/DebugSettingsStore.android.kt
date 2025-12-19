@@ -2,7 +2,9 @@ package com.hitit.app.settings
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.core.content.edit
 
+@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 actual class DebugSettingsStore(context: Context) {
     private val prefs: SharedPreferences = context.getSharedPreferences(
         "debug_settings",
@@ -14,7 +16,7 @@ actual class DebugSettingsStore(context: Context) {
     }
 
     actual fun setAutoFlipEnabled(enabled: Boolean) {
-        prefs.edit().putBoolean(KEY_AUTO_FLIP_ENABLED, enabled).apply()
+        prefs.edit { putBoolean(KEY_AUTO_FLIP_ENABLED, enabled) }
     }
 
     actual fun getAutoFlipDelayMs(): Long {
@@ -22,7 +24,7 @@ actual class DebugSettingsStore(context: Context) {
     }
 
     actual fun setAutoFlipDelayMs(delayMs: Long) {
-        prefs.edit().putLong(KEY_AUTO_FLIP_DELAY, delayMs).apply()
+        prefs.edit { putLong(KEY_AUTO_FLIP_DELAY, delayMs) }
     }
 
     actual fun getUseDeezerDeeplink(): Boolean {
@@ -30,7 +32,7 @@ actual class DebugSettingsStore(context: Context) {
     }
 
     actual fun setUseDeezerDeeplink(enabled: Boolean) {
-        prefs.edit().putBoolean(KEY_USE_DEEZER_DEEPLINK, enabled).apply()
+        prefs.edit { putBoolean(KEY_USE_DEEZER_DEEPLINK, enabled) }
     }
 
     actual fun getUseFullVersion(): Boolean {
@@ -38,7 +40,7 @@ actual class DebugSettingsStore(context: Context) {
     }
 
     actual fun setUseFullVersion(enabled: Boolean) {
-        prefs.edit().putBoolean(KEY_USE_FULL_VERSION, enabled).apply()
+        prefs.edit { putBoolean(KEY_USE_FULL_VERSION, enabled) }
     }
 
     actual fun getFlashEnabled(): Boolean {
@@ -46,7 +48,7 @@ actual class DebugSettingsStore(context: Context) {
     }
 
     actual fun setFlashEnabled(enabled: Boolean) {
-        prefs.edit().putBoolean(KEY_FLASH_ENABLED, enabled).apply()
+        prefs.edit { putBoolean(KEY_FLASH_ENABLED, enabled) }
     }
 
     companion object {

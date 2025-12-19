@@ -17,6 +17,7 @@ enum class DeviceOrientation {
 /**
  * Platform-specific service for detecting device orientation using accelerometer
  */
+@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 expect class DeviceOrientationService {
     /**
      * Observe device orientation changes as a Flow

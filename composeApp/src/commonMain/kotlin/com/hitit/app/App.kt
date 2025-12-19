@@ -12,11 +12,11 @@ import com.hitit.app.ui.screens.DebugSettingsScreen
 import com.hitit.app.ui.screens.HomeScreen
 import com.hitit.app.ui.screens.ScannerScreen
 import com.hitit.app.ui.screens.SplashScreen
-import com.hitit.app.ui.theme.HitItTheme
+import com.hitit.app.ui.theme.DukeStarTheme
 
 @Composable
 fun App() {
-    HitItTheme {
+    DukeStarTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
@@ -76,4 +76,3 @@ sealed class Screen(val route: String) {
     data object DebugSettings : Screen("debug_settings")
 }
 
-expect fun getPlatformName(): String

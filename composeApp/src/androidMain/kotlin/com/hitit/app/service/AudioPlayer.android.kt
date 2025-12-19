@@ -8,6 +8,7 @@ import android.media.MediaPlayer
 import android.os.Build
 import android.util.Log
 
+@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 actual class AudioPlayer(context: Context) {
     private var mediaPlayer: MediaPlayer? = null
     private val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager

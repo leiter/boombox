@@ -3,14 +3,14 @@ package com.hitit.app.service
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Build
+import androidx.core.net.toUri
 
 actual class AppLauncher(private val context: Context) {
 
     actual fun openUrl(url: String): Boolean {
         return try {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url)).apply {
+            val intent = Intent(Intent.ACTION_VIEW, url.toUri()).apply {
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             }
             context.startActivity(intent)
@@ -31,7 +31,7 @@ actual class AppLauncher(private val context: Context) {
 
         // Fallback: check if any app can handle the intent
         return try {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(urlScheme))
+            val intent = Intent(Intent.ACTION_VIEW, urlScheme.toUri())
             val packageManager = context.packageManager
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {

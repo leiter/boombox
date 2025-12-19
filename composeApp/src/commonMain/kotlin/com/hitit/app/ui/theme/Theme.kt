@@ -90,7 +90,7 @@ private val LightColorScheme = darkColorScheme(
 )
 
 @Composable
-fun HitItTheme(
+fun DukeStarTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
