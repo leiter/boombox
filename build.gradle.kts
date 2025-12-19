@@ -6,4 +6,11 @@ plugins {
     alias(libs.plugins.composeCompiler) apply false
     alias(libs.plugins.kotlinSerialization) apply false
     alias(libs.plugins.buildkonfig) apply false
+    idea
+}
+
+idea {
+    module {
+        excludeDirs = excludeDirs + file("composeApp/build")
+    }
 }

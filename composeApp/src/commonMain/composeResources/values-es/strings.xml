@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- App name -->
+    <string name="app_name">DukeStar</string>
+    <string name="app_subtitle">Juego de Quiz Musical</string>
+
+    <!-- Home Screen -->
+    <string name="service_ready">%1$s Listo</string>
+    <string name="service_not_found">%1$s No Encontrado</string>
+    <string name="service_checking">Verificando %1$s…</string>
+    <string name="service_install_prompt">Por favor instala la app %1$s para reproducir música</string>
+
+    <string name="how_to_play">Cómo Jugar</string>
+    <string name="instruction_step_1">1. Escanea un código QR de carta Hitster</string>
+    <string name="instruction_step_2">2. Escucha la canción en %1$s</string>
+    <string name="instruction_step_3">3. Adivina el año, artista &amp; título</string>
+    <string name="instruction_step_4">4. ¡Verifica tu respuesta en la carta!</string>
+
+    <string name="scan_card">Escanear Carta</string>
+    <string name="start_game">Iniciar Juego</string>
+    <string name="opening">Abriendo…</string>
+    <string name="test_service">Probar %1$s (Get Lucky)</string>
+
+    <!-- Scanner Screen -->
+    <string name="close">Cerrar</string>
+    <string name="flash_on">Flash Encendido</string>
+    <string name="flash_off">Flash Apagado</string>
+    <string name="scan_again">Escanear de Nuevo</string>
+
+    <!-- Scanner Status Messages -->
+    <string name="status_point_camera">Escanear carta de juego</string>
+    <string name="status_processing">Procesando código QR…</string>
+    <string name="status_scan_error">Error de escaneo: %1$s</string>
+    <string name="status_hitster_card">Carta Hitster #%1$s</string>
+    <string name="status_hitster_card_with_info">%1$s\n%2$s</string>
+    <string name="status_fetching_track">Buscando carta #%1$s…</string>
+    <string name="status_flip_to_play">Voltea el teléfono para reproducir</string>
+    <string name="status_flip_to_play_with_info">%1$s - %2$s\nVoltea el teléfono para reproducir</string>
+    <string name="flip_phone_title">VOLTEA EL TELÉFONO</string>
+    <string name="flip_phone_subtitle">Entonces comenzará la música</string>
+    <string name="playback_mode_preview">Vista Previa</string>
+    <string name="playback_mode_deezer">Versión Completa</string>
+    <string name="playback_mode_preview_only">Vista Previa (Deezer no instalado)</string>
+    <string name="next_card">SIGUIENTE CARTA</string>
+    <string name="unknown_track">Canción Desconocida</string>
+    <string name="unknown_artist">Artista Desconocido</string>
+    <string name="status_opening_track">Abriendo canción en %1$s…</string>
+    <string name="status_opening_track_with_info">Abriendo %1$s - %2$s…</string>
+    <string name="status_playing">Reproduciendo en %1$s</string>
+    <string name="status_playing_with_info">Reproduciendo: %1$s - %2$s</string>
+    <string name="status_could_not_open">No se pudo abrir %1$s</string>
+    <string name="status_card_not_found">Carta #%1$s no encontrada en la base de datos</string>
+    <string name="status_spotify_detected">Canción de Spotify detectada: %1$s\n(Usa enlaces de Deezer para esta app)</string>
+    <string name="status_youtube_detected">Video de YouTube detectado: %1$s\n(Usa enlaces de Deezer para esta app)</string>
+    <string name="status_url_detected">URL detectada:\n%1$s</string>
+    <string name="status_unknown_qr">Código QR desconocido:\n%1$s</string>
+</resources>

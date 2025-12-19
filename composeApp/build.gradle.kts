@@ -13,6 +13,12 @@ plugins {
 }
 
 kotlin {
+    // Suppress expect/actual classes Beta warning
+    @OptIn(ExperimentalKotlinGradlePluginApi::class)
+    compilerOptions {
+        freeCompilerArgs.add("-Xexpect-actual-classes")
+    }
+
     androidTarget {
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
@@ -112,6 +118,15 @@ android {
 
     buildFeatures {
         compose = true
+    }
+
+    lint {
+        // Ignore specific paths
+        lintConfig = file("lint.xml")
+        // Or directly exclude generated directories
+        ignore += "GeneratedCode"
+        // Disable specific checks for generated sources
+        checkGeneratedSources = false
     }
 }
 

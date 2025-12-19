@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- App name -->
+    <string name="app_name">DukeStar</string>
+    <string name="app_subtitle">Musik Quiz Spel</string>
+
+    <!-- Home Screen -->
+    <string name="service_ready">%1$s Redo</string>
+    <string name="service_not_found">%1$s Hittades Inte</string>
+    <string name="service_checking">Kontrollerar %1$s…</string>
+    <string name="service_install_prompt">Installera %1$s-appen för att spela musik</string>
+
+    <string name="how_to_play">Hur Man Spelar</string>
+    <string name="instruction_step_1">1. Skanna en Hitster-korts QR-kod</string>
+    <string name="instruction_step_2">2. Lyssna på låten i %1$s</string>
+    <string name="instruction_step_3">3. Gissa år, artist &amp; titel</string>
+    <string name="instruction_step_4">4. Kontrollera svaret på kortet!</string>
+
+    <string name="scan_card">Skanna Kort</string>
+    <string name="start_game">Starta Spel</string>
+    <string name="opening">Öppnar…</string>
+    <string name="test_service">Testa %1$s (Get Lucky)</string>
+
+    <!-- Scanner Screen -->
+    <string name="close">Stäng</string>
+    <string name="flash_on">Blixt På</string>
+    <string name="flash_off">Blixt Av</string>
+    <string name="scan_again">Skanna Igen</string>
+
+    <!-- Scanner Status Messages -->
+    <string name="status_point_camera">Skanna spelkort</string>
+    <string name="status_processing">Bearbetar QR-kod…</string>
+    <string name="status_scan_error">Skanningsfel: %1$s</string>
+    <string name="status_hitster_card">Hitster-kort #%1$s</string>
+    <string name="status_hitster_card_with_info">%1$s\n%2$s</string>
+    <string name="status_fetching_track">Söker kort #%1$s…</string>
+    <string name="status_flip_to_play">Vänd telefonen för att spela</string>
+    <string name="status_flip_to_play_with_info">%1$s - %2$s\nVänd telefonen för att spela</string>
+    <string name="flip_phone_title">VÄND TELEFONEN</string>
+    <string name="flip_phone_subtitle">Då börjar musiken</string>
+    <string name="playback_mode_preview">Förhandsvisning</string>
+    <string name="playback_mode_deezer">Fullständig Version</string>
+    <string name="playback_mode_preview_only">Förhandsvisning (Deezer inte installerad)</string>
+    <string name="next_card">NÄSTA KORT</string>
+    <string name="unknown_track">Okänd Låt</string>
+    <string name="unknown_artist">Okänd Artist</string>
+    <string name="status_opening_track">Öppnar låt i %1$s…</string>
+    <string name="status_opening_track_with_info">Öppnar %1$s - %2$s…</string>
+    <string name="status_playing">Spelar i %1$s</string>
+    <string name="status_playing_with_info">Spelar: %1$s - %2$s</string>
+    <string name="status_could_not_open">Kunde inte öppna %1$s</string>
+    <string name="status_card_not_found">Kort #%1$s hittades inte i databasen</string>
+    <string name="status_spotify_detected">Spotify-låt upptäckt: %1$s\n(Använd Deezer-länkar för denna app)</string>
+    <string name="status_youtube_detected">YouTube-video upptäckt: %1$s\n(Använd Deezer-länkar för denna app)</string>
+    <string name="status_url_detected">URL upptäckt:\n%1$s</string>
+    <string name="status_unknown_qr">Okänd QR-kod:\n%1$s</string>
+</resources>

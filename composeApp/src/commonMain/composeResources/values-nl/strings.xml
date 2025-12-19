@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- App name -->
+    <string name="app_name">DukeStar</string>
+    <string name="app_subtitle">Muziek Quiz Spel</string>
+
+    <!-- Home Screen -->
+    <string name="service_ready">%1$s Gereed</string>
+    <string name="service_not_found">%1$s Niet Gevonden</string>
+    <string name="service_checking">%1$s controleren…</string>
+    <string name="service_install_prompt">Installeer de %1$s app om muziek af te spelen</string>
+
+    <string name="how_to_play">Hoe te Spelen</string>
+    <string name="instruction_step_1">1. Scan een Hitster kaart QR-code</string>
+    <string name="instruction_step_2">2. Luister naar het nummer in %1$s</string>
+    <string name="instruction_step_3">3. Raad het jaar, artiest &amp; titel</string>
+    <string name="instruction_step_4">4. Controleer je antwoord op de kaart!</string>
+
+    <string name="scan_card">Kaart Scannen</string>
+    <string name="start_game">Start Spel</string>
+    <string name="opening">Openen…</string>
+    <string name="test_service">Test %1$s (Get Lucky)</string>
+
+    <!-- Scanner Screen -->
+    <string name="close">Sluiten</string>
+    <string name="flash_on">Flits Aan</string>
+    <string name="flash_off">Flits Uit</string>
+    <string name="scan_again">Opnieuw Scannen</string>
+
+    <!-- Scanner Status Messages -->
+    <string name="status_point_camera">Scan spelkaart</string>
+    <string name="status_processing">QR-code verwerken…</string>
+    <string name="status_scan_error">Scanfout: %1$s</string>
+    <string name="status_hitster_card">Hitster kaart #%1$s</string>
+    <string name="status_hitster_card_with_info">%1$s\n%2$s</string>
+    <string name="status_fetching_track">Kaart #%1$s opzoeken…</string>
+    <string name="status_flip_to_play">Draai telefoon om om af te spelen</string>
+    <string name="status_flip_to_play_with_info">%1$s - %2$s\nDraai telefoon om om af te spelen</string>
+    <string name="flip_phone_title">DRAAI DE TELEFOON</string>
+    <string name="flip_phone_subtitle">Dan begint de muziek</string>
+    <string name="playback_mode_preview">Voorproefje</string>
+    <string name="playback_mode_deezer">Volledige Versie</string>
+    <string name="playback_mode_preview_only">Voorproefje (Deezer niet geïnstalleerd)</string>
+    <string name="next_card">VOLGENDE KAART</string>
+    <string name="unknown_track">Onbekend Nummer</string>
+    <string name="unknown_artist">Onbekende Artiest</string>
+    <string name="status_opening_track">Nummer openen in %1$s…</string>
+    <string name="status_opening_track_with_info">%1$s - %2$s openen…</string>
+    <string name="status_playing">Speelt in %1$s</string>
+    <string name="status_playing_with_info">Speelt: %1$s - %2$s</string>
+    <string name="status_could_not_open">Kon %1$s niet openen</string>
+    <string name="status_card_not_found">Kaart #%1$s niet gevonden in database</string>
+    <string name="status_spotify_detected">Spotify nummer gedetecteerd: %1$s\n(Gebruik Deezer links voor deze app)</string>
+    <string name="status_youtube_detected">YouTube video gedetecteerd: %1$s\n(Gebruik Deezer links voor deze app)</string>
+    <string name="status_url_detected">URL gedetecteerd:\n%1$s</string>
+    <string name="status_unknown_qr">Onbekende QR-code:\n%1$s</string>
+</resources>
