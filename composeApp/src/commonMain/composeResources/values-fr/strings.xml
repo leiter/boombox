@@ -54,4 +54,28 @@
     <string name="status_youtube_detected">Vidéo YouTube détectée: %1$s\n(Utilisez les liens Deezer pour cette application)</string>
     <string name="status_url_detected">URL détectée:\n%1$s</string>
     <string name="status_unknown_qr">Code QR inconnu:\n%1$s</string>
+
+    <!-- Score Tracking -->
+    <string name="correct">Correct</string>
+    <string name="incorrect">Incorrect</string>
+    <string name="skip">Passer</string>
+    <string name="score_display">Score: %1$d / %2$d</string>
+
+    <!-- Settings Screen -->
+    <string name="settings">Paramètres</string>
+    <string name="settings_playback">LECTURE</string>
+    <string name="settings_use_full_version">Utiliser la Version Complète</string>
+    <string name="settings_full_version_desc">Ouvre la chanson complète dans Deezer/Spotify</string>
+    <string name="settings_preview_desc">Lit un aperçu de 30 secondes dans l\'app</string>
+    <string name="settings_game">SESSION DE JEU</string>
+    <string name="settings_current_session">Session Actuelle</string>
+    <string name="settings_clear_session">Effacer la Session</string>
+    <string name="settings_no_session">Aucune session de jeu active</string>
+    <string name="settings_clear_session_title">Effacer la Session?</string>
+    <string name="settings_clear_session_message">Cela réinitialisera votre score actuel. Cette action ne peut pas être annulée.</string>
+    <string name="settings_clear">Effacer</string>
+    <string name="settings_cancel">Annuler</string>
+    <string name="settings_about">À PROPOS</string>
+    <string name="settings_version">Version</string>
+    <string name="settings_build">Build</string>
 </resources>

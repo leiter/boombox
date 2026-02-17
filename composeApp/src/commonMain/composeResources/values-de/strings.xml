@@ -54,4 +54,28 @@
     <string name="status_youtube_detected">YouTube-Video erkannt: %1$s\n(Verwende Deezer-Links für diese App)</string>
     <string name="status_url_detected">URL erkannt:\n%1$s</string>
     <string name="status_unknown_qr">Unbekannter QR-Code:\n%1$s</string>
+
+    <!-- Score Tracking -->
+    <string name="correct">Richtig</string>
+    <string name="incorrect">Falsch</string>
+    <string name="skip">Überspringen</string>
+    <string name="score_display">Punkte: %1$d / %2$d</string>
+
+    <!-- Settings Screen -->
+    <string name="settings">Einstellungen</string>
+    <string name="settings_playback">WIEDERGABE</string>
+    <string name="settings_use_full_version">Vollversion verwenden</string>
+    <string name="settings_full_version_desc">Öffnet vollständigen Song in Deezer/Spotify</string>
+    <string name="settings_preview_desc">Spielt 30-Sekunden-Vorschau in der App</string>
+    <string name="settings_game">SPIELSITZUNG</string>
+    <string name="settings_current_session">Aktuelle Sitzung</string>
+    <string name="settings_clear_session">Sitzung löschen</string>
+    <string name="settings_no_session">Keine aktive Spielsitzung</string>
+    <string name="settings_clear_session_title">Sitzung löschen?</string>
+    <string name="settings_clear_session_message">Dies setzt deinen aktuellen Spielstand zurück. Diese Aktion kann nicht rückgängig gemacht werden.</string>
+    <string name="settings_clear">Löschen</string>
+    <string name="settings_cancel">Abbrechen</string>
+    <string name="settings_about">ÜBER</string>
+    <string name="settings_version">Version</string>
+    <string name="settings_build">Build</string>
 </resources>

@@ -54,4 +54,28 @@
     <string name="status_youtube_detected">YouTube-video havaittu: %1$s\n(Käytä Deezer-linkkejä tässä sovelluksessa)</string>
     <string name="status_url_detected">URL havaittu:\n%1$s</string>
     <string name="status_unknown_qr">Tuntematon QR-koodi:\n%1$s</string>
+
+    <!-- Score Tracking -->
+    <string name="correct">Oikein</string>
+    <string name="incorrect">Väärin</string>
+    <string name="skip">Ohita</string>
+    <string name="score_display">Pisteet: %1$d / %2$d</string>
+
+    <!-- Settings Screen -->
+    <string name="settings">Asetukset</string>
+    <string name="settings_playback">TOISTO</string>
+    <string name="settings_use_full_version">Käytä Täydellistä Versiota</string>
+    <string name="settings_full_version_desc">Avaa koko kappaleen Deezerissä/Spotifyssa</string>
+    <string name="settings_preview_desc">Toistaa 30 sekunnin esikatselun sovelluksessa</string>
+    <string name="settings_game">PELISESSIO</string>
+    <string name="settings_current_session">Nykyinen Sessio</string>
+    <string name="settings_clear_session">Tyhjennä Sessio</string>
+    <string name="settings_no_session">Ei aktiivista pelisessiota</string>
+    <string name="settings_clear_session_title">Tyhjennä Sessio?</string>
+    <string name="settings_clear_session_message">Tämä nollaa nykyiset pelipisteet. Tätä toimintoa ei voi peruuttaa.</string>
+    <string name="settings_clear">Tyhjennä</string>
+    <string name="settings_cancel">Peruuta</string>
+    <string name="settings_about">TIETOJA</string>
+    <string name="settings_version">Versio</string>
+    <string name="settings_build">Koontiversio</string>
 </resources>

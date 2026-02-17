@@ -54,4 +54,28 @@
     <string name="status_youtube_detected">YouTube-video oppdaget: %1$s\n(Bruk Deezer-lenker for denne appen)</string>
     <string name="status_url_detected">URL oppdaget:\n%1$s</string>
     <string name="status_unknown_qr">Ukjent QR-kode:\n%1$s</string>
+
+    <!-- Score Tracking -->
+    <string name="correct">Riktig</string>
+    <string name="incorrect">Feil</string>
+    <string name="skip">Hopp Over</string>
+    <string name="score_display">Poeng: %1$d / %2$d</string>
+
+    <!-- Settings Screen -->
+    <string name="settings">Innstillinger</string>
+    <string name="settings_playback">AVSPILLING</string>
+    <string name="settings_use_full_version">Bruk Full Versjon</string>
+    <string name="settings_full_version_desc">Åpner full sang i Deezer/Spotify</string>
+    <string name="settings_preview_desc">Spiller 30-sekunders forhåndsvisning i appen</string>
+    <string name="settings_game">SPILLØKT</string>
+    <string name="settings_current_session">Gjeldende Økt</string>
+    <string name="settings_clear_session">Tøm Økt</string>
+    <string name="settings_no_session">Ingen aktiv spilløkt</string>
+    <string name="settings_clear_session_title">Tøm Økt?</string>
+    <string name="settings_clear_session_message">Dette vil tilbakestille gjeldende spillresultat. Denne handlingen kan ikke angres.</string>
+    <string name="settings_clear">Tøm</string>
+    <string name="settings_cancel">Avbryt</string>
+    <string name="settings_about">OM</string>
+    <string name="settings_version">Versjon</string>
+    <string name="settings_build">Bygg</string>
 </resources>

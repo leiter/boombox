@@ -54,4 +54,28 @@
     <string name="status_youtube_detected">YouTube video gedetecteerd: %1$s\n(Gebruik Deezer links voor deze app)</string>
     <string name="status_url_detected">URL gedetecteerd:\n%1$s</string>
     <string name="status_unknown_qr">Onbekende QR-code:\n%1$s</string>
+
+    <!-- Score Tracking -->
+    <string name="correct">Correct</string>
+    <string name="incorrect">Incorrect</string>
+    <string name="skip">Overslaan</string>
+    <string name="score_display">Score: %1$d / %2$d</string>
+
+    <!-- Settings Screen -->
+    <string name="settings">Instellingen</string>
+    <string name="settings_playback">AFSPELEN</string>
+    <string name="settings_use_full_version">Volledige Versie Gebruiken</string>
+    <string name="settings_full_version_desc">Opent volledig nummer in Deezer/Spotify</string>
+    <string name="settings_preview_desc">Speelt 30 seconden preview in de app</string>
+    <string name="settings_game">SPELSESSIE</string>
+    <string name="settings_current_session">Huidige Sessie</string>
+    <string name="settings_clear_session">Sessie Wissen</string>
+    <string name="settings_no_session">Geen actieve spelsessie</string>
+    <string name="settings_clear_session_title">Sessie Wissen?</string>
+    <string name="settings_clear_session_message">Dit zal je huidige spelscore resetten. Deze actie kan niet ongedaan worden gemaakt.</string>
+    <string name="settings_clear">Wissen</string>
+    <string name="settings_cancel">Annuleren</string>
+    <string name="settings_about">OVER</string>
+    <string name="settings_version">Versie</string>
+    <string name="settings_build">Build</string>
 </resources>

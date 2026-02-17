@@ -54,4 +54,28 @@
     <string name="status_youtube_detected">YouTube-video upptäckt: %1$s\n(Använd Deezer-länkar för denna app)</string>
     <string name="status_url_detected">URL upptäckt:\n%1$s</string>
     <string name="status_unknown_qr">Okänd QR-kod:\n%1$s</string>
+
+    <!-- Score Tracking -->
+    <string name="correct">Rätt</string>
+    <string name="incorrect">Fel</string>
+    <string name="skip">Hoppa Över</string>
+    <string name="score_display">Poäng: %1$d / %2$d</string>
+
+    <!-- Settings Screen -->
+    <string name="settings">Inställningar</string>
+    <string name="settings_playback">UPPSPELNING</string>
+    <string name="settings_use_full_version">Använd Fullständig Version</string>
+    <string name="settings_full_version_desc">Öppnar hela låten i Deezer/Spotify</string>
+    <string name="settings_preview_desc">Spelar 30-sekunders förhandsvisning i appen</string>
+    <string name="settings_game">SPELSESSION</string>
+    <string name="settings_current_session">Aktuell Session</string>
+    <string name="settings_clear_session">Rensa Session</string>
+    <string name="settings_no_session">Ingen aktiv spelsession</string>
+    <string name="settings_clear_session_title">Rensa Session?</string>
+    <string name="settings_clear_session_message">Detta kommer att återställa ditt aktuella spelresultat. Denna åtgärd kan inte ångras.</string>
+    <string name="settings_clear">Rensa</string>
+    <string name="settings_cancel">Avbryt</string>
+    <string name="settings_about">OM</string>
+    <string name="settings_version">Version</string>
+    <string name="settings_build">Bygge</string>
 </resources>

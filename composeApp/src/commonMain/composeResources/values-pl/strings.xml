@@ -54,4 +54,28 @@
     <string name="status_youtube_detected">Wykryto wideo YouTube: %1$s\n(Użyj linków Deezer dla tej aplikacji)</string>
     <string name="status_url_detected">Wykryto URL:\n%1$s</string>
     <string name="status_unknown_qr">Nieznany kod QR:\n%1$s</string>
+
+    <!-- Score Tracking -->
+    <string name="correct">Poprawnie</string>
+    <string name="incorrect">Niepoprawnie</string>
+    <string name="skip">Pomiń</string>
+    <string name="score_display">Wynik: %1$d / %2$d</string>
+
+    <!-- Settings Screen -->
+    <string name="settings">Ustawienia</string>
+    <string name="settings_playback">ODTWARZANIE</string>
+    <string name="settings_use_full_version">Użyj Pełnej Wersji</string>
+    <string name="settings_full_version_desc">Otwiera pełny utwór w Deezer/Spotify</string>
+    <string name="settings_preview_desc">Odtwarza 30-sekundowy podgląd w aplikacji</string>
+    <string name="settings_game">SESJA GRY</string>
+    <string name="settings_current_session">Bieżąca Sesja</string>
+    <string name="settings_clear_session">Wyczyść Sesję</string>
+    <string name="settings_no_session">Brak aktywnej sesji gry</string>
+    <string name="settings_clear_session_title">Wyczyścić Sesję?</string>
+    <string name="settings_clear_session_message">Spowoduje to zresetowanie bieżącego wyniku gry. Tej czynności nie można cofnąć.</string>
+    <string name="settings_clear">Wyczyść</string>
+    <string name="settings_cancel">Anuluj</string>
+    <string name="settings_about">O APLIKACJI</string>
+    <string name="settings_version">Wersja</string>
+    <string name="settings_build">Kompilacja</string>
 </resources>
