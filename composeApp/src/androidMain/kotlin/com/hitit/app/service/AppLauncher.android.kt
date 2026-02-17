@@ -33,6 +33,11 @@ actual class AppLauncher(private val context: Context) {
                 return true
             }
         }
+        if (urlScheme.startsWith("vnd.youtube") || urlScheme.startsWith("youtube")) {
+            if (isPackageInstalled(YOUTUBE_PACKAGE)) {
+                return true
+            }
+        }
 
         // Fallback: check if any app can handle the intent
         return try {
@@ -79,5 +84,6 @@ actual class AppLauncher(private val context: Context) {
     companion object {
         private const val DEEZER_PACKAGE = "deezer.android.app"
         private const val SPOTIFY_PACKAGE = "com.spotify.music"
+        private const val YOUTUBE_PACKAGE = "com.google.android.youtube"
     }
 }

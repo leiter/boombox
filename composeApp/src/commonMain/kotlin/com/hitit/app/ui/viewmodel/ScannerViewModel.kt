@@ -80,6 +80,7 @@ data class ScannerUiState(
 class ScannerViewModel(
     private val deezerMusicService: MusicService,
     private val spotifyMusicService: MusicService,
+    private val youtubeMusicService: MusicService,
     private val cardRepository: HitsterCardRepository,
     private val orientationService: DeviceOrientationService,
     private val audioPlayer: AudioPlayer,
@@ -194,7 +195,7 @@ class ScannerViewModel(
         return when (pendingServiceType) {
             MusicServiceType.SPOTIFY -> spotifyMusicService
             MusicServiceType.DEEZER -> deezerMusicService
-            MusicServiceType.YOUTUBE -> deezerMusicService // Fallback
+            MusicServiceType.YOUTUBE -> youtubeMusicService
         }
     }
 
@@ -278,6 +279,19 @@ class ScannerViewModel(
                 pendingTrackId?.let { trackId ->
                     updateStatus(StatusMessage.NowPlaying(null, null, null, null))
                     spotifyMusicService.playTrackById(trackId)
+                    _uiState.value = _uiState.value.copy(
+                        isUsingExternalPlayback = true,
+                        isAudioPlaying = true
+                    )
+                }
+                return@launch
+            }
+
+            // Handle YouTube videos - no preview available, open directly in app
+            if (pendingServiceType == MusicServiceType.YOUTUBE) {
+                pendingTrackId?.let { videoId ->
+                    updateStatus(StatusMessage.NowPlaying(null, null, null, null))
+                    youtubeMusicService.playTrackById(videoId)
                     _uiState.value = _uiState.value.copy(
                         isUsingExternalPlayback = true,
                         isAudioPlaying = true
@@ -418,7 +432,14 @@ class ScannerViewModel(
             }
 
             is QrCodeResult.YouTubeVideo -> {
-                updateStatus(StatusMessage.YouTubeDetected(result.videoId))
+                // Store pending video and wait for flip (opens YouTube directly, no preview)
+                pendingTrackId = result.videoId
+                pendingServiceType = MusicServiceType.YOUTUBE
+                updateStatus(StatusMessage.FlipToPlay(null, null))
+                _uiState.value = _uiState.value.copy(isWaitingForFlip = true, isProcessing = false)
+                startOrientationMonitoring()
+                startAutoFlipTimer()
+                return
             }
 
             is QrCodeResult.GenericUrl -> {

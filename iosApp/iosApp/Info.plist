@@ -35,6 +35,8 @@
 	<array>
 		<string>deezer</string>
 		<string>spotify</string>
+		<string>youtube</string>
+		<string>vnd.youtube</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
