@@ -46,7 +46,8 @@ composeApp/src/
 │   │   ├── DeezerMusicService.kt
 │   │   ├── GameSessionStore.kt   # expect/actual - session persistence
 │   │   ├── MusicService.kt       # interface
-│   │   └── SpotifyMusicService.kt
+│   │   ├── SpotifyMusicService.kt
+│   │   └── YouTubeMusicService.kt
 │   ├── settings/
 │   │   └── DebugSettings.kt
 │   └── ui/
@@ -100,10 +101,11 @@ composeApp/src/
 ### Services
 - `DeezerMusicService` - Deezer integration with deep links and web fallback
 - `SpotifyMusicService` - Spotify integration with deep links and web fallback
+- `YouTubeMusicService` - YouTube integration with deep links and web fallback
 - `DeezerApiService` - HTTP client for track info & preview URLs
 - `AudioPlayer` - Platform-specific audio playback (MediaPlayer/AVPlayer)
 - `DeviceOrientationService` - Accelerometer for flip detection
-- `AppLauncher` - Open Deezer/Spotify apps via Intent/URL scheme
+- `AppLauncher` - Open Deezer/Spotify/YouTube apps via Intent/URL scheme
 - `GameSessionStore` - Persist game session scores (SharedPreferences/UserDefaults)
 
 ### Data
@@ -138,6 +140,7 @@ Neon Cyber dark theme:
 - **QR Parsing**: Hitster cards, Deezer, Spotify, YouTube, generic URLs
 - **Deezer Integration**: API client, preview playback, deep link to app
 - **Spotify Integration**: Deep link to Spotify app with web URL fallback
+- **YouTube Integration**: Deep link to YouTube app with web URL fallback
 - **Audio Playback**: 30-second previews with play/pause/stop controls
 - **Flip Detection**: Accelerometer-based "flip phone face-down" trigger
 - **Now Playing UI**: Album art, track info, year badge, playback controls
@@ -148,13 +151,12 @@ Neon Cyber dark theme:
 - **Debug Tools**: Test buttons, auto-flip timer, playback mode selection
 
 ### ⚠️ Limited / Partial
-- **YouTube**: URL detection only, no playback integration
 - **Spotify**: Opens app directly (no 30-second preview - requires OAuth)
+- **YouTube**: Opens app directly (no in-app preview)
 - **Card Repository**: Mock implementation (308 hardcoded cards)
 
 ### ❌ Not Implemented
 - Backend server API for card database
-- YouTube playback support
 - User accounts/authentication
 - Multiplayer features
 - Offline mode with caching
