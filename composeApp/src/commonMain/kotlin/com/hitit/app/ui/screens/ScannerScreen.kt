@@ -41,6 +41,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.hitit.app.AppBuildConfig
+import com.hitit.app.model.CardResult
 import com.hitit.app.service.AudioPlayer
 import com.hitit.app.showDebugOptions
 import com.hitit.app.ui.components.PlatformBackHandler
@@ -137,6 +138,7 @@ fun ScannerScreen(
     audioPlayer: AudioPlayer = koinInject()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val currentSession by viewModel.currentSession.collectAsStateWithLifecycle()
     val lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current
 
     // Flash state - pass directly to QrScanner, persistence handles restoration
@@ -339,7 +341,21 @@ fun ScannerScreen(
                 year = year as Int?,
                 albumCoverUrl = albumCoverUrl as String?,
                 isPlaying = uiState.isAudioPlaying,
+                score = currentSession.score,
+                total = currentSession.total,
                 onPlayPauseClick = { viewModel.togglePlayPause() },
+                onCorrect = {
+                    viewModel.recordCardResult(CardResult.CORRECT)
+                    viewModel.resetScanner()
+                },
+                onIncorrect = {
+                    viewModel.recordCardResult(CardResult.INCORRECT)
+                    viewModel.resetScanner()
+                },
+                onSkip = {
+                    viewModel.recordCardResult(CardResult.SKIPPED)
+                    viewModel.resetScanner()
+                },
                 onNextCard = { viewModel.resetScanner() },
                 onClose = { viewModel.resetScanner() }
             )

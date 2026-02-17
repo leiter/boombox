@@ -72,6 +72,10 @@ kotlin {
             // Kotlinx
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlinx.serialization.json)
+            implementation(libs.kotlinx.datetime)
+
+            // UUID
+            implementation(libs.uuid)
 
             // Coil - Image Loading
             implementation(libs.coil.compose)

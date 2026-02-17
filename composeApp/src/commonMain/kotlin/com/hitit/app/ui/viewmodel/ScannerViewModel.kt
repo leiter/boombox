@@ -2,6 +2,10 @@ package com.hitit.app.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.hitit.app.model.CardResult
+import com.hitit.app.model.GameSession
+import com.hitit.app.model.MusicServiceType
+import com.hitit.app.model.PlayedCard
 import com.hitit.app.model.QrCodeParser
 import com.hitit.app.model.QrCodeResult
 import com.hitit.app.model.Track
@@ -10,6 +14,7 @@ import com.hitit.app.repository.HitsterCardRepository
 import com.hitit.app.service.AudioPlayer
 import com.hitit.app.service.DeviceOrientation
 import com.hitit.app.service.DeviceOrientationService
+import com.hitit.app.service.GameSessionStore
 import com.hitit.app.service.MusicService
 import com.hitit.app.settings.DebugSettings
 import com.hitit.app.ui.screens.PlaybackMode
@@ -73,18 +78,25 @@ data class ScannerUiState(
 )
 
 class ScannerViewModel(
-    private val musicService: MusicService,
+    private val deezerMusicService: MusicService,
+    private val spotifyMusicService: MusicService,
     private val cardRepository: HitsterCardRepository,
     private val orientationService: DeviceOrientationService,
     private val audioPlayer: AudioPlayer,
-    private val deezerApi: DeezerApiService
+    private val deezerApi: DeezerApiService,
+    private val gameSessionStore: GameSessionStore
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(ScannerUiState())
     val uiState: StateFlow<ScannerUiState> = _uiState.asStateFlow()
 
+    private val _currentSession = MutableStateFlow(GameSession())
+    val currentSession: StateFlow<GameSession> = _currentSession.asStateFlow()
+
     private var pendingTrack: Track? = null
     private var pendingTrackId: String? = null
+    private var pendingCardId: String? = null
+    private var pendingServiceType: MusicServiceType = MusicServiceType.DEEZER
     private var orientationJob: Job? = null
     private var autoFlipJob: Job? = null
 
@@ -101,9 +113,39 @@ class ScannerViewModel(
 
         // Check if Deezer is installed
         viewModelScope.launch {
-            val isDeezerInstalled = musicService.isAppInstalled()
+            val isDeezerInstalled = deezerMusicService.isAppInstalled()
             _uiState.value = _uiState.value.copy(isDeezerInstalled = isDeezerInstalled)
         }
+
+        // Load existing game session if any
+        gameSessionStore.loadCurrentSession()?.let { session ->
+            _currentSession.value = session
+        }
+    }
+
+    fun recordCardResult(result: CardResult) {
+        val track = pendingTrack
+        val trackId = pendingTrackId ?: track?.id ?: return
+        val cardId = pendingCardId ?: trackId
+
+        val playedCard = PlayedCard(
+            cardId = cardId,
+            trackId = trackId,
+            title = track?.title,
+            artist = track?.artist,
+            year = track?.year,
+            result = result
+        )
+
+        val updatedSession = _currentSession.value.addCard(playedCard)
+        _currentSession.value = updatedSession
+        gameSessionStore.saveSession(updatedSession)
+    }
+
+    fun startNewSession() {
+        val newSession = GameSession()
+        _currentSession.value = newSession
+        gameSessionStore.saveSession(newSession)
     }
 
     fun setPlaybackMode(mode: PlaybackMode) {
@@ -120,23 +162,22 @@ class ScannerViewModel(
 
     fun togglePlayPause() {
         if (_uiState.value.isUsingExternalPlayback) {
-            // Deezer mode
+            // External app mode (Deezer/Spotify)
             if (_uiState.value.isAudioPlaying) {
-                // Try to interrupt Deezer by requesting audio focus/session
-                // This will cause Deezer to pause on most devices
+                // Try to interrupt external app by requesting audio focus/session
                 audioPlayer.stopExternalPlayback()
                 _uiState.value = _uiState.value.copy(isAudioPlaying = false)
             } else {
-                // Resume: re-open Deezer with the track
+                // Resume: re-open external app with the track
                 val trackId = pendingTrack?.id ?: pendingTrackId
                 if (trackId != null) {
                     viewModelScope.launch {
-                        musicService.playTrackById(trackId)
+                        val service = getMusicServiceForCurrentTrack()
+                        service.playTrackById(trackId)
                     }
                     _uiState.value = _uiState.value.copy(isAudioPlaying = true)
                 }
             }
-            // Note: We can't pause Deezer from here, audio focus handles that
         } else {
             // Preview mode - control in-app audio
             if (_uiState.value.isAudioPlaying) {
@@ -146,6 +187,14 @@ class ScannerViewModel(
                 audioPlayer.resume()
                 _uiState.value = _uiState.value.copy(isAudioPlaying = true)
             }
+        }
+    }
+
+    private fun getMusicServiceForCurrentTrack(): MusicService {
+        return when (pendingServiceType) {
+            MusicServiceType.SPOTIFY -> spotifyMusicService
+            MusicServiceType.DEEZER -> deezerMusicService
+            MusicServiceType.YOUTUBE -> deezerMusicService // Fallback
         }
     }
 
@@ -162,6 +211,8 @@ class ScannerViewModel(
         audioPlayer.stop()
         pendingTrack = null
         pendingTrackId = null
+        pendingCardId = null
+        pendingServiceType = MusicServiceType.DEEZER
         _uiState.value = ScannerUiState(
             flashlightOn = _uiState.value.flashlightOn,
             isDeezerInstalled = _uiState.value.isDeezerInstalled,
@@ -222,6 +273,19 @@ class ScannerViewModel(
 
         // Launch a new coroutine for the async work
         viewModelScope.launch {
+            // Handle Spotify tracks - no preview available, open directly in app
+            if (pendingServiceType == MusicServiceType.SPOTIFY) {
+                pendingTrackId?.let { trackId ->
+                    updateStatus(StatusMessage.NowPlaying(null, null, null, null))
+                    spotifyMusicService.playTrackById(trackId)
+                    _uiState.value = _uiState.value.copy(
+                        isUsingExternalPlayback = true,
+                        isAudioPlaying = true
+                    )
+                }
+                return@launch
+            }
+
             // Show NowPlaying screen with track info and play preview audio in-app
             pendingTrack?.let { track ->
                 // Fetch full track info from Deezer API to get album cover and preview
@@ -242,7 +306,7 @@ class ScannerViewModel(
                     _uiState.value.selectedPlaybackMode == PlaybackMode.DEEZER && _uiState.value.isDeezerInstalled
                 if (useDeeplink) {
                     // Open Deezer to play full song
-                    musicService.playTrackById(track.id)
+                    deezerMusicService.playTrackById(track.id)
                     _uiState.value =
                         _uiState.value.copy(isUsingExternalPlayback = true, isAudioPlaying = true)
                 } else {
@@ -275,7 +339,7 @@ class ScannerViewModel(
                         _uiState.value.selectedPlaybackMode == PlaybackMode.DEEZER && _uiState.value.isDeezerInstalled
                     if (useDeeplink) {
                         // Open Deezer to play full song
-                        musicService.playTrackById(trackId)
+                        deezerMusicService.playTrackById(trackId)
                         _uiState.value = _uiState.value.copy(
                             isUsingExternalPlayback = true,
                             isAudioPlaying = true
@@ -334,6 +398,7 @@ class ScannerViewModel(
             is QrCodeResult.DeezerTrack -> {
                 // Store pending track and wait for flip
                 pendingTrackId = result.trackId
+                pendingServiceType = MusicServiceType.DEEZER
                 updateStatus(StatusMessage.FlipToPlay(null, null))
                 _uiState.value = _uiState.value.copy(isWaitingForFlip = true, isProcessing = false)
                 startOrientationMonitoring()
@@ -342,7 +407,14 @@ class ScannerViewModel(
             }
 
             is QrCodeResult.SpotifyTrack -> {
-                updateStatus(StatusMessage.SpotifyDetected(result.trackId))
+                // Store pending track and wait for flip (opens Spotify directly, no preview)
+                pendingTrackId = result.trackId
+                pendingServiceType = MusicServiceType.SPOTIFY
+                updateStatus(StatusMessage.FlipToPlay(null, null))
+                _uiState.value = _uiState.value.copy(isWaitingForFlip = true, isProcessing = false)
+                startOrientationMonitoring()
+                startAutoFlipTimer()
+                return
             }
 
             is QrCodeResult.YouTubeVideo -> {
@@ -378,6 +450,7 @@ class ScannerViewModel(
         if (track != null) {
             // Store pending track and wait for flip
             pendingTrack = track
+            pendingCardId = cardId
             updateStatus(StatusMessage.FlipToPlay(track.title, track.artist))
             _uiState.value = _uiState.value.copy(isWaitingForFlip = true, isProcessing = false)
             startOrientationMonitoring()

@@ -22,9 +22,14 @@ actual class AppLauncher(private val context: Context) {
     }
 
     actual fun canOpenUrl(urlScheme: String): Boolean {
-        // First try to check if Deezer package is installed directly
+        // First try to check if app package is installed directly
         if (urlScheme.startsWith("deezer")) {
             if (isPackageInstalled(DEEZER_PACKAGE)) {
+                return true
+            }
+        }
+        if (urlScheme.startsWith("spotify")) {
+            if (isPackageInstalled(SPOTIFY_PACKAGE)) {
                 return true
             }
         }
@@ -73,5 +78,6 @@ actual class AppLauncher(private val context: Context) {
 
     companion object {
         private const val DEEZER_PACKAGE = "deezer.android.app"
+        private const val SPOTIFY_PACKAGE = "com.spotify.music"
     }
 }

@@ -54,4 +54,10 @@
     <string name="status_youtube_detected">YouTube video detected: %1$s\n(Use Deezer links for this app)</string>
     <string name="status_url_detected">URL detected:\n%1$s</string>
     <string name="status_unknown_qr">Unknown QR code:\n%1$s</string>
+
+    <!-- Score Tracking -->
+    <string name="correct">Correct</string>
+    <string name="incorrect">Incorrect</string>
+    <string name="skip">Skip</string>
+    <string name="score_display">Score: %1$d / %2$d</string>
 </resources>

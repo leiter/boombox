@@ -41,7 +41,12 @@ fun NowPlayingScreen(
     year: Int?,
     albumCoverUrl: String? = null,
     isPlaying: Boolean = true,
+    score: Int = 0,
+    total: Int = 0,
     onPlayPauseClick: () -> Unit = {},
+    onCorrect: () -> Unit = {},
+    onIncorrect: () -> Unit = {},
+    onSkip: () -> Unit = {},
     onNextCard: () -> Unit,
     onClose: () -> Unit
 ) {
@@ -55,18 +60,43 @@ fun NowPlayingScreen(
             )
             .windowInsetsPadding(WindowInsets.systemBars)
     ) {
-        // Close button
-        IconButton(
-            onClick = onClose,
+        // Top bar with score and close button
+        Row(
             modifier = Modifier
-                .align(Alignment.TopEnd)
+                .fillMaxWidth()
                 .padding(16.dp)
+                .align(Alignment.TopCenter),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Icon(
-                imageVector = Icons.Default.Close,
-                contentDescription = stringResource(Res.string.close),
-                tint = Color.White
-            )
+            // Score badge
+            if (total > 0) {
+                Box(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(16.dp))
+                        .background(Primary.copy(alpha = 0.3f))
+                        .border(1.dp, Primary, RoundedCornerShape(16.dp))
+                        .padding(horizontal = 16.dp, vertical = 8.dp)
+                ) {
+                    Text(
+                        text = stringResource(Res.string.score_display, score, total),
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
+                    )
+                }
+            } else {
+                Spacer(modifier = Modifier.width(1.dp))
+            }
+
+            // Close button
+            IconButton(onClick = onClose) {
+                Icon(
+                    imageVector = Icons.Default.Close,
+                    contentDescription = stringResource(Res.string.close),
+                    tint = Color.White
+                )
+            }
         }
 
         Column(
@@ -190,7 +220,69 @@ fun NowPlayingScreen(
                 }
             }
 
-            Spacer(modifier = Modifier.height(48.dp))
+            Spacer(modifier = Modifier.height(32.dp))
+
+            // Result buttons - Correct / Incorrect / Skip
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                // Correct button - green
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(48.dp)
+                        .clip(RoundedCornerShape(24.dp))
+                        .background(Color(0xFF4CAF50))
+                        .clickable { onCorrect() },
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = stringResource(Res.string.correct),
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White,
+                        fontSize = 14.sp
+                    )
+                }
+
+                // Incorrect button - red
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(48.dp)
+                        .clip(RoundedCornerShape(24.dp))
+                        .background(Color(0xFFF44336))
+                        .clickable { onIncorrect() },
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = stringResource(Res.string.incorrect),
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White,
+                        fontSize = 14.sp
+                    )
+                }
+
+                // Skip button - gray
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(48.dp)
+                        .clip(RoundedCornerShape(24.dp))
+                        .background(Color(0xFF757575))
+                        .clickable { onSkip() },
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = stringResource(Res.string.skip),
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White,
+                        fontSize = 14.sp
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(24.dp))
 
             // Next Card button - gradient pill
             Box(
