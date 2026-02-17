@@ -5,8 +5,9 @@ HitIt is a Kotlin Multiplatform (KMP) companion app for the Hitster card game. I
 - Scanning QR codes from Hitster game cards
 - Parsing track information (supports Deezer, Spotify, YouTube URLs)
 - Playing 30-second track previews via Deezer API
-- Opening full tracks in Deezer app for gameplay
+- Opening full tracks in Deezer or Spotify apps for gameplay
 - Using "flip phone face-down" gesture to trigger playback
+- Tracking game scores with Correct/Incorrect/Skip buttons
 
 ## Tech Stack
 - **Kotlin Multiplatform** - Android & iOS from shared codebase
@@ -16,6 +17,8 @@ HitIt is a Kotlin Multiplatform (KMP) companion app for the Hitster card game. I
 - **QRKit** - QR code scanning
 - **Coroutines/Flow** - Async operations and state management
 - **Coil** - Image loading for album artwork
+- **kotlinx-datetime** - Cross-platform date/time for session tracking
+- **uuid** - Cross-platform UUID generation for game sessions
 
 ## Project Structure
 ```
@@ -26,6 +29,7 @@ composeApp/src/
 │   │   ├── AppModule.kt
 │   │   └── PlatformModule.kt     # expect/actual
 │   ├── model/                    # Data models
+│   │   ├── GameSession.kt        # Score tracking (PlayedCard, CardResult)
 │   │   ├── HitsterCard.kt
 │   │   ├── QrCodeResult.kt       # Sealed class for QR parsing
 │   │   └── Track.kt
@@ -40,7 +44,9 @@ composeApp/src/
 │   │   ├── AudioPlayer.kt        # expect/actual - audio playback
 │   │   ├── DeviceOrientationService.kt  # expect/actual - accelerometer
 │   │   ├── DeezerMusicService.kt
-│   │   └── MusicService.kt       # interface
+│   │   ├── GameSessionStore.kt   # expect/actual - session persistence
+│   │   ├── MusicService.kt       # interface
+│   │   └── SpotifyMusicService.kt
 │   ├── settings/
 │   │   └── DebugSettings.kt
 │   └── ui/
@@ -88,20 +94,24 @@ composeApp/src/
 - `HomeScreen` - Main entry, Deezer check, instructions, scan button
 - `ScannerScreen` - QR camera scanner with flashlight toggle & overlay
 - `FlipPhoneScreen` - "Flip phone to play" gesture detection screen
-- `NowPlayingScreen` - Track playback with album art, controls, metadata
+- `NowPlayingScreen` - Track playback with album art, controls, score buttons
 - `DebugSettingsScreen` - Developer testing options
 
 ### Services
-- `DeezerMusicService` - Music service integration with deep links
+- `DeezerMusicService` - Deezer integration with deep links and web fallback
+- `SpotifyMusicService` - Spotify integration with deep links and web fallback
 - `DeezerApiService` - HTTP client for track info & preview URLs
 - `AudioPlayer` - Platform-specific audio playback (MediaPlayer/AVPlayer)
 - `DeviceOrientationService` - Accelerometer for flip detection
-- `AppLauncher` - Open Deezer app via Intent/URL scheme
+- `AppLauncher` - Open Deezer/Spotify apps via Intent/URL scheme
+- `GameSessionStore` - Persist game session scores (SharedPreferences/UserDefaults)
 
 ### Data
 - `HitsterCard` - Game card with Deezer track mapping
-- `Track` - Music track metadata (title, artist, year, album art)
+- `Track` - Music track metadata (title, artist, year, album art, serviceType)
 - `QrCodeResult` - Sealed class parsing Hitster, Deezer, Spotify, YouTube URLs
+- `GameSession` - Current game session with score tracking
+- `PlayedCard` - Individual card result (correct/incorrect/skipped)
 - `MockHitsterCardRepository` - 308 Hitster cards with Deezer IDs
 
 ## Build Commands
@@ -127,24 +137,25 @@ Neon Cyber dark theme:
 - **QR Scanning**: Camera-based scanning with custom overlay and flashlight
 - **QR Parsing**: Hitster cards, Deezer, Spotify, YouTube, generic URLs
 - **Deezer Integration**: API client, preview playback, deep link to app
+- **Spotify Integration**: Deep link to Spotify app with web URL fallback
 - **Audio Playback**: 30-second previews with play/pause/stop controls
 - **Flip Detection**: Accelerometer-based "flip phone face-down" trigger
 - **Now Playing UI**: Album art, track info, year badge, playback controls
+- **Score Tracking**: Correct/Incorrect/Skip buttons, persistent session scores
 - **Multi-language**: 9 languages (EN, DE, ES, FI, FR, NB, NL, PL, SV)
 - **Platform Implementations**: Full Android & iOS support
 - **Dependency Injection**: Koin with platform-specific modules
 - **Debug Tools**: Test buttons, auto-flip timer, playback mode selection
 
 ### ⚠️ Limited / Partial
-- **Spotify/YouTube**: URL detection only, no playback integration
+- **YouTube**: URL detection only, no playback integration
+- **Spotify**: Opens app directly (no 30-second preview - requires OAuth)
 - **Card Repository**: Mock implementation (308 hardcoded cards)
 
 ### ❌ Not Implemented
 - Backend server API for card database
-- Spotify playback support
 - YouTube playback support
 - User accounts/authentication
-- Game score tracking
 - Multiplayer features
 - Offline mode with caching
 - Push notifications
@@ -177,12 +188,13 @@ that early.
 - AppLauncher (Intent vs URL scheme)
 - DeviceOrientationService (SensorManager vs CoreMotion)
 - DebugSettingsStore (SharedPreferences vs UserDefaults)
+- GameSessionStore (SharedPreferences vs UserDefaults)
 - BackHandler (Android vs iOS navigation)
 
 ---
 
 ## Statistics
-- **Kotlin Source Files**: 47
+- **Kotlin Source Files**: 52
 - **Hitster Cards**: 308 with Deezer mappings
 - **Languages**: 9
 - **Screens**: 6
