@@ -8,7 +8,8 @@ import kotlinx.coroutines.flow.asStateFlow
 data class DebugSettingsState(
     val autoFlipEnabled: Boolean = true,
     val autoFlipDelayMs: Long = 3000L,
-    val useDeezerDeeplink: Boolean = true
+    val useDeezerDeeplink: Boolean = true,
+    val useFullVersion: Boolean = false
 )
 
 expect class DebugSettingsStore {
@@ -36,7 +37,8 @@ object DebugSettings {
         _state.value = DebugSettingsState(
             autoFlipEnabled = store.getAutoFlipEnabled(),
             autoFlipDelayMs = store.getAutoFlipDelayMs(),
-            useDeezerDeeplink = store.getUseDeezerDeeplink()
+            useDeezerDeeplink = store.getUseDeezerDeeplink(),
+            useFullVersion = store.getUseFullVersion()
         )
     }
 
@@ -66,11 +68,12 @@ object DebugSettings {
 
     /** Returns true if user prefers full version (Deezer), false for preview */
     fun getUseFullVersion(): Boolean {
-        return store?.getUseFullVersion() == true
+        return _state.value.useFullVersion
     }
 
     fun setUseFullVersion(enabled: Boolean) {
         store?.setUseFullVersion(enabled)
+        _state.value = _state.value.copy(useFullVersion = enabled)
     }
 
     fun getFlashEnabled(): Boolean {

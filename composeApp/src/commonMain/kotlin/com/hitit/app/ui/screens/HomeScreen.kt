@@ -65,6 +65,7 @@ import hitit.composeapp.generated.resources.instruction_step_2
 import hitit.composeapp.generated.resources.instruction_step_3
 import hitit.composeapp.generated.resources.instruction_step_4
 import hitit.composeapp.generated.resources.opening
+import hitit.composeapp.generated.resources.settings
 import hitit.composeapp.generated.resources.start_game
 import hitit.composeapp.generated.resources.test_service
 import org.jetbrains.compose.resources.stringResource
@@ -73,6 +74,7 @@ import org.koin.compose.koinInject
 @Composable
 fun HomeScreen(
     onStartScanning: () -> Unit,
+    onOpenSettings: () -> Unit = {},
     onOpenDebugSettings: () -> Unit = {},
     viewModel: HomeViewModel = koinInject()
 ) {
@@ -241,6 +243,25 @@ fun HomeScreen(
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.White
+                )
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Settings button
+            TextButton(
+                onClick = onOpenSettings
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Settings,
+                    contentDescription = null,
+                    modifier = Modifier.size(18.dp),
+                    tint = TextSecondary
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    text = stringResource(Res.string.settings),
+                    color = TextSecondary
                 )
             }
 

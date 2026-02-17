@@ -60,4 +60,22 @@
     <string name="incorrect">Incorrect</string>
     <string name="skip">Skip</string>
     <string name="score_display">Score: %1$d / %2$d</string>
+
+    <!-- Settings Screen -->
+    <string name="settings">Settings</string>
+    <string name="settings_playback">PLAYBACK</string>
+    <string name="settings_use_full_version">Use Full Version</string>
+    <string name="settings_full_version_desc">Opens full song in Deezer/Spotify</string>
+    <string name="settings_preview_desc">Plays 30-second preview in-app</string>
+    <string name="settings_game">GAME SESSION</string>
+    <string name="settings_current_session">Current Session</string>
+    <string name="settings_clear_session">Clear Session</string>
+    <string name="settings_no_session">No active game session</string>
+    <string name="settings_clear_session_title">Clear Session?</string>
+    <string name="settings_clear_session_message">This will reset your current game score. This action cannot be undone.</string>
+    <string name="settings_clear">Clear</string>
+    <string name="settings_cancel">Cancel</string>
+    <string name="settings_about">ABOUT</string>
+    <string name="settings_version">Version</string>
+    <string name="settings_build">Build</string>
 </resources>

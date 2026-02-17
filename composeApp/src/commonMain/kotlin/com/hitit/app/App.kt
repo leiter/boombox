@@ -11,6 +11,7 @@ import androidx.navigation.compose.rememberNavController
 import com.hitit.app.ui.screens.DebugSettingsScreen
 import com.hitit.app.ui.screens.HomeScreen
 import com.hitit.app.ui.screens.ScannerScreen
+import com.hitit.app.ui.screens.SettingsScreen
 import com.hitit.app.ui.screens.SplashScreen
 import com.hitit.app.ui.theme.DukeStarTheme
 
@@ -43,6 +44,9 @@ fun App() {
                         onStartScanning = {
                             navController.navigate(Screen.Scanner.route)
                         },
+                        onOpenSettings = {
+                            navController.navigate(Screen.Settings.route)
+                        },
                         onOpenDebugSettings = {
                             navController.navigate(Screen.DebugSettings.route)
                         }
@@ -52,6 +56,14 @@ fun App() {
                 composable(Screen.Scanner.route) {
                     ScannerScreen(
                         onBackToHome = {
+                            navController.popBackStack()
+                        }
+                    )
+                }
+
+                composable(Screen.Settings.route) {
+                    SettingsScreen(
+                        onBack = {
                             navController.popBackStack()
                         }
                     )
@@ -73,6 +85,7 @@ sealed class Screen(val route: String) {
     data object Splash : Screen("splash")
     data object Home : Screen("home")
     data object Scanner : Screen("scanner")
+    data object Settings : Screen("settings")
     data object DebugSettings : Screen("debug_settings")
 }
 

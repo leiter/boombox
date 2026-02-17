@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!--
+    === BOOMBOX MONOCHROME - For Android 13+ themed icons ===
+    Single color version (uses tint from system theme)
+    -->
+
+    <group
+        android:pivotX="54"
+        android:pivotY="54"
+        android:scaleX="0.85"
+        android:scaleY="0.85">
+
+        <!-- Main body - rounded rectangle -->
+        <path
+            android:fillColor="#000000"
+            android:pathData="M29,47 L79,47 Q82,47 82,50 L82,62 Q82,65 79,65 L29,65 Q26,65 26,62 L26,50 Q26,47 29,47 Z"/>
+
+        <!-- Handle - full pill shape -->
+        <path
+            android:fillColor="#000000"
+            android:pathData="M49,40 L59,40 Q67,40 67,44.5 Q67,49 59,49 L49,49 Q41,49 41,44.5 Q41,40 49,40 Z"/>
+
+        <!-- Left speaker - outer ring -->
+        <path
+            android:fillColor="#000000"
+            android:pathData="M40,56 m-6,0 a6,6 0 1,1 12,0 a6,6 0 1,1 -12,0"/>
+
+        <!-- Right speaker - outer ring -->
+        <path
+            android:fillColor="#000000"
+            android:pathData="M68,56 m-6,0 a6,6 0 1,1 12,0 a6,6 0 1,1 -12,0"/>
+
+        <!-- Center cassette -->
+        <path
+            android:fillColor="#000000"
+            android:pathData="M49,52 L59,52 Q60,52 60,53 L60,60 Q60,61 59,61 L49,61 Q48,61 48,60 L48,53 Q48,52 49,52 Z"/>
+
+    </group>
+
+</vector>
