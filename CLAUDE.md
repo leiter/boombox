@@ -4,28 +4,105 @@
 HitIt is a Kotlin Multiplatform (KMP) companion app for the Hitster card game. It bridges physical game cards with digital music streaming by:
 - Scanning QR codes from Hitster game cards
 - Parsing track information (supports Deezer, Spotify, YouTube URLs)
-- Opening tracks in Deezer for playback during gameplay
+- Playing 30-second track previews via Deezer API
+- Opening full tracks in Deezer app for gameplay
+- Using "flip phone face-down" gesture to trigger playback
 
 ## Tech Stack
 - **Kotlin Multiplatform** - Android & iOS from shared codebase
-- **Compose Multiplatform** - Material 3 UI
+- **Compose Multiplatform** - Material 3 UI with dark theme
 - **Koin** - Dependency injection
-- **Ktor** - HTTP client
+- **Ktor** - HTTP client for Deezer API
 - **QRKit** - QR code scanning
+- **Coroutines/Flow** - Async operations and state management
+- **Coil** - Image loading for album artwork
 
 ## Project Structure
 ```
 composeApp/src/
-├── commonMain/    # Shared code (UI, ViewModels, Services)
-├── androidMain/   # Android-specific (AppLauncher, Platform)
-└── iosMain/       # iOS-specific (AppLauncher, Platform)
+├── commonMain/kotlin/com/hitit/app/
+│   ├── App.kt                    # Main navigation controller
+│   ├── di/                       # Koin dependency injection
+│   │   ├── AppModule.kt
+│   │   └── PlatformModule.kt     # expect/actual
+│   ├── model/                    # Data models
+│   │   ├── HitsterCard.kt
+│   │   ├── QrCodeResult.kt       # Sealed class for QR parsing
+│   │   └── Track.kt
+│   ├── network/                  # API integration
+│   │   ├── ApiClient.kt
+│   │   └── DeezerApiService.kt
+│   ├── repository/               # Data access layer
+│   │   ├── HitsterCardRepository.kt
+│   │   └── MockHitsterCardRepository.kt  # 308 cards database
+│   ├── service/                  # Business logic
+│   │   ├── AppLauncher.kt        # expect/actual - open external apps
+│   │   ├── AudioPlayer.kt        # expect/actual - audio playback
+│   │   ├── DeviceOrientationService.kt  # expect/actual - accelerometer
+│   │   ├── DeezerMusicService.kt
+│   │   └── MusicService.kt       # interface
+│   ├── settings/
+│   │   └── DebugSettings.kt
+│   └── ui/
+│       ├── components/           # Reusable UI components
+│       │   ├── BackHandler.kt
+│       │   ├── ScannerFrame.kt
+│       │   └── ScannerOverlay.kt
+│       ├── screens/              # App screens
+│       │   ├── HomeScreen.kt
+│       │   ├── ScannerScreen.kt
+│       │   ├── SplashScreen.kt
+│       │   ├── NowPlayingScreen.kt
+│       │   ├── FlipPhoneScreen.kt
+│       │   └── DebugSettingsScreen.kt
+│       ├── theme/Theme.kt
+│       └── viewmodel/
+│           ├── HomeViewModel.kt
+│           └── ScannerViewModel.kt
+├── androidMain/                  # Android-specific implementations
+│   └── kotlin/com/hitit/app/
+│       ├── MainActivity.kt
+│       ├── service/              # MediaPlayer, SensorManager
+│       └── di/PlatformModule.android.kt
+├── iosMain/                      # iOS-specific implementations
+│   └── kotlin/com/hitit/app/
+│       ├── MainViewController.kt
+│       ├── service/              # AVPlayer, CoreMotion
+│       └── di/PlatformModule.ios.kt
+└── composeResources/             # Multi-language strings & assets
+    ├── values/                   # English (default)
+    ├── values-de/                # German
+    ├── values-es/                # Spanish
+    ├── values-fi/                # Finnish
+    ├── values-fr/                # French
+    ├── values-nb/                # Norwegian
+    ├── values-nl/                # Dutch
+    ├── values-pl/                # Polish
+    └── values-sv/                # Swedish
 ```
 
 ## Key Components
-- `HomeScreen` - Main entry, service check, scan button
-- `ScannerScreen` - QR camera scanner with flashlight toggle
-- `DeezerMusicService` - Music service integration
-- `QrCodeResult` - Sealed class for parsing different QR formats
+
+### Screens
+- `SplashScreen` - Loading/splash screen
+- `HomeScreen` - Main entry, Deezer check, instructions, scan button
+- `ScannerScreen` - QR camera scanner with flashlight toggle & overlay
+- `FlipPhoneScreen` - "Flip phone to play" gesture detection screen
+- `NowPlayingScreen` - Track playback with album art, controls, metadata
+- `DebugSettingsScreen` - Developer testing options
+
+### Services
+- `DeezerMusicService` - Music service integration with deep links
+- `DeezerApiService` - HTTP client for track info & preview URLs
+- `AudioPlayer` - Platform-specific audio playback (MediaPlayer/AVPlayer)
+- `DeviceOrientationService` - Accelerometer for flip detection
+- `AppLauncher` - Open Deezer app via Intent/URL scheme
+
+### Data
+- `HitsterCard` - Game card with Deezer track mapping
+- `Track` - Music track metadata (title, artist, year, album art)
+- `QrCodeResult` - Sealed class parsing Hitster, Deezer, Spotify, YouTube URLs
+- `MockHitsterCardRepository` - 308 Hitster cards with Deezer IDs
 
 ## Build Commands
 ```bash
@@ -34,7 +111,43 @@ composeApp/src/
 ```
 
 ## Theme
-Vibrant orange (#FF6B35) primary with golden yellow accents - boombox/music aesthetic
+Neon Cyber dark theme:
+- **Primary**: Magenta (#FF00FF)
+- **Secondary**: Cyan (#00FFFF)
+- **Accent**: Orange (#FF6B35)
+- **Background**: Dark purple gradients
+- Dark surfaces with transparency effects
+
+---
+
+## Implementation Status
+
+### ✅ Fully Implemented
+- **Navigation**: Splash → Home → Scanner → FlipPhone → NowPlaying flow
+- **QR Scanning**: Camera-based scanning with custom overlay and flashlight
+- **QR Parsing**: Hitster cards, Deezer, Spotify, YouTube, generic URLs
+- **Deezer Integration**: API client, preview playback, deep link to app
+- **Audio Playback**: 30-second previews with play/pause/stop controls
+- **Flip Detection**: Accelerometer-based "flip phone face-down" trigger
+- **Now Playing UI**: Album art, track info, year badge, playback controls
+- **Multi-language**: 9 languages (EN, DE, ES, FI, FR, NB, NL, PL, SV)
+- **Platform Implementations**: Full Android & iOS support
+- **Dependency Injection**: Koin with platform-specific modules
+- **Debug Tools**: Test buttons, auto-flip timer, playback mode selection
+
+### ⚠️ Limited / Partial
+- **Spotify/YouTube**: URL detection only, no playback integration
+- **Card Repository**: Mock implementation (308 hardcoded cards)
+
+### ❌ Not Implemented
+- Backend server API for card database
+- Spotify playback support
+- YouTube playback support
+- User accounts/authentication
+- Game score tracking
+- Multiplayer features
+- Offline mode with caching
+- Push notifications
 
 ---
 
@@ -46,6 +159,33 @@ fix/implementation and gradually move on with the task.
 You should test and control the current state by using screen shots
 and logging. If you are stuck like tried to overcome an obstacle, please
 call for help by ringing a bell, $(echo -e \\a) twenty times.
-If you estimate that there are hard obsticals beforehand, please communicate 
+If you estimate that there are hard obsticals beforehand, please communicate
 that early.
+
+---
+
+## Architecture Notes
+
+**Pattern**: MVVM with Clean Architecture layers
+- Presentation: Composable screens + ViewModels
+- Business Logic: Services (MusicService, AudioPlayer, etc.)
+- Data Access: Repository pattern
+- Network: Ktor-based API client
+
+**Platform Abstraction**: Uses Kotlin `expect/actual` for:
+- AudioPlayer (MediaPlayer vs AVPlayer)
+- AppLauncher (Intent vs URL scheme)
+- DeviceOrientationService (SensorManager vs CoreMotion)
+- DebugSettingsStore (SharedPreferences vs UserDefaults)
+- BackHandler (Android vs iOS navigation)
+
+---
+
+## Statistics
+- **Kotlin Source Files**: 47
+- **Hitster Cards**: 308 with Deezer mappings
+- **Languages**: 9
+- **Screens**: 6
+- **Android Min SDK**: 24
+- **iOS Targets**: x64, arm64, simulatorArm64
 
