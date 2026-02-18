@@ -78,4 +78,67 @@
     <string name="settings_about">ABOUT</string>
     <string name="settings_version">Version</string>
     <string name="settings_build">Build</string>
+
+    <!-- Card Sets -->
+    <string name="card_sets">Card Sets</string>
+    <string name="card_sets_title">Card Sets</string>
+    <string name="no_card_sets">No card sets yet</string>
+    <string name="no_card_sets_hint">Import a Deezer playlist to create your first card set</string>
+    <string name="card_count">%1$d cards</string>
+    <string name="import_playlist">Import Playlist</string>
+    <string name="delete">Delete</string>
+    <string name="export_pdf">Export PDF</string>
+    <string name="play">Play</string>
+    <string name="delete_card_set_title">Delete Card Set?</string>
+    <string name="delete_card_set_message">Are you sure you want to delete "%1$s"? This cannot be undone.</string>
+
+    <!-- Playlist Import -->
+    <string name="playlist_url">Playlist URL</string>
+    <string name="playlist_url_placeholder">https://deezer.com/playlist/...</string>
+    <string name="fetch_playlist">Fetch Playlist</string>
+    <string name="card_set_name">Card Set Name</string>
+    <string name="selected_count">%1$d of %2$d selected</string>
+    <string name="select_all">Select All</string>
+    <string name="deselect_all">Deselect All</string>
+    <string name="create_card_set">Create Card Set</string>
+
+    <!-- Card Set Edit -->
+    <string name="edit_card_set">Edit Card Set</string>
+    <string name="cards_in_set">%1$d cards in set</string>
+    <string name="add_card">Add Card</string>
+    <string name="no_cards">No cards in this set</string>
+    <string name="card_set_not_found">Card set not found</string>
+    <string name="edit">Edit</string>
+    <string name="description">Description</string>
+    <string name="save">Save</string>
+    <string name="delete_card_title">Delete Card?</string>
+    <string name="delete_card_message">Are you sure you want to delete "%1$s"?</string>
+
+    <!-- Card Edit -->
+    <string name="edit_card">Edit Card</string>
+    <string name="card_not_found">Card not found</string>
+    <string name="title">Title</string>
+    <string name="artist">Artist</string>
+    <string name="year">Year</string>
+    <string name="album">Album</string>
+
+    <!-- Track Search -->
+    <string name="search_tracks">Search Tracks</string>
+    <string name="search_placeholder">Search</string>
+    <string name="search_hint">Search for artist, song, or album</string>
+    <string name="no_results">No results found</string>
+    <string name="search_instructions">Enter at least 2 characters to search</string>
+
+    <!-- PDF Export -->
+    <string name="pdf_info_title">PDF Information</string>
+    <string name="pdf_pages">Pages</string>
+    <string name="pdf_pages_value">%1$d (fronts + backs)</string>
+    <string name="pdf_card_size">Card Size</string>
+    <string name="pdf_layout">Layout</string>
+    <string name="pdf_layout_value">3x3 grid per page</string>
+    <string name="pdf_print_instructions">Print double-sided and cut along the borders. QR codes go on the front, track info on the back.</string>
+    <string name="generating_pdf">Generating PDF... %1$d%%</string>
+    <string name="pdf_ready">PDF Ready!</string>
+    <string name="share_pdf">Share PDF</string>
+    <string name="generate_pdf">Generate PDF</string>
 </resources>

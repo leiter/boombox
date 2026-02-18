@@ -59,6 +59,7 @@ import com.hitit.app.ui.theme.TextSecondary
 import com.hitit.app.ui.viewmodel.HomeViewModel
 import hitit.composeapp.generated.resources.Res
 import hitit.composeapp.generated.resources.app_subtitle
+import hitit.composeapp.generated.resources.card_sets
 import hitit.composeapp.generated.resources.how_to_play
 import hitit.composeapp.generated.resources.instruction_step_1
 import hitit.composeapp.generated.resources.instruction_step_2
@@ -76,6 +77,7 @@ fun HomeScreen(
     onStartScanning: () -> Unit,
     onOpenSettings: () -> Unit = {},
     onOpenDebugSettings: () -> Unit = {},
+    onOpenCardSets: () -> Unit = {},
     viewModel: HomeViewModel = koinInject()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -243,6 +245,27 @@ fun HomeScreen(
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.White
+                )
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Card Sets button
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(48.dp)
+                    .clip(RoundedCornerShape(24.dp))
+                    .border(1.dp, SurfaceBorder, RoundedCornerShape(24.dp))
+                    .background(SurfaceLight)
+                    .clickable { onOpenCardSets() },
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = stringResource(Res.string.card_sets),
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Medium,
+                    color = TextSecondary
                 )
             }
 

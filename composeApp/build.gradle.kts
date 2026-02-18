@@ -88,6 +88,8 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime)
             implementation(compose.uiTooling)
             implementation(libs.coil.network.okhttp)
+            // QR Code Generation
+            implementation(libs.zxing.core)
         }
 
         iosMain.dependencies {
