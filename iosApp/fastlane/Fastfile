@@ -1,0 +1,177 @@
+# Fastfile for DukeStar
+# Documentation: https://docs.fastlane.tools
+
+default_platform(:ios)
+
+# Load API key for App Store Connect
+def load_api_key
+  app_store_connect_api_key(
+    key_id: "68DRP2Y8RW",
+    issuer_id: "e3c717d8-00fc-4ff7-8a05-65f96d2b1562",
+    key_filepath: File.expand_path("AuthKey_68DRP2Y8RW.p8", __dir__),
+    in_house: false
+  )
+end
+
+platform :ios do
+
+  # ==========================================
+  # METADATA & SCREENSHOTS
+  # ==========================================
+
+  desc "Download existing metadata and screenshots from App Store Connect"
+  lane :download_metadata do
+    api_key = load_api_key
+    deliver(
+      api_key: api_key,
+      app_identifier: "cut.the.crap.jukestar",
+      skip_binary_upload: true,
+      skip_screenshots: true,
+      skip_metadata: true,
+      force: true
+    )
+  end
+
+  desc "Upload metadata to App Store Connect (no binary)"
+  lane :upload_metadata do
+    api_key = load_api_key
+    deliver(
+      api_key: api_key,
+      skip_binary_upload: true,
+      skip_screenshots: true,
+      force: true,
+      precheck_include_in_app_purchases: false
+    )
+  end
+
+  desc "Upload screenshots to App Store Connect"
+  lane :upload_screenshots do
+    api_key = load_api_key
+    deliver(
+      api_key: api_key,
+      skip_binary_upload: true,
+      skip_metadata: true,
+      force: true,
+      overwrite_screenshots: true
+    )
+  end
+
+  # Note: upload_icon lane removed - app icons must be included in the app binary since June 2020
+
+  desc "Upload everything (metadata and screenshots)"
+  lane :upload_all do
+    api_key = load_api_key
+    deliver(
+      api_key: api_key,
+      skip_binary_upload: true,
+      force: true,
+      precheck_include_in_app_purchases: false,
+      overwrite_screenshots: true
+    )
+  end
+
+  desc "Validate metadata without uploading"
+  lane :validate_metadata do
+    deliver(
+      skip_binary_upload: true,
+      skip_screenshots: true,
+      skip_metadata: false,
+      validate_only: true
+    )
+  end
+
+  # ==========================================
+  # BUILD & RELEASE
+  # ==========================================
+
+  desc "Build the app for App Store release"
+  lane :build do
+    # Increment build number
+    increment_build_number(
+      xcodeproj: "iosApp.xcodeproj"
+    )
+
+    # Build the app
+    build_app(
+      scheme: "iosApp",
+      export_method: "app-store",
+      output_directory: "./build",
+      output_name: "DukeStar.ipa"
+    )
+  end
+
+  desc "Upload binary to App Store Connect"
+  lane :upload_binary do
+    deliver(
+      skip_metadata: true,
+      skip_screenshots: true,
+      ipa: "./build/DukeStar.ipa",
+      force: true
+    )
+  end
+
+  desc "Full release: build and upload everything"
+  lane :release do
+    build
+    deliver(
+      force: true,
+      submit_for_review: false,
+      automatic_release: false
+    )
+  end
+
+  # ==========================================
+  # TESTING & VALIDATION
+  # ==========================================
+
+  desc "Run tests"
+  lane :test do
+    run_tests(
+      scheme: "iosApp",
+      devices: ["iPhone 15 Pro"]
+    )
+  end
+
+  desc "Take screenshots for all locales"
+  lane :screenshots do
+    capture_screenshots(
+      scheme: "iosAppUITests",
+      output_directory: "./fastlane/screenshots",
+      clear_previous_screenshots: true
+    )
+  end
+
+  # ==========================================
+  # CERTIFICATES & PROVISIONING
+  # ==========================================
+
+  desc "Sync certificates and provisioning profiles"
+  lane :sync_certs do
+    match(
+      type: "appstore",
+      app_identifier: "cut.the.crap.jukestar",
+      readonly: true
+    )
+  end
+
+  desc "Register new devices"
+  lane :add_device do |options|
+    register_devices(
+      devices: {
+        options[:name] => options[:udid]
+      }
+    )
+  end
+
+  # ==========================================
+  # UTILITY
+  # ==========================================
+
+  desc "Print current version and build number"
+  lane :version do
+    version = get_version_number(xcodeproj: "iosApp.xcodeproj")
+    build = get_build_number(xcodeproj: "iosApp.xcodeproj")
+    UI.message("Version: #{version} (#{build})")
+  end
+
+end

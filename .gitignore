@@ -39,20 +39,22 @@ tmp/
 iosApp/fastlane/.env
 iosApp/fastlane/.env.*
 iosApp/fastlane/Authkey*.p8
+iosApp/fastlane/AuthKey*.p8
 iosApp/fastlane/*.cer
 iosApp/fastlane/*.p12
 iosApp/fastlane/*.mobileprovision
 iosApp/fastlane/gc_keys.json
 iosApp/fastlane/app_store_connect_api_key.json
+iosApp/fastlane/api_key.json
 
 # Fastlane generated files
 iosApp/fastlane/report.xml
 iosApp/fastlane/Preview.html
 iosApp/fastlane/test_output/
-iosApp/fastlane/screenshots/**/*.png
 iosApp/fastlane/build/
 iosApp/build/
 
-# Ruby
+# Ruby bundler
 iosApp/fastlane/vendor/
+iosApp/fastlane/.bundle/
 Gemfile.lock

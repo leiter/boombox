@@ -1,0 +1,21 @@
+Den perfekta följeslagaren för Hitster - musikquiz-kortspelet!
+
+DukeStar gör det enkelt och roligt att spela Hitster:
+
+• SKANNA - Rikta kameran mot valfri Hitster-korts QR-kod
+• LYSSNA - Hör 30-sekunders låtförhandsvisningar direkt i appen
+• GISSA - Försök gissa år, artist och låttitel
+• POÄNG - Följ din spelframsteg med inbyggd poängräkning
+
+FUNKTIONER:
+- Omedelbar QR-kodskanning med kamera
+- 30-sekunders låtförhandsvisningar i appen via Deezer
+- Full låtuppspelning i Deezer, Spotify eller YouTube
+- Unik "flip phone"-gest för att starta uppspelning
+- Poängspårning mellan sessioner
+- Vackert neon-cyber-tema
+- Stöd för 308 Hitster-kort
+
+Perfekt för spelkvällar med vänner och familj!
+
+Obs: Denna app kräver Hitster-spelkort (säljs separat).

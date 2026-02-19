@@ -1,0 +1,87 @@
+# Deliverfile for DukeStar
+# Documentation: https://docs.fastlane.tools/actions/deliver/
+
+# App Identifier
+app_identifier("cut.the.crap.jukestar")
+
+# Username (Apple ID email)
+# username("your@email.com")
+
+# Team ID
+team_id("K4K982LMZ9")
+
+# App Store Connect Team ID (if different)
+# itc_team_id("YOUR_ITC_TEAM_ID")
+
+# ==========================================
+# METADATA CONFIGURATION
+# ==========================================
+
+# Path to metadata folder
+metadata_path("./fastlane/metadata")
+
+# Path to screenshots folder
+screenshots_path("./fastlane/screenshots")
+
+# ==========================================
+# SUBMISSION SETTINGS
+# ==========================================
+
+# Don't submit for review automatically
+submit_for_review(false)
+
+# Don't release automatically after approval
+automatic_release(false)
+
+# Skip binary upload by default (use upload_binary lane)
+skip_binary_upload(true)
+
+# ==========================================
+# APP INFORMATION
+# ==========================================
+
+# Price tier - commented out due to API changes in App Store Connect
+# Set price directly in App Store Connect
+# price_tier(0)
+
+# App Rating Configuration - commented out due to API changes
+# Set rating directly in App Store Connect
+# app_rating_config_path("./fastlane/rating_config.json")
+
+# ==========================================
+# REVIEW INFORMATION
+# ==========================================
+
+# App Review Information
+# Commented out - set directly in App Store Connect
+# app_review_information(
+#   first_name: "App",
+#   last_name: "Developer",
+#   phone_number: "+49 123 456789",
+#   email_address: "dukestar@cutthecrap.link",
+#   demo_user: "",
+#   demo_password: "",
+#   notes: "This app is a companion for the Hitster card game. It requires physical Hitster game cards to scan QR codes. No login or account is required."
+# )
+
+# ==========================================
+# PRECHECK SETTINGS
+# ==========================================
+
+# Skip precheck (run separately if needed)
+run_precheck_before_submit(false)
+precheck_include_in_app_purchases(false)
+
+# ==========================================
+# SCREENSHOT SETTINGS
+# ==========================================
+
+# Overwrite existing screenshots
+overwrite_screenshots(true)
+
+# ==========================================
+# LOCALE SETTINGS
+# ==========================================
+
+# Force specific language order for delivery
+# languages(["en-US", "de-DE", "es-ES", "fi", "fr-FR", "nb", "nl-NL", "pl", "sv"])

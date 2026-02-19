@@ -1,0 +1,14 @@
+# App Identifier
+app_identifier("cut.the.crap.jukestar")
+
+# Apple Developer Portal Team ID
+team_id("K4K982LMZ9")
+
+# App Store Connect Team ID (if different from Developer Portal)
+# itc_team_id("YOUR_ITC_TEAM_ID")
+
+# Apple ID for App Store Connect
+apple_id("markro77@arcor.de")
+
+# For more information about the Appfile, see:
+# https://docs.fastlane.tools/advanced/#appfile

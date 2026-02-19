@@ -1,0 +1,21 @@
+Le compagnon parfait pour Hitster - le jeu de cartes quiz musical !
+
+DukeStar rend le jeu Hitster fluide et amusant :
+
+• SCANNEZ - Pointez votre caméra sur n'importe quel code QR de carte Hitster
+• ÉCOUTEZ - Écoutez des extraits de 30 secondes directement dans l'app
+• DEVINEZ - Essayez de deviner l'année, l'artiste et le titre
+• SCOREZ - Suivez votre progression avec le système de points intégré
+
+FONCTIONNALITÉS :
+- Scan instantané des codes QR avec la caméra
+- Extraits de 30 secondes dans l'app via Deezer
+- Lecture complète sur Deezer, Spotify ou YouTube
+- Geste unique "téléphone à clapet" pour lancer la lecture
+- Suivi des scores entre les sessions
+- Magnifique thème cyber néon
+- Support pour 308 cartes Hitster
+
+Parfait pour les soirées jeux entre amis et en famille !
+
+Note : Cette app nécessite les cartes du jeu Hitster (vendues séparément).

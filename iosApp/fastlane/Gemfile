@@ -1,0 +1,11 @@
+source "https://rubygems.org"
+
+# Fastlane
+gem "fastlane", "~> 2.232"
+
+# Plugins (add as needed)
+# gem "fastlane-plugin-versioning"
+# gem "fastlane-plugin-badge"
+
+# Cocoapods (if using CocoaPods)
+# gem "cocoapods", "~> 1.14"
